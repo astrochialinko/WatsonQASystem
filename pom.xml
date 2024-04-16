@@ -5,10 +5,10 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.arizona.cs</groupId>
-  <artifactId>hw3</artifactId>
+  <artifactId>final</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>hw3</name>
+  <name>final</name>
   <url>http://maven.apache.org</url>
 
 

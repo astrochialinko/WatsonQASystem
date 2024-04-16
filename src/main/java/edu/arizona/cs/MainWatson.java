@@ -11,7 +11,7 @@ public class MainWatson {
 			
 		}
 		if(runQuery) {
-			
+			System.out.println("hello watson");
 		}
 	}
 }
