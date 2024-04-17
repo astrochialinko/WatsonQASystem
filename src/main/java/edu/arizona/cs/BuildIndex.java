@@ -14,9 +14,8 @@ public class BuildIndex {
         
     }
 
-    public void fileIndex(String inputFileDir) throws java.io.FileNotFoundException,java.io.IOException {
+    public void fileIndex(String inputFileDir, String indexFile) throws java.io.FileNotFoundException,java.io.IOException {
         // create the index file
-        String indexFile = "index-file";
         File indexF = new File(indexFile);
         // using Lucene to index
         StandardAnalyzer analyzer = new StandardAnalyzer();
@@ -29,6 +28,11 @@ public class BuildIndex {
         for(String i : wikiDirF.list()) {
             String singleFilePath = inputFileDir + "/" + i;
             System.out.println(singleFilePath);
+
+
+
+
+            
         }
         w.close();
         index.close();
