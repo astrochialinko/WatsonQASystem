@@ -64,7 +64,7 @@ public class BuildIndex {
                         
                         // store new title and starts a new page
                         title = currLine.substring(2, lineLen - 2);
-                         System.out.println(title);
+                        // System.out.println(title);
 
                     }
                     else if (currLine.startsWith("CATEGORIES:")) {
