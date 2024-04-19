@@ -3,6 +3,8 @@ package edu.arizona.cs;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Scanner;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -36,6 +38,10 @@ public class BuildIndex {
         File wikiDirF = new File(classLoader.getResource(inputFileDir).getFile());
 
         int docCtr = 0;
+        // print current time
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        System.out.println(ts);
         // loop through all the wiki files under the directory
         for(String i : wikiDirF.list()) {
             String singleFilePath = inputFileDir + "/" + i;
@@ -48,7 +54,8 @@ public class BuildIndex {
             // scan through each line of a file
             String title = "";
             String categories = "";
-            String text = "";
+            StringBuilder text = new StringBuilder();
+            
             try (Scanner inputScanner = new Scanner(new FileInputStream(file))) {
                 while (inputScanner.hasNextLine()) {
                     String currLine = inputScanner.nextLine();
@@ -59,26 +66,33 @@ public class BuildIndex {
                     if (currLine.startsWith("[[") && currLine.endsWith("]]") && !currLine.contains("Image:") && !currLine.contains("File:")) {
                         // add the previous stored title, categaries, and text as Doc to lucene
                         if (!title.equals("")) {
-                            addDoc(w, title, categories, text);
+                            addDoc(w, title, categories, text.toString());
+                            // System.out.println(title);
                         }
-                        
+                        // reinitialize fields
+                        title = "";
+                        categories = "";
+                        text = new StringBuilder();
                         // store new title and starts a new page
                         title = currLine.substring(2, lineLen - 2);
-                        // System.out.println(title);
-
                     }
                     else if (currLine.startsWith("CATEGORIES:")) {
                         categories = currLine.substring(12).trim();
-                        // System.out.println(categories);
                     }
                     else {
-                        text = text + currLine.trim() + " ";
+                        // I used plus operator to do string concat at first, the performance was slow. Then I switched to stringbuilder  
+                        text.append(currLine.trim() + " ");                          
                     }
 
                 }
                 //add the last page to w
-                addDoc(w, title, categories, text);
+                addDoc(w, title, categories, text.toString());
+
                 inputScanner.close();
+                // print current time
+                Date date1 = new Date();
+                Timestamp ts1 = new Timestamp(date1.getTime());
+                System.out.println(ts1);
             } catch (IOException e) {
                 e.printStackTrace();
             }
