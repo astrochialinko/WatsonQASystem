@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Scanner;
 
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -19,8 +20,12 @@ import org.apache.lucene.store.FSDirectory;
 
 public class BuildIndex {
 
-    public BuildIndex(){
-        
+	private boolean lemmatization; 
+	private boolean stemming;
+
+    public BuildIndex(boolean lemma, boolean stem){
+        this.lemmatization = lemma;
+        this.stemming = stem;
     }
 
     public void fileIndex(String inputFileDir, String indexFile) throws java.io.FileNotFoundException,java.io.IOException {
@@ -29,15 +34,29 @@ public class BuildIndex {
         File indexF = new File(indexFile);  // output index file
         
         // using Lucene to index
-        StandardAnalyzer analyzer = new StandardAnalyzer();
+        StandardAnalyzer analyzer = new StandardAnalyzer();   // use default stop word set, lowercases the generated tokens.
+        EnglishAnalyzer analyzer_stem = new EnglishAnalyzer();  // stop word, lowercase, porterstem
+
         Directory index = FSDirectory.open(indexF.toPath());
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+        IndexWriterConfig config;
+        if (stemming) {
+            config = new IndexWriterConfig(analyzer_stem);
+        }
+        //else if (lemmatization) {
+            // adding later
+        //}
+        else {
+            config = new IndexWriterConfig(analyzer);
+        }
         IndexWriter w = new IndexWriter(index, config);
 
         // get wiki dir FileD from Resource
         File wikiDirF = new File(classLoader.getResource(inputFileDir).getFile());
 
         int docCtr = 0;
+
+
+
         // print current time
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
@@ -80,6 +99,7 @@ public class BuildIndex {
                         categories = currLine.substring(12).trim();
                     }
                     else {
+
                         // I used plus operator to do string concat at first, the performance was slow. Then I switched to stringbuilder  
                         text.append(currLine.trim() + " ");                          
                     }
