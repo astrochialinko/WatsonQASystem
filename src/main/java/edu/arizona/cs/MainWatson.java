@@ -6,8 +6,11 @@ import java.io.IOException;
 public class MainWatson {
     static boolean buildIndex = false;
 	static boolean runQuery = true;
-	
-	// input files under the folder src/main/resources
+
+	// pre-index processing flags
+	static boolean lemmatization = true;   // lemmatization and stemming are mutually exclusive
+	static boolean stemming = false;
+
 	static String wikiDir = "wiki-folder"; // input wiki pages
 	static String queryFile = "questions.txt"; // input questions as query
 	
@@ -15,7 +18,7 @@ public class MainWatson {
     static String indexFile = "index-file"; // saving the built index
     public static void main(String[] args ) throws FileNotFoundException, IOException {
 		if(buildIndex) {
-			BuildIndex myBuildIndex = new BuildIndex();
+			BuildIndex myBuildIndex = new BuildIndex(lemmatization, stemming);
 			myBuildIndex.fileIndex(wikiDir, indexFile);
 		}
 		if(runQuery) {
