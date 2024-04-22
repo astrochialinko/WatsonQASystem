@@ -8,8 +8,8 @@ public class MainWatson {
 	static boolean runQuery = true;
 
 	// pre-index processing flags
-	static boolean lemmatization = false;   // lemmatization and stemming are mutually exclusive
-	static boolean stemming = true;
+	static boolean lemmatization = true;   // lemmatization and stemming are mutually exclusive
+	static boolean stemming = false;
 
 	static String wikiDir = "wiki-folder"; // input wiki pages
 	static String indexFile = "index-file";  // saving the built index

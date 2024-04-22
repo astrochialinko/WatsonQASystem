@@ -28,6 +28,11 @@
       <artifactId>lucene-analyzers-common</artifactId>
       <version>7.7.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-opennlp</artifactId>
+      <version>7.7.1</version>
+    </dependency>
 
     <!--<dependency>-->
       <!--<groupId>junit</groupId>-->

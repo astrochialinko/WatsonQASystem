@@ -36,15 +36,16 @@ public class BuildIndex {
         // using Lucene to index
         StandardAnalyzer analyzer = new StandardAnalyzer();   // use default stop word set, lowercases the generated tokens.
         EnglishAnalyzer analyzer_stem = new EnglishAnalyzer();  // stop word, lowercase, porterstem
+        LemmaAnalyzer analyzer_lemma = new LemmaAnalyzer();  // stop word, OpenNLPLemmatizer, lowercase 
 
         Directory index = FSDirectory.open(indexF.toPath());
         IndexWriterConfig config;
         if (stemming) {
             config = new IndexWriterConfig(analyzer_stem);
         }
-        //else if (lemmatization) {
-            // adding later
-        //}
+        else if (lemmatization) {
+            config = new IndexWriterConfig(analyzer_lemma);
+        }
         else {
             config = new IndexWriterConfig(analyzer);
         }
