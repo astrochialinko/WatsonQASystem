@@ -40,14 +40,21 @@ public class BuildIndex {
 
         Directory index = FSDirectory.open(indexF.toPath());
         IndexWriterConfig config;
-        if (stemming) {
+        if (stemming && !lemmatization) {
             config = new IndexWriterConfig(analyzer_stem);
+            System.out.println("Using English analyzer with stemming (porterstem)");
         }
-        else if (lemmatization) {
+        else if (!stemming && lemmatization) {
             config = new IndexWriterConfig(analyzer_lemma);
+            System.out.println("Using a custom analyzer with lemmatization");
+        }
+        else if (!stemming && !lemmatization) {
+            config = new IndexWriterConfig(analyzer);
+            System.out.println("Using standard analyzer");
         }
         else {
             config = new IndexWriterConfig(analyzer);
+            System.out.println("both stemming and lemma flags are on. Invalid combo. Using standard analyzer as default");
         }
         IndexWriter w = new IndexWriter(index, config);
 

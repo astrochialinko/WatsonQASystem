@@ -13,6 +13,7 @@ import java.io.StringReader;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 
 import org.apache.lucene.search.Query;
@@ -28,23 +29,41 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.similarities.BM25Similarity;
+import org.apache.lucene.search.similarities.BooleanSimilarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
 public class QueryEngine {
 	private IndexReader reader;
 	private IndexSearcher searcher;
 	private QueryParser parser;
-	private Analyzer analyzer = new StandardAnalyzer();
+	private Analyzer analyzer = null;
 	private List<String> answers = new ArrayList<>();
 	private int hitsPerPage = 10;
+	private boolean query_lemma = false;
+	private boolean query_stem = false;
 
 	// Constructor initializes the searcher and parser
 	public QueryEngine(String indexDirectoryPath) throws IOException {
 
+		if (indexDirectoryPath.endsWith("std")) {
+			analyzer = new StandardAnalyzer();
+		} 
+		else if (indexDirectoryPath.endsWith("lemma")) {
+			analyzer = new LemmaAnalyzer();
+			query_lemma = true;
+		}
+		else if (indexDirectoryPath.endsWith("stem")) {
+			analyzer = new EnglishAnalyzer();
+			query_stem = true;
+		}
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
 		searcher.setSimilarity(new ClassicSimilarity());
+		// searcher.setSimilarity(new BooleanSimilarity());
+		// searcher.setSimilarity(new BM25Similarity());
+		// searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.5));
 
 	}
 
