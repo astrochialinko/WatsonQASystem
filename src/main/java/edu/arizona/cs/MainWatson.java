@@ -23,7 +23,7 @@ public class MainWatson {
 		}
 		if(runQuery) {
 			QueryEngine myQueryEngine = new QueryEngine(indexFile);
-            myQueryEngine.buildQuery(queryFile);
+            myQueryEngine.processQueries(queryFile);
 		}
 	}
 }
