@@ -31,6 +31,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.BooleanSimilarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.LMDirichletSimilarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
 public class QueryEngine {
@@ -48,22 +49,21 @@ public class QueryEngine {
 
 		if (indexDirectoryPath.endsWith("std")) {
 			analyzer = new StandardAnalyzer();
-		} 
-		else if (indexDirectoryPath.endsWith("lemma")) {
+		} else if (indexDirectoryPath.endsWith("lemma")) {
 			analyzer = new LemmaAnalyzer();
 			query_lemma = true;
-		}
-		else if (indexDirectoryPath.endsWith("stem")) {
+		} else if (indexDirectoryPath.endsWith("stem")) {
 			analyzer = new EnglishAnalyzer();
 			query_stem = true;
 		}
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-		//searcher.setSimilarity(new ClassicSimilarity());
-		// searcher.setSimilarity(new BooleanSimilarity());
-		// searcher.setSimilarity(new BM25Similarity());
-		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.5));
+//		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 5
+//		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.15 MMR 0.20 hits: 34
+		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.30 MMR: 0.38 hits: 58
+//		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.1)); // P: 0.26 MMR: 0.35 hits:56
+//		 searcher.setSimilarity(new LMDirichletSimilarity()); // P: 0.28 MMR 0.39 hits: 60
 
 	}
 
@@ -120,13 +120,15 @@ public class QueryEngine {
 	// Executes the built queries and returns results
 	private List<ResultClass> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
 		List<ResultClass> results = new ArrayList<>();
-		
+
 		int i = 0;
 		int corret_count = 0;
+		int correctCountInHit = 0;
 		double mmr = 0;
 		for (Query query : queries) {
+			String answer = answers.get(i);
 			System.out.println("Executing query " + (i + 1) + ": " + query.toString());
-			System.out.println("Answer: " + answers.get(i));
+			System.out.println("Answer: " + answer);
 
 			TopDocs docs = searcher.search(query, hitsPerPage);
 			int j = 1;
@@ -135,36 +137,67 @@ public class QueryEngine {
 				Document doc = searcher.doc(scoreDoc.doc);
 				String title = doc.get("title");
 				double score = scoreDoc.score;
-				//results.add(new ResultClass(doc, score));   // here you adding the 10 returned hits for every query into one single list, i dont think we need this.
+				// results.add(new ResultClass(doc, score)); // here you adding the 10 returned
+				// hits for every query into one single list, i dont think we need this.
 				query_result.add(new ResultClass(doc, score));
 				System.out.println("-> QA " + j + ": " + title + "\t (Score: " + score + ")");
 				j++;
 			}
 
 			// calculating precision and MMR
-			if (query_result.get(0).DocName.get("title").equals(answers.get(i))) {
-				
+			String[] possibleAnswers = answer.split("\\|"); // some questions have two accepted answers
+			boolean isAnswerCorrect = false;
+
+			// Check if any of the possible hits the first document
+			for (String possibleAnswer : possibleAnswers) {
+				if (query_result.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+					isAnswerCorrect = true;
+					break;
+				}
+			}
+
+			if (isAnswerCorrect) {
 				System.out.println("--- Search Correct --- ");
 				corret_count++;
 				mmr += 1.0;
-			}
-			else {
+				correctCountInHit++;
+			} else {
 				System.out.println("--- Search Incorrect --- ");
 				int right_index = 0;
-				for (ResultClass result : query_result){
+				for (ResultClass result : query_result) {
 					right_index++;
-					if (result.DocName.get("title").equals(answers.get(i))) {
-						mmr += (double)1/right_index;
+					for (String possibleAnswer : possibleAnswers) {
+						if (result.DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+							System.out.printf("--- Search Correct in QA %d --- \n", right_index);
+							mmr += (double) 1 / right_index;
+							correctCountInHit++;
+							isAnswerCorrect = true;
+							break;
+						}
+					}
+					if (isAnswerCorrect) {
+						
 						break;
 					}
 				}
 			}
 
-
 			System.out.println("");
 			i++;
 		}
-		System.out.println("Precision: " + (double)corret_count/i + ". MMR: " + (double)mmr/i);
+		double precision = (double) corret_count / i;
+		double precisionInHit = (double) correctCountInHit / i;
+		double MMR = (double) mmr / i;
+
+		System.out.println("-----------------------------------------------------");
+		System.out.println(" Measuring performance...");
+		System.out.printf(" - Correctly answered questions: %d\n", corret_count);
+		System.out.printf(" - Incorrectly answered: %d\n", i - corret_count);
+		System.out.printf(" - Correctly answered questions within %d hits: %d\n", hitsPerPage, correctCountInHit);
+		System.out.printf(" - Total questions questions: %d\n\n", i);
+		System.out.printf(" - Precision at 1 (P@1): %.2f\n", precision);
+		System.out.printf(" - Mean Reciprocal Rank (MRR): %.2f\n", MMR);
+		System.out.println("-----------------------------------------------------");
 
 		return results;
 	}
