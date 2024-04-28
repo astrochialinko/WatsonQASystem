@@ -43,6 +43,7 @@ public class QueryEngine {
 	private int hitsPerPage = 10;
 	private boolean query_lemma = false;
 	private boolean query_stem = false;
+	private boolean add_category = true;
 
 	// Constructor initializes the searcher and parser
 	public QueryEngine(String indexDirectoryPath) throws IOException {
@@ -59,11 +60,11 @@ public class QueryEngine {
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-//		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 5
-//		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.15 MMR 0.20 hits: 34
-		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.30 MMR: 0.38 hits: 58
-//		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.1)); // P: 0.26 MMR: 0.35 hits:56
-//		 searcher.setSimilarity(new LMDirichletSimilarity()); // P: 0.28 MMR 0.39 hits: 60
+		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
+//		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.18 MMR 0.23 hits: 37
+		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
+//		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.1)); // P: 0.37 MMR: 0.43 hits:57
+//		 searcher.setSimilarity(new LMDirichletSimilarity()); // P: 0.34 MMR 0.44 hits: 62
 
 	}
 
@@ -102,12 +103,21 @@ public class QueryEngine {
 			String category = lines.get(i).trim();
 			String clue = lines.get(i + 1).trim();
 			String answer = lines.get(i + 2).trim();
-//			String queryStr = buildLuceneQuery(clue, category);
+			
 
-			int q_index = i / 4 + 1;
 			try {
-				Query query = parser.parse(QueryParser.escape(clue));
-//				Query query = parser.parse(queryStr);
+				Query query;
+				if (add_category) {
+					// Builds a Lucene query string from clue and category
+					String queryStr = String.format("categories:%s OR text:%s ", 
+							QueryParser.escape(category), QueryParser.escape(clue));
+//					String queryStr = String.format("categories:%s text:\"%s\" text:%s ", 
+//							QueryParser.escape(category), QueryParser.escape(category), 
+//							QueryParser.escape(clue));
+					query = parser.parse(queryStr);
+				} else {
+					query = parser.parse(QueryParser.escape(clue));
+				}
 				queries.add(query);
 				this.answers.add(answer);
 			} catch (ParseException e) {
@@ -150,7 +160,7 @@ public class QueryEngine {
 
 			// Check if any of the possible hits the first document
 			for (String possibleAnswer : possibleAnswers) {
-				if (query_result.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+				if (query_result.size()>0 && query_result.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
 					isAnswerCorrect = true;
 					break;
 				}
@@ -194,7 +204,7 @@ public class QueryEngine {
 		System.out.printf(" - Correctly answered questions: %d\n", corret_count);
 		System.out.printf(" - Incorrectly answered: %d\n", i - corret_count);
 		System.out.printf(" - Correctly answered questions within %d hits: %d\n", hitsPerPage, correctCountInHit);
-		System.out.printf(" - Total questions questions: %d\n\n", i);
+		System.out.printf(" - Total questions: %d\n\n", i);
 		System.out.printf(" - Precision at 1 (P@1): %.2f\n", precision);
 		System.out.printf(" - Mean Reciprocal Rank (MRR): %.2f\n", MMR);
 		System.out.println("-----------------------------------------------------");
@@ -219,12 +229,6 @@ public class QueryEngine {
 
 			System.out.println("");
 		}
-	}
-
-	// Builds a Lucene query string from clue and category
-	// buggy, not yet finish
-	private String buildLuceneQuery(String clue, String category) {
-		return String.format("text:%s AND category:%s", QueryParser.escape(clue), QueryParser.escape(category));
 	}
 
 }
