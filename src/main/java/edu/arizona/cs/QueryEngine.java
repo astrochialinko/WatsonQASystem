@@ -89,6 +89,7 @@ public class QueryEngine {
 		List<Query> queries = buildQuery(queryFile);
 		List<ResultClass> results = executeQueries(queries, hitsPerPage);
 //		displayResults(queries, results);
+		reader.close();
 	}
 
 	// Builds Lucene queries from a file
@@ -119,25 +120,52 @@ public class QueryEngine {
 	// Executes the built queries and returns results
 	private List<ResultClass> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
 		List<ResultClass> results = new ArrayList<>();
+		
 		int i = 0;
+		int corret_count = 0;
+		double mmr = 0;
 		for (Query query : queries) {
 			System.out.println("Executing query " + (i + 1) + ": " + query.toString());
 			System.out.println("Answer: " + answers.get(i));
 
 			TopDocs docs = searcher.search(query, hitsPerPage);
 			int j = 1;
+			List<ResultClass> query_result = new ArrayList<>();
 			for (ScoreDoc scoreDoc : docs.scoreDocs) {
 				Document doc = searcher.doc(scoreDoc.doc);
 				String title = doc.get("title");
 				double score = scoreDoc.score;
-				results.add(new ResultClass(doc, score));
-
+				//results.add(new ResultClass(doc, score));   // here you adding the 10 returned hits for every query into one single list, i dont think we need this.
+				query_result.add(new ResultClass(doc, score));
 				System.out.println("-> QA " + j + ": " + title + "\t (Score: " + score + ")");
 				j++;
 			}
+
+			// calculating precision and MMR
+			if (query_result.get(0).DocName.get("title").equals(answers.get(i))) {
+				
+				System.out.println("--- Search Correct --- ");
+				corret_count++;
+				mmr += 1.0;
+			}
+			else {
+				System.out.println("--- Search Incorrect --- ");
+				int right_index = 0;
+				for (ResultClass result : query_result){
+					right_index++;
+					if (result.DocName.get("title").equals(answers.get(i))) {
+						mmr += (double)1/right_index;
+						break;
+					}
+				}
+			}
+
+
 			System.out.println("");
 			i++;
 		}
+		System.out.println("Precision: " + (double)corret_count/i + ". MMR: " + (double)mmr/i);
+
 		return results;
 	}
 
