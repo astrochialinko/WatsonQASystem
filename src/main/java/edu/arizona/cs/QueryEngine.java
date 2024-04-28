@@ -60,10 +60,10 @@ public class QueryEngine {
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-		searcher.setSimilarity(new ClassicSimilarity());
+		//searcher.setSimilarity(new ClassicSimilarity());
 		// searcher.setSimilarity(new BooleanSimilarity());
 		// searcher.setSimilarity(new BM25Similarity());
-		// searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.5));
+		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.5));
 
 	}
 
