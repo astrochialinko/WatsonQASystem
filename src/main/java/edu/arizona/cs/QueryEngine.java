@@ -60,11 +60,11 @@ public class QueryEngine {
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
+//		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
 //		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.18 MMR 0.23 hits: 37
-		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
-//		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.1)); // P: 0.37 MMR: 0.43 hits:57
-//		 searcher.setSimilarity(new LMDirichletSimilarity()); // P: 0.34 MMR 0.44 hits: 62
+//		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
+		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.05)); // P: 0.38 MMR: 0.44 hits:57
+//		 searcher.setSimilarity(new LMDirichletSimilarity(3000)); // P: 0.35 MMR 0.44 hits: 63
 
 	}
 
@@ -82,6 +82,7 @@ public class QueryEngine {
 		System.out.println("Document Example...");
 		System.out.println("Title: " + doc.get("title"));
 		System.out.println("Categories: " + doc.get("categories"));
+		System.out.println("Summary: " + doc.get("summary"));
 		System.out.println("Text: " + doc.get("text") + "\n");
 	}
 
@@ -111,9 +112,14 @@ public class QueryEngine {
 					// Builds a Lucene query string from clue and category
 					String queryStr = String.format("categories:%s OR text:%s ", 
 							QueryParser.escape(category), QueryParser.escape(clue));
+
+//					String queryStr = String.format("categories:%s summary:%s ", 
+//					QueryParser.escape(category), QueryParser.escape(clue));
+					
 //					String queryStr = String.format("categories:%s text:\"%s\" text:%s ", 
 //							QueryParser.escape(category), QueryParser.escape(category), 
 //							QueryParser.escape(clue));
+					
 					query = parser.parse(queryStr);
 				} else {
 					query = parser.parse(QueryParser.escape(clue));
