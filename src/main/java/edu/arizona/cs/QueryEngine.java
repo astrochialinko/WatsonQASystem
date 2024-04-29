@@ -34,6 +34,22 @@ import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.LMDirichletSimilarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.MediaType;
+import okhttp3.Response;
+import com.google.gson.JsonObject;
+
+import java.util.Collections;
+import java.util.Comparator;
+
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.entity.StringEntity;
+//import org.apache.http.impl.client.CloseableHttpClient;
+//import org.apache.http.impl.client.HttpClients;
+//import org.apache.http.util.EntityUtils;
+
 public class QueryEngine {
 	private IndexReader reader;
 	private IndexSearcher searcher;
@@ -41,9 +57,15 @@ public class QueryEngine {
 	private Analyzer analyzer = null;
 	private List<String> answers = new ArrayList<>();
 	private int hitsPerPage = 10;
+	private String apiKey = "ChatGPT-API";
+
 	private boolean query_lemma = false;
 	private boolean query_stem = false;
 	private boolean add_category = true;
+	private boolean rerank = true;
+
+//	private OkHttpClient client = new OkHttpClient();
+//	private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
 	// Constructor initializes the searcher and parser
 	public QueryEngine(String indexDirectoryPath) throws IOException {
@@ -63,7 +85,7 @@ public class QueryEngine {
 //		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
 //		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.18 MMR 0.23 hits: 37
 //		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
-		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.05)); // P: 0.38 MMR: 0.44 hits:57
+		searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.05)); // P: 0.38 MMR: 0.44 hits:57
 //		 searcher.setSimilarity(new LMDirichletSimilarity(3000)); // P: 0.35 MMR 0.44 hits: 63
 
 	}
@@ -89,7 +111,7 @@ public class QueryEngine {
 	// 2. and 3. Processes queries from file and displays results
 	public void processQueries(String queryFile) throws IOException {
 		List<Query> queries = buildQuery(queryFile);
-		List<ResultClass> results = executeQueries(queries, hitsPerPage);
+		List<List<ResultClass>> results = executeQueries(queries, hitsPerPage);
 //		displayResults(queries, results);
 		reader.close();
 	}
@@ -104,22 +126,21 @@ public class QueryEngine {
 			String category = lines.get(i).trim();
 			String clue = lines.get(i + 1).trim();
 			String answer = lines.get(i + 2).trim();
-			
 
 			try {
 				Query query;
 				if (add_category) {
 					// Builds a Lucene query string from clue and category
-					String queryStr = String.format("categories:%s OR text:%s ", 
-							QueryParser.escape(category), QueryParser.escape(clue));
+					String queryStr = String.format("categories:%s OR text:%s ", QueryParser.escape(category),
+							QueryParser.escape(clue));
 
 //					String queryStr = String.format("categories:%s summary:%s ", 
 //					QueryParser.escape(category), QueryParser.escape(clue));
-					
+
 //					String queryStr = String.format("categories:%s text:\"%s\" text:%s ", 
 //							QueryParser.escape(category), QueryParser.escape(category), 
 //							QueryParser.escape(clue));
-					
+
 					query = parser.parse(queryStr);
 				} else {
 					query = parser.parse(QueryParser.escape(clue));
@@ -134,31 +155,29 @@ public class QueryEngine {
 	}
 
 	// Executes the built queries and returns results
-	private List<ResultClass> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
-		List<ResultClass> results = new ArrayList<>();
-
-		int i = 0;
-		int corret_count = 0;
+	private List<List<ResultClass>> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
+		List<List<ResultClass>> results = new ArrayList<>();
+		int correctCount = 0;
 		int correctCountInHit = 0;
 		double mmr = 0;
-		for (Query query : queries) {
+
+		for (int i = 0; i < queries.size(); i++) {
 			String answer = answers.get(i);
+			Query query = queries.get(i);
 			System.out.println("Executing query " + (i + 1) + ": " + query.toString());
 			System.out.println("Answer: " + answer);
 
-			TopDocs docs = searcher.search(query, hitsPerPage);
-			int j = 1;
-			List<ResultClass> query_result = new ArrayList<>();
-			for (ScoreDoc scoreDoc : docs.scoreDocs) {
-				Document doc = searcher.doc(scoreDoc.doc);
-				String title = doc.get("title");
-				double score = scoreDoc.score;
-				// results.add(new ResultClass(doc, score)); // here you adding the 10 returned
-				// hits for every query into one single list, i dont think we need this.
-				query_result.add(new ResultClass(doc, score));
-				System.out.println("-> QA " + j + ": " + title + "\t (Score: " + score + ")");
-				j++;
+			List<ResultClass> initialResults = executeSingleQuery(queries.get(i), hitsPerPage);
+			List<ResultClass> queryResult;
+
+			if (rerank) {
+				List<ResultClass> rerankedResults = rerankWithChatGPT(initialResults, query.toString());
+				queryResult = rerankedResults;
+			} else {
+				queryResult = initialResults;
 			}
+
+			results.add(queryResult);
 
 			// calculating precision and MMR
 			String[] possibleAnswers = answer.split("\\|"); // some questions have two accepted answers
@@ -166,7 +185,8 @@ public class QueryEngine {
 
 			// Check if any of the possible hits the first document
 			for (String possibleAnswer : possibleAnswers) {
-				if (query_result.size()>0 && query_result.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+				if (!queryResult.isEmpty()
+						&& queryResult.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
 					isAnswerCorrect = true;
 					break;
 				}
@@ -174,13 +194,13 @@ public class QueryEngine {
 
 			if (isAnswerCorrect) {
 				System.out.println("--- Search Correct --- ");
-				corret_count++;
+				correctCount++;
 				mmr += 1.0;
 				correctCountInHit++;
 			} else {
 				System.out.println("--- Search Incorrect --- ");
 				int right_index = 0;
-				for (ResultClass result : query_result) {
+				for (ResultClass result : queryResult) {
 					right_index++;
 					for (String possibleAnswer : possibleAnswers) {
 						if (result.DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
@@ -192,30 +212,95 @@ public class QueryEngine {
 						}
 					}
 					if (isAnswerCorrect) {
-						
 						break;
 					}
 				}
 			}
 
 			System.out.println("");
-			i++;
 		}
-		double precision = (double) corret_count / i;
-		double precisionInHit = (double) correctCountInHit / i;
-		double MMR = (double) mmr / i;
+
+		calculateMetrics(queries.size(), correctCount, mmr, hitsPerPage, correctCountInHit);
+		return results;
+	}
+
+	private List<ResultClass> executeSingleQuery(Query query, int hitsPerPage) throws IOException {
+		List<ResultClass> queryResult = new ArrayList<>();
+		TopDocs docs = searcher.search(query, hitsPerPage);
+
+		for (ScoreDoc scoreDoc : docs.scoreDocs) {
+			Document doc = searcher.doc(scoreDoc.doc);
+			String title = doc.get("title");
+			double score = scoreDoc.score;
+			queryResult.add(new ResultClass(doc, score));
+			System.out.println("-> QA: " + title + "\t (Score: " + score + ")");
+		}
+		return queryResult;
+	}
+
+	private void calculateMetrics(int totalQueries, int correctCount, double mmr, int hitsPerPage,
+			int correctCountInHit) {
+		double precision = (double) correctCount / totalQueries;
+		double MMR = mmr / totalQueries;
 
 		System.out.println("-----------------------------------------------------");
 		System.out.println(" Measuring performance...");
-		System.out.printf(" - Correctly answered questions: %d\n", corret_count);
-		System.out.printf(" - Incorrectly answered: %d\n", i - corret_count);
+		System.out.printf(" - Correctly answered questions: %d\n", correctCount);
+		System.out.printf(" - Incorrectly answered: %d\n", totalQueries - correctCount);
 		System.out.printf(" - Correctly answered questions within %d hits: %d\n", hitsPerPage, correctCountInHit);
-		System.out.printf(" - Total questions: %d\n\n", i);
+		System.out.printf(" - Total questions: %d\n\n", totalQueries);
 		System.out.printf(" - Precision at 1 (P@1): %.2f\n", precision);
 		System.out.printf(" - Mean Reciprocal Rank (MRR): %.2f\n", MMR);
 		System.out.println("-----------------------------------------------------");
+	}
 
-		return results;
+	public List<ResultClass> rerankWithChatGPT(List<ResultClass> initialResults, String query) throws IOException {
+		List<ResultClass> rerankedResults = new ArrayList<>(initialResults);
+		OkHttpClient client = new OkHttpClient();
+		MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+		for (ResultClass result : rerankedResults) {
+			String documentText = result.DocName.get("summary"); // Use summary or text
+			String prompt = String.format(
+					"{\"prompt\": " + "\"How relevant is this text to the query: %s? " + "Text: %s\"}", query,
+					documentText);
+
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("prompt", "Query: " + query + "\nDocument: " + documentText);
+			jsonObject.addProperty("max_tokens", 50);
+			jsonObject.addProperty("model", "whisper-1");
+			jsonObject.addProperty("temperature", 0.5);
+
+			String json = jsonObject.toString();
+			System.out.println("JSON Payload: " + prompt); // for debug
+			RequestBody body = RequestBody.create(json, JSON);
+
+			Request request = new Request.Builder().url("https://api.openai.com/v1/completions")
+					.addHeader("Authorization", "Bearer " + apiKey).addHeader("Content-Type", "application/json")
+					.post(body).build();
+
+			try (Response response = client.newCall(request).execute()) {
+				if (!response.isSuccessful()) {
+					String errorBody = response.body().string();
+					System.out.println("Error response: " + errorBody);
+					throw new IOException("Unexpected code " + response);
+				}
+				String responseBody = response.body().string();
+				double relevanceScore = extractRelevanceScore(responseBody); // Implement this method based on response
+				result.setScore(relevanceScore);
+			}
+		}
+
+		// Sort by the new score in descending order
+		Collections.sort(rerankedResults, Comparator.comparingDouble(ResultClass::getScore).reversed());
+		return rerankedResults;
+	}
+
+	// Dummy implementation: extract relevance score from API response
+	private double extractRelevanceScore(String responseBody) {
+		// You need to parse the JSON response and extract the score
+		// This is a placeholder implementation
+		return Math.random();
 	}
 
 	// Displays the results of executed queries
