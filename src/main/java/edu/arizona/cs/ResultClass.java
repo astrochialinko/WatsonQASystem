@@ -17,6 +17,12 @@ public class ResultClass {
     public double getScore() {
         return docScore;
     }
+
+	public void setScore(double score) {
+		this.docScore = score;
+	}
+    
+    
     
     
 }
