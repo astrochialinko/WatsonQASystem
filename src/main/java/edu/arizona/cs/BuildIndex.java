@@ -32,6 +32,11 @@ public class BuildIndex {
         // create the index file 
         ClassLoader classLoader = getClass().getClassLoader();
         File indexF = new File(indexFile);  // output index file
+        // Check if index directory exists, delete if it does, then create a new one
+        if (indexF.exists()) {
+        	deleteDirectory(indexF);
+        }
+        indexF.mkdirs();
         
         // using Lucene to index
         StandardAnalyzer analyzer = new StandardAnalyzer();   // use default stop word set, lowercases the generated tokens.
@@ -93,7 +98,8 @@ public class BuildIndex {
                     if (currLine.startsWith("[[") && currLine.endsWith("]]") && !currLine.contains("Image:") && !currLine.contains("File:")) {
                         // add the previous stored title, categaries, and text as Doc to lucene
                         if (!title.equals("")) {
-                            addDoc(w, title, categories, text.toString());
+                        	String summary = extractFirstSentence(text.toString()); 
+                            addDoc(w, title, categories, text.toString(), summary);
                             // System.out.println(title);
                         }
                         // reinitialize fields
@@ -114,7 +120,8 @@ public class BuildIndex {
 
                 }
                 //add the last page to w
-                addDoc(w, title, categories, text.toString());
+                String summary = extractFirstSentence(text.toString());
+                addDoc(w, title, categories, text.toString(), summary);
 
                 inputScanner.close();
                 // print current time
@@ -132,12 +139,29 @@ public class BuildIndex {
         index.close();
     }
 
-    private void addDoc(IndexWriter w, String title, String categories, String text) throws IOException {
+    private void addDoc(IndexWriter w, String title, String categories, String text, String summary) throws IOException {
         Document doc = new Document();
         doc.add(new StringField("title", title, Field.Store.YES));
         doc.add(new TextField("categories", categories, Field.Store.YES));
         doc.add(new TextField("text", text, Field.Store.YES));
+        doc.add(new TextField("summary", summary, Field.Store.YES));
         w.addDocument(doc);
+    }
+    
+    private String extractFirstSentence(String text) {
+        // Split text into sentences by a period followed by space
+        String[] sentences = text.split("\\.\\s+", 2);
+        return sentences.length > 0 ? sentences[0] : "";
+    }
+    
+    private void deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        directoryToBeDeleted.delete();
     }
     
 }
