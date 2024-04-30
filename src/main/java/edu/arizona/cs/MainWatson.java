@@ -4,18 +4,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
 public class MainWatson {
-	static boolean buildIndex = false;
-	static boolean runQuery = true;
+	static boolean buildIndex = true;
+	static boolean runQuery = false;
 
 	// pre-index processing flags
 	static boolean index_lemmatization = false; // lemmatization and stemming are mutually exclusive
-	static boolean index_stemming = true;
+	static boolean index_stemming = false;
 
 	// query flags
 	static boolean query_lemmatization = false; // lemmatization and stemming are mutually exclusive
 	static boolean query_stemming = true;
+	static boolean chatgpt = false;
 
 	static String wikiDir = "wiki-folder"; // input wiki pages
 	static String queryFile = "questions.txt"; // input questions as query
@@ -25,26 +27,25 @@ public class MainWatson {
 	static String indexFileStd = "index-file-std";
 	static String indexFileLemma = "index-file-lemma";
 	static String indexFileStem = "index-file-stem";
-	static String query_indexFile = "";
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String indexFile = determineIndexFileName();
 		if (buildIndex) {
+			String indexFile = determineIndexFileName(index_lemmatization, index_stemming);
 			BuildIndex myBuildIndex = new BuildIndex(index_lemmatization, index_stemming);
 			myBuildIndex.fileIndex(wikiDir, indexFile);
 		}
 		if (runQuery) {
-			query_indexFile = indexFile;
+			String query_indexFile = determineIndexFileName(query_lemmatization, query_stemming);
 			printQueryInfo(query_lemmatization, query_stemming);
-			QueryEngine myQueryEngine = new QueryEngine(query_indexFile);
+			QueryEngine myQueryEngine = new QueryEngine(query_indexFile, new LMJelinekMercerSimilarity((float) 0.05), chatgpt);
 			myQueryEngine.processQueries(queryFile);
 		}
 	}
 
-	private static String determineIndexFileName() {
-		if (index_stemming && !index_lemmatization) {
+	private static String determineIndexFileName(boolean lemmatization, boolean stemming) {
+		if (stemming && !lemmatization) {
 			return indexFileStem;
-		} else if (!index_stemming && index_lemmatization) {
+		} else if (!stemming && lemmatization) {
 			return indexFileLemma;
 		} else {
 			return indexFileStd; // Default or both flags on/off

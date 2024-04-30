@@ -23,7 +23,7 @@ public class LemmaAnalyzer extends Analyzer{
         TokenStream result = new LowerCaseFilter(src);
         result = new StopFilter(result,  EnglishAnalyzer.ENGLISH_STOP_WORDS_SET);
         try {
-            InputStream dict = new FileInputStream("en-lemmatizer.dict.txt");
+            InputStream dict = new FileInputStream("en-lemmatizer.dict");
             NLPLemmatizerOp lemmaOp = new NLPLemmatizerOp(dict, null);
             result = new OpenNLPLemmatizerFilter(result, lemmaOp);
         } catch (IOException e) {
