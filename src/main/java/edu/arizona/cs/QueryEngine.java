@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +35,7 @@ import org.apache.lucene.search.similarities.BooleanSimilarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.LMDirichletSimilarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
+import org.apache.lucene.search.similarities.Similarity;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -44,6 +46,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.Gson;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatMessage;
+import com.theokanning.openai.service.OpenAiService;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -62,16 +67,16 @@ public class QueryEngine {
 	List<String> questions = new ArrayList<>();
 	private List<String> answers = new ArrayList<>();
 	private int hitsPerPage = 10;
-	private String apiKey = "";
+	private String apiKey = "apikey";
 
 	private boolean query_lemma = false;
 	private boolean query_stem = false;
 	private boolean query_wiki = false;
 	private boolean add_category = true;
-	private boolean rerank = true;
+	private boolean chatgpt_rerank = false;
 
 	// Constructor initializes the searcher and parser
-	public QueryEngine(String indexDirectoryPath) throws IOException {
+	public QueryEngine(String indexDirectoryPath, Similarity sim, boolean rerank) throws IOException {
 
 		if (indexDirectoryPath.endsWith("std")) {
 			analyzer = new StandardAnalyzer();
@@ -90,9 +95,10 @@ public class QueryEngine {
 		this.searcher = new IndexSearcher(this.reader);
 //		 searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
 //		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.18 MMR 0.23 hits: 37
-		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
-//		 searcher.setSimilarity(new LMJelinekMercerSimilarity((float) 0.05)); // P: 0.38 MMR: 0.44 hits:57
+//		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
+		searcher.setSimilarity(sim); // P: 0.38 MMR: 0.44 hits:57
 //		 searcher.setSimilarity(new LMDirichletSimilarity(3000)); // P: 0.35 MMR 0.44 hits: 63
+		this.chatgpt_rerank = rerank;
 
 	}
 
@@ -101,8 +107,8 @@ public class QueryEngine {
 		FSDirectory dir = FSDirectory.open(Paths.get(indexDirectoryPath));
 		this.reader = DirectoryReader.open(dir);
 
-		System.out.println("Read " + reader.numDocs() + " wiki docs index from " + indexDirectoryPath + "...\n");
-		printDoc(this.reader.document(0));
+		//System.out.println("Read " + reader.numDocs() + " wiki docs index from " + indexDirectoryPath + "...\n");
+		//printDoc(this.reader.document(0));
 	}
 
 	// debug purpose
@@ -180,8 +186,8 @@ public class QueryEngine {
 			List<ResultClass> initialResults = executeSingleQuery(query, hitsPerPage);
 			List<ResultClass> queryResult;
 
-			if (rerank) {
-				List<ResultClass> rerankedResults = rerankWithChatGPT(initialResults, question);
+			if (chatgpt_rerank) {
+				List<ResultClass> rerankedResults = rerankWithChatGPT(initialResults, query.toString());
 				queryResult = rerankedResults;
 			} else {
 				queryResult = initialResults;
@@ -221,7 +227,7 @@ public class QueryEngine {
 							break;
 						}
 					}
-					if (isAnswerCorrect) {
+					if (isAnswerCorrect) { // isAnswerCorrect can never be true here, because this is in the else path of if (isAnswerCorrect) checking
 						break;
 					}
 				}

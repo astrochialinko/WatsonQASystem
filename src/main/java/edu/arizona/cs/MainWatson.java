@@ -4,10 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.search.similarities.BM25Similarity;
+import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
 public class MainWatson {
-	static boolean buildIndex = false;
-	static boolean runQuery = true;
+	static boolean buildIndex = true;
+	static boolean runQuery = false;
 
 	// pre-index processing flags
 	static boolean index_lemmatization = false; // lemmatization and stemming are mutually exclusive
@@ -18,6 +20,7 @@ public class MainWatson {
 	static boolean query_lemmatization = false; // lemmatization and stemming are mutually exclusive
 	static boolean query_stemming = false;
 	static boolean query_wiki = true;
+	static boolean chatgpt = false;
 
 	static String wikiDir = "wiki-folder"; // input wiki pages
 	static String queryFile = "questions.txt"; // input questions as query
@@ -31,23 +34,23 @@ public class MainWatson {
 	static String query_indexFile = "";
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String indexFile = determineIndexFileName();
 		if (buildIndex) {
+			String indexFile = determineIndexFileName(index_lemmatization, index_stemming, index_wiki);
 			BuildIndex myBuildIndex = new BuildIndex(index_lemmatization, index_stemming, index_wiki);
 			myBuildIndex.fileIndex(wikiDir, indexFile);
 		}
 		if (runQuery) {
-			query_indexFile = indexFile;
+			String query_indexFile = determineIndexFileName(query_lemmatization, query_stemming, query_wiki);
 			printQueryInfo(query_lemmatization, query_stemming, query_wiki);
-			QueryEngine myQueryEngine = new QueryEngine(query_indexFile);
+			QueryEngine myQueryEngine = new QueryEngine(query_indexFile, new BM25Similarity(0.25f, 0.6f), chatgpt);
 			myQueryEngine.processQueries(queryFile);
 		}
 	}
 
-	private static String determineIndexFileName() {
-		if (index_stemming && !index_lemmatization && !index_wiki) {
+	private static String determineIndexFileName(boolean lemmatization, boolean stemming, boolean index_wiki) {
+		if (stemming && !lemmatization && !index_wiki) {
 			return indexFileStem;
-		} else if (!index_stemming && index_lemmatization && !index_wiki) {
+		} else if (!stemming && lemmatization && !index_wiki) {
 			return indexFileLemma;
 		} else if (index_wiki) {
 			return indexFileWiki;
