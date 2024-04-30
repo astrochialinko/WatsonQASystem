@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.Tokenizer;
+//import org.apache.lucene.analysis.wikipedia.WikipediaTokenizer;
+//import org.apache.lucene.analysis.wikipedia.WikipediaAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -22,10 +25,13 @@ public class BuildIndex {
 
 	private boolean lemmatization; 
 	private boolean stemming;
+	private boolean wiki;
 
-    public BuildIndex(boolean lemma, boolean stem){
+    public BuildIndex(boolean lemma, boolean stem, boolean wiki){
         this.lemmatization = lemma;
         this.stemming = stem;
+        this.wiki = wiki;
+        
     }
 
     public void fileIndex(String inputFileDir, String indexFile) throws java.io.FileNotFoundException,java.io.IOException {
@@ -42,20 +48,25 @@ public class BuildIndex {
         StandardAnalyzer analyzer = new StandardAnalyzer();   // use default stop word set, lowercases the generated tokens.
         EnglishAnalyzer analyzer_stem = new EnglishAnalyzer();  // stop word, lowercase, porterstem
         LemmaAnalyzer analyzer_lemma = new LemmaAnalyzer();  // stop word, OpenNLPLemmatizer, lowercase 
-
+        WikipediaAnalyzer analyzer_wiki = new WikipediaAnalyzer();
+        
         Directory index = FSDirectory.open(indexF.toPath());
         IndexWriterConfig config;
-        if (stemming && !lemmatization) {
+        if (stemming && !lemmatization && !wiki) {
             config = new IndexWriterConfig(analyzer_stem);
             System.out.println("Using English analyzer with stemming (porterstem)");
         }
-        else if (!stemming && lemmatization) {
+        else if (!stemming && lemmatization && !wiki) {
             config = new IndexWriterConfig(analyzer_lemma);
             System.out.println("Using a custom analyzer with lemmatization");
         }
-        else if (!stemming && !lemmatization) {
+        else if (!stemming && !lemmatization && !wiki) {
             config = new IndexWriterConfig(analyzer);
             System.out.println("Using standard analyzer");
+        }
+        else if (wiki) {
+        	config = new IndexWriterConfig(analyzer_wiki);
+        	System.out.println("Using Wiki analyzer");
         }
         else {
             config = new IndexWriterConfig(analyzer);

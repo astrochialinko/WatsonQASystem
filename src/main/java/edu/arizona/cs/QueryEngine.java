@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,7 +42,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.MediaType;
 import okhttp3.Response;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.Gson;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.service.OpenAiService;
@@ -60,17 +64,16 @@ public class QueryEngine {
 	private IndexSearcher searcher;
 	private QueryParser parser;
 	private Analyzer analyzer = null;
+	List<String> questions = new ArrayList<>();
 	private List<String> answers = new ArrayList<>();
 	private int hitsPerPage = 10;
 	private String apiKey = "apikey";
 
 	private boolean query_lemma = false;
 	private boolean query_stem = false;
+	private boolean query_wiki = false;
 	private boolean add_category = true;
 	private boolean chatgpt_rerank = false;
-
-//	private OkHttpClient client = new OkHttpClient();
-//	private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
 	// Constructor initializes the searcher and parser
 	public QueryEngine(String indexDirectoryPath, Similarity sim, boolean rerank) throws IOException {
@@ -83,11 +86,14 @@ public class QueryEngine {
 		} else if (indexDirectoryPath.endsWith("stem")) {
 			analyzer = new EnglishAnalyzer();
 			query_stem = true;
+		} else if (indexDirectoryPath.endsWith("wiki")) {
+			analyzer = new WikipediaAnalyzer();
+			query_wiki = true;
 		}
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-//		searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
+//		 searcher.setSimilarity(new ClassicSimilarity()); // P: 0.01 MMR: 0.02 hits: 6
 //		 searcher.setSimilarity(new BooleanSimilarity()); // P: 0.18 MMR 0.23 hits: 37
 //		searcher.setSimilarity(new BM25Similarity(0.25f, 0.6f)); // P: 0.37 MMR: 0.44 hits: 57
 		searcher.setSimilarity(sim); // P: 0.38 MMR: 0.44 hits:57
@@ -132,6 +138,7 @@ public class QueryEngine {
 			String category = lines.get(i).trim();
 			String clue = lines.get(i + 1).trim();
 			String answer = lines.get(i + 2).trim();
+			questions.add(clue);
 
 			try {
 				Query query;
@@ -167,13 +174,16 @@ public class QueryEngine {
 		int correctCountInHit = 0;
 		double mmr = 0;
 
-		for (int i = 0; i < queries.size(); i++) {
+//		for (int i = 0; i < questions.size(); i++) {
+		for (int i = 0; i < 1; i++) {
+			String question = questions.get(i);
 			String answer = answers.get(i);
 			Query query = queries.get(i);
-			//System.out.println("Executing query " + (i + 1) + ": " + query.toString());
-			//System.out.println("Answer: " + answer);
 
-			List<ResultClass> initialResults = executeSingleQuery(queries.get(i), hitsPerPage);
+			System.out.println("Executing query " + (i + 1) + ": " + query.toString());
+			System.out.println("Answer: " + answer);
+
+			List<ResultClass> initialResults = executeSingleQuery(query, hitsPerPage);
 			List<ResultClass> queryResult;
 
 			if (chatgpt_rerank) {
@@ -199,18 +209,18 @@ public class QueryEngine {
 			}
 
 			if (isAnswerCorrect) {
-				// System.out.println("--- Search Correct --- ");
+				System.out.println("--- Search Correct --- ");
 				correctCount++;
 				mmr += 1.0;
 				correctCountInHit++;
 			} else {
-				// System.out.println("--- Search Incorrect --- ");
+				System.out.println("--- Search Incorrect --- ");
 				int right_index = 0;
 				for (ResultClass result : queryResult) {
 					right_index++;
 					for (String possibleAnswer : possibleAnswers) {
 						if (result.DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
-							// System.out.printf("--- Search Correct in QA %d --- \n", right_index);
+							System.out.printf("--- Search Correct in QA %d --- \n", right_index);
 							mmr += (double) 1 / right_index;
 							correctCountInHit++;
 							isAnswerCorrect = true;
@@ -223,7 +233,7 @@ public class QueryEngine {
 				}
 			}
 
-			//System.out.println("");
+			System.out.println("");
 		}
 
 		calculateMetrics(queries.size(), correctCount, mmr, hitsPerPage, correctCountInHit);
@@ -239,9 +249,80 @@ public class QueryEngine {
 			String title = doc.get("title");
 			double score = scoreDoc.score;
 			queryResult.add(new ResultClass(doc, score));
-			//System.out.println("-> QA: " + title + "\t (Score: " + score + ")");
+			System.out.println("-> QA: " + title + "\t (Score: " + score + ")");
 		}
 		return queryResult;
+	}
+
+	public List<ResultClass> rerankWithChatGPT(List<ResultClass> initialResults, String question) throws IOException {
+		List<ResultClass> rerankedResults = new ArrayList<>(initialResults);
+		OkHttpClient client = new OkHttpClient();
+		MediaType JSON = MediaType.get("application/json; charset=utf-8");
+		StringBuilder options = new StringBuilder();
+
+		for (int i = 0; i < rerankedResults.size(); i++) {
+			options.append(rerankedResults.get(i).getTitle() + "\n");
+		}
+
+		String prompt = String.format("Given the clue and the options, "
+				+ "please rerank these options so that the top one is the " + "most relevant option to the clue. "
+				+ "Provide the Rerank Options only, not including any explanation.\n\n" + "Clue: " + question + "\n\n"
+				+ "Options: \n" + options + "\n" + "Rerank Options: \n");
+
+		// Prepare the messages as a JsonArray
+		JsonArray messages = new JsonArray();
+		JsonObject message = new JsonObject();
+		message.addProperty("role", "user");
+		message.addProperty("content",
+				"Given the clue and the options, please rerank these options so that the top one is the most relevant option to the clue. Provide the Rerank Options only, not including any explanation.\n\nClue: "
+						+ question + "\n\nOptions: \n" + options + "\nRerank Options: \n");
+		messages.add(message);
+
+		// Create the JSON object for the Chat API
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.add("messages", messages);
+		jsonObject.addProperty("max_tokens", 50);
+		jsonObject.addProperty("model", "gpt-3.5-turbo");
+		jsonObject.addProperty("temperature", 0.5);
+		String json = jsonObject.toString();
+		// System.out.println("JSON Payload: " + messages); // for debug
+		
+		// Send the request to OpenAI's API
+		RequestBody body = RequestBody.create(json, JSON);
+		Request request = new Request.Builder().url("https://api.openai.com/v1/chat/completions")
+				.addHeader("Authorization", "Bearer " + apiKey).addHeader("Content-Type", "application/json").post(body)
+				.build();
+
+		// Handle the response from the API
+		try (Response response = client.newCall(request).execute()) {
+			if (!response.isSuccessful()) {
+				String errorBody = response.body().string();
+				System.out.println("Error response: " + errorBody);
+				throw new IOException("Unexpected code " + response);
+			}
+
+			// Parse the JSON response
+			String responseBody = response.body().string();
+			JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
+			JsonObject choice = jsonResponse.getAsJsonArray("choices").get(0).getAsJsonObject();
+			String content = choice.getAsJsonObject("message").get("content").getAsString();
+
+			// Convert the content string into a list
+			List<String> rerankOptions = Arrays.asList(content.split("\\n"));
+			System.out.println("Response: " + responseBody);
+		}
+		return rerankedResults;
+	}
+
+	private static class ChatGPTResponse {
+		private ChatGPTCompletion[] choices;
+	}
+
+	private static class ChatGPTCompletion {
+		private String text;
+		private int index;
+		private Object logprobs;
+		private String finish_reason;
 	}
 
 	private void calculateMetrics(int totalQueries, int correctCount, double mmr, int hitsPerPage,
@@ -258,74 +339,6 @@ public class QueryEngine {
 		System.out.printf(" - Precision at 1 (P@1): %.2f\n", precision);
 		System.out.printf(" - Mean Reciprocal Rank (MRR): %.2f\n", MMR);
 		System.out.println("-----------------------------------------------------");
-	}
-
-	public List<ResultClass> rerankWithChatGPT(List<ResultClass> initialResults, String query) throws IOException {
-		List<ResultClass> rerankedResults = new ArrayList<>(initialResults);
-		OkHttpClient client = new OkHttpClient();
-		MediaType JSON = MediaType.get("application/json; charset=utf-8");
-
-		for (ResultClass result : rerankedResults) {
-			String documentText = result.DocName.get("summary"); // Use summary or text
-			String prompt = String.format(
-					"{\"prompt\": " + "\"How relevant is this text to the query: %s? " + "Text: %s\"}", query,
-					documentText);
-
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.addProperty("prompt", "Query: " + query + "\nDocument: " + documentText);
-			jsonObject.addProperty("max_tokens", 50);
-			jsonObject.addProperty("model", "gpt-3.5-turbo");
-			jsonObject.addProperty("temperature", 0.5);
-
-			String json = jsonObject.toString();
-			System.out.println("JSON Payload: " + prompt); // for debug
-			RequestBody body = RequestBody.create(json, JSON);
-
-			Request request = new Request.Builder().url("https://api.openai.com/v1/chat/completions")
-					.addHeader("Authorization", "Bearer " + apiKey).addHeader("Content-Type", "application/json")
-					.post(body).build();
-
-			try (Response response = client.newCall(request).execute()) {
-				if (!response.isSuccessful()) {
-					String errorBody = response.body().string();
-					System.out.println("Error response: " + errorBody);
-					throw new IOException("Unexpected code " + response);
-				}
-				String responseBody = response.body().string();
-				double relevanceScore = extractRelevanceScore(responseBody); // Implement this method based on response
-				result.setScore(relevanceScore);
-			}
-		}
-
-		// Sort by the new score in descending order
-		Collections.sort(rerankedResults, Comparator.comparingDouble(ResultClass::getScore).reversed());
-		return rerankedResults;
-	}
-
-	// public List<ResultClass> rerankWithChatGPT_JF(List<ResultClass> initialResults, String query) throws IOException {
-	// 	List<ResultClass> rerankedResults = new ArrayList<>(initialResults);
-	// 	
-	// 	long apiTimeout = 300;
-	// 	OpenAiService openAiService = new OpenAiService(apiKey, Duration.ofSeconds(apiTimeout));
-	// 	String SYSTEM_TASK_MESSAGE = "You are an answer evaluator of a trivia question. The trivia question is provided in the format of ";
-	// 	
-	// 	ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
-    // 		.builder()
-    // 		.model("gpt-3.5-turbo")
-    // 		.temperature(0.8)
-    // 		.messages(
-    // 		    List.of(
-    // 		        new ChatMessage("system", SYSTEM_TASK_MESSAGE),
-    // 		        new ChatMessage("user", String.format("I want to visit %s and have a budget of %d dollars", city, budget))))
- 	// 		.build();
-	// 	return rerankedResults;
-	// }
-
-	// Dummy implementation: extract relevance score from API response
-	private double extractRelevanceScore(String responseBody) {
-		// You need to parse the JSON response and extract the score
-		// This is a placeholder implementation
-		return Math.random();
 	}
 
 	// Displays the results of executed queries

@@ -4,6 +4,7 @@ import org.apache.lucene.document.Document;
 public class ResultClass {
     Document DocName;
     double docScore = 0;
+    String docTitle = DocName.get("title");
     
     public ResultClass(Document doc, double score) {
         this.DocName = doc;
@@ -11,7 +12,7 @@ public class ResultClass {
     }
     
     public String getTitle() {
-        return DocName.get("title");
+        return docTitle;
     }
 
     public double getScore() {
@@ -21,8 +22,8 @@ public class ResultClass {
 	public void setScore(double score) {
 		this.docScore = score;
 	}
-    
-    
-    
-    
+	
+	public void setTitle(String title) {
+		this.docTitle = title;
+	}
 }
