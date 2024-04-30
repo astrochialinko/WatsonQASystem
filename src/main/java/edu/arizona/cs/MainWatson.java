@@ -8,8 +8,8 @@ import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 
 public class MainWatson {
-	static boolean buildIndex = true;
-	static boolean runQuery = false;
+	static boolean buildIndex = false;
+	static boolean runQuery = true;
 
 	// pre-index processing flags
 	static boolean index_lemmatization = false; // lemmatization and stemming are mutually exclusive
@@ -20,7 +20,7 @@ public class MainWatson {
 	static boolean query_lemmatization = false; // lemmatization and stemming are mutually exclusive
 	static boolean query_stemming = false;
 	static boolean query_wiki = true;
-	static boolean chatgpt = false;
+	static boolean chatgpt = true;
 
 	static String wikiDir = "wiki-folder"; // input wiki pages
 	static String queryFile = "questions.txt"; // input questions as query

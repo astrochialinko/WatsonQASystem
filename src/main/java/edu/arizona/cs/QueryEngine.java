@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.io.StringReader;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
@@ -52,12 +53,6 @@ import com.theokanning.openai.service.OpenAiService;
 
 import java.util.Collections;
 import java.util.Comparator;
-
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.entity.StringEntity;
-//import org.apache.http.impl.client.CloseableHttpClient;
-//import org.apache.http.impl.client.HttpClients;
-//import org.apache.http.util.EntityUtils;
 
 public class QueryEngine {
 	private IndexReader reader;
@@ -107,8 +102,8 @@ public class QueryEngine {
 		FSDirectory dir = FSDirectory.open(Paths.get(indexDirectoryPath));
 		this.reader = DirectoryReader.open(dir);
 
-		//System.out.println("Read " + reader.numDocs() + " wiki docs index from " + indexDirectoryPath + "...\n");
-		//printDoc(this.reader.document(0));
+		System.out.println("Read " + reader.numDocs() + " wiki docs index from " + indexDirectoryPath + "...\n");
+		printDoc(this.reader.document(0));
 	}
 
 	// debug purpose
@@ -123,7 +118,7 @@ public class QueryEngine {
 	// 2. and 3. Processes queries from file and displays results
 	public void processQueries(String queryFile) throws IOException {
 		List<Query> queries = buildQuery(queryFile);
-		List<List<ResultClass>> results = executeQueries(queries, hitsPerPage);
+		List<List<String>> results = executeQueries(queries, hitsPerPage);
 //		displayResults(queries, results);
 		reader.close();
 	}
@@ -168,14 +163,15 @@ public class QueryEngine {
 	}
 
 	// Executes the built queries and returns results
-	private List<List<ResultClass>> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
-		List<List<ResultClass>> results = new ArrayList<>();
+	private List<List<String>> executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
+		List<List<String>> results = new ArrayList<>();
 		int correctCount = 0;
 		int correctCountInHit = 0;
+		int correctCountRerank = 0;
 		double mmr = 0;
 
-//		for (int i = 0; i < questions.size(); i++) {
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < questions.size(); i++) {
+//		for (int i = 0; i < 1; i++) {
 			String question = questions.get(i);
 			String answer = answers.get(i);
 			Query query = queries.get(i);
@@ -183,12 +179,22 @@ public class QueryEngine {
 			System.out.println("Executing query " + (i + 1) + ": " + query.toString());
 			System.out.println("Answer: " + answer);
 
-			List<ResultClass> initialResults = executeSingleQuery(query, hitsPerPage);
-			List<ResultClass> queryResult;
+			List<String> initialResults = executeSingleQuery(query, hitsPerPage);
+			List<String> queryResult;
 
 			if (chatgpt_rerank) {
-				List<ResultClass> rerankedResults = rerankWithChatGPT(initialResults, query.toString());
+				List<String> rerankedResults = rerankWithChatGPT(initialResults, query.toString());
 				queryResult = rerankedResults;
+				System.out.println("-> ChatGPT: " + rerankedResults.get(0));
+
+				// wait 18 sec, gpt-3.5-turbo has limit of 3 RPM
+//				try {
+//					TimeUnit.SECONDS.sleep(18);
+//				} catch (InterruptedException e) {
+//
+//					e.printStackTrace();
+//				}
+
 			} else {
 				queryResult = initialResults;
 			}
@@ -198,12 +204,20 @@ public class QueryEngine {
 			// calculating precision and MMR
 			String[] possibleAnswers = answer.split("\\|"); // some questions have two accepted answers
 			boolean isAnswerCorrect = false;
+			boolean isInitAnswerWrong = chatgpt_rerank;
 
 			// Check if any of the possible hits the first document
 			for (String possibleAnswer : possibleAnswers) {
-				if (!queryResult.isEmpty()
-						&& queryResult.get(0).DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+				if (!queryResult.isEmpty() && queryResult.get(0).equalsIgnoreCase(possibleAnswer.trim())) {
 					isAnswerCorrect = true;
+				}
+
+				if (chatgpt_rerank && !initialResults.isEmpty()
+						&& initialResults.get(0).equalsIgnoreCase(possibleAnswer.trim())) {
+					isInitAnswerWrong = false;
+				}
+
+				if (isAnswerCorrect && (!chatgpt_rerank || !isInitAnswerWrong)) {
 					break;
 				}
 			}
@@ -213,13 +227,19 @@ public class QueryEngine {
 				correctCount++;
 				mmr += 1.0;
 				correctCountInHit++;
+
+				if (isInitAnswerWrong) {
+					correctCountRerank++;
+					System.out.println("--- Search Correct by Rerank --- ");
+				}
+
 			} else {
 				System.out.println("--- Search Incorrect --- ");
 				int right_index = 0;
-				for (ResultClass result : queryResult) {
+				for (String result : queryResult) {
 					right_index++;
 					for (String possibleAnswer : possibleAnswers) {
-						if (result.DocName.get("title").equalsIgnoreCase(possibleAnswer.trim())) {
+						if (result.equalsIgnoreCase(possibleAnswer.trim())) {
 							System.out.printf("--- Search Correct in QA %d --- \n", right_index);
 							mmr += (double) 1 / right_index;
 							correctCountInHit++;
@@ -227,7 +247,8 @@ public class QueryEngine {
 							break;
 						}
 					}
-					if (isAnswerCorrect) { // isAnswerCorrect can never be true here, because this is in the else path of if (isAnswerCorrect) checking
+					if (isAnswerCorrect) { // isAnswerCorrect can never be true here, because this is in the else path
+											// of if (isAnswerCorrect) checking
 						break;
 					}
 				}
@@ -236,32 +257,32 @@ public class QueryEngine {
 			System.out.println("");
 		}
 
-		calculateMetrics(queries.size(), correctCount, mmr, hitsPerPage, correctCountInHit);
+		calculateMetrics(queries.size(), correctCount, mmr, hitsPerPage, correctCountInHit, correctCountRerank);
 		return results;
 	}
 
-	private List<ResultClass> executeSingleQuery(Query query, int hitsPerPage) throws IOException {
-		List<ResultClass> queryResult = new ArrayList<>();
+	private List<String> executeSingleQuery(Query query, int hitsPerPage) throws IOException {
+		List<String> queryResult = new ArrayList<>();
 		TopDocs docs = searcher.search(query, hitsPerPage);
 
 		for (ScoreDoc scoreDoc : docs.scoreDocs) {
 			Document doc = searcher.doc(scoreDoc.doc);
 			String title = doc.get("title");
 			double score = scoreDoc.score;
-			queryResult.add(new ResultClass(doc, score));
+			queryResult.add(title);
 			System.out.println("-> QA: " + title + "\t (Score: " + score + ")");
 		}
 		return queryResult;
 	}
 
-	public List<ResultClass> rerankWithChatGPT(List<ResultClass> initialResults, String question) throws IOException {
-		List<ResultClass> rerankedResults = new ArrayList<>(initialResults);
+	public List<String> rerankWithChatGPT(List<String> initialResults, String question) throws IOException {
+		List<String> rerankedResults = new ArrayList<>();
 		OkHttpClient client = new OkHttpClient();
 		MediaType JSON = MediaType.get("application/json; charset=utf-8");
 		StringBuilder options = new StringBuilder();
 
-		for (int i = 0; i < rerankedResults.size(); i++) {
-			options.append(rerankedResults.get(i).getTitle() + "\n");
+		for (int i = 0; i < initialResults.size(); i++) {
+			options.append(initialResults.get(i) + "\n");
 		}
 
 		String prompt = String.format("Given the clue and the options, "
@@ -286,7 +307,7 @@ public class QueryEngine {
 		jsonObject.addProperty("temperature", 0.5);
 		String json = jsonObject.toString();
 		// System.out.println("JSON Payload: " + messages); // for debug
-		
+
 		// Send the request to OpenAI's API
 		RequestBody body = RequestBody.create(json, JSON);
 		Request request = new Request.Builder().url("https://api.openai.com/v1/chat/completions")
@@ -308,25 +329,13 @@ public class QueryEngine {
 			String content = choice.getAsJsonObject("message").get("content").getAsString();
 
 			// Convert the content string into a list
-			List<String> rerankOptions = Arrays.asList(content.split("\\n"));
-			System.out.println("Response: " + responseBody);
+			rerankedResults = Arrays.asList(content.split("\\n"));
 		}
 		return rerankedResults;
 	}
 
-	private static class ChatGPTResponse {
-		private ChatGPTCompletion[] choices;
-	}
-
-	private static class ChatGPTCompletion {
-		private String text;
-		private int index;
-		private Object logprobs;
-		private String finish_reason;
-	}
-
 	private void calculateMetrics(int totalQueries, int correctCount, double mmr, int hitsPerPage,
-			int correctCountInHit) {
+			int correctCountInHit, int correctCountRerank) {
 		double precision = (double) correctCount / totalQueries;
 		double MMR = mmr / totalQueries;
 
@@ -335,6 +344,7 @@ public class QueryEngine {
 		System.out.printf(" - Correctly answered questions: %d\n", correctCount);
 		System.out.printf(" - Incorrectly answered: %d\n", totalQueries - correctCount);
 		System.out.printf(" - Correctly answered questions within %d hits: %d\n", hitsPerPage, correctCountInHit);
+		System.out.printf(" - Correctly answered questions by ChatGPT Rerank: %d\n", correctCountRerank);
 		System.out.printf(" - Total questions: %d\n\n", totalQueries);
 		System.out.printf(" - Precision at 1 (P@1): %.2f\n", precision);
 		System.out.printf(" - Mean Reciprocal Rank (MRR): %.2f\n", MMR);
