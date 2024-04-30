@@ -62,7 +62,7 @@ public class QueryEngine {
 	private Analyzer analyzer = null;
 	private List<String> answers = new ArrayList<>();
 	private int hitsPerPage = 10;
-	private String apiKey = "sk-proj-M7V5WaoWzEAoP4qGbGRTT3BlbkFJye1LOfSOCoi0q9gfixbb";
+	private String apiKey = "apikey";
 
 	private boolean query_lemma = false;
 	private boolean query_stem = false;
