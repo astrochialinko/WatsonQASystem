@@ -16,7 +16,5 @@ public class WikipediaAnalyzer extends Analyzer {
         TokenStream result = new LowerCaseFilter(src);  // Apply LowerCaseFilter to convert all characters to lowercase
         result = new StopFilter(result, EnglishAnalyzer.ENGLISH_STOP_WORDS_SET);  // Apply StopFilter using the standard English stop words
         return new TokenStreamComponents(src, result);
-        // You can add more filters here if needed, like LowerCaseFilter, StopFilter, etc.
-//        return new TokenStreamComponents(src);
     }
 }

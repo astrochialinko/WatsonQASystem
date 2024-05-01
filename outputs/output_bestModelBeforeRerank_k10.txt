@@ -1,0 +1,1498 @@
+Querying with stemming
+Executing query 1: categories:newspap text:domin text:paper text:our text:nation text:capit text:among text:top text:10 text:u. text:paper text:circul
+Answer: The Washington Post
+-> QA: William Randolph Hearst	 (Score: 52.46775436401367)
+-> QA: The Wall Street Journal	 (Score: 51.269187927246094)
+-> QA: The Washington Post	 (Score: 48.86009216308594)
+-> QA: Svenska Dagbladet	 (Score: 48.68545913696289)
+-> QA: Harte Hanks	 (Score: 48.58539962768555)
+-> QA: Los Angeles Times	 (Score: 48.48417282104492)
+-> QA: Star Tribune	 (Score: 48.20884323120117)
+-> QA: Media of the United States	 (Score: 48.08702850341797)
+-> QA: Warren G. Harding	 (Score: 48.08546829223633)
+-> QA: Reforma	 (Score: 46.63330078125)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+--- Original Search Correct --- 
+
+Executing query 2: categories:old text:year text:resolut text:practic text:pre text:author text:presidenti text:us text:forc text:date text:1955 text:resolut text:re text:island text:near text:mainland text:china
+Answer: Taiwan
+-> QA: History of the Republic of China	 (Score: 62.584346771240234)
+-> QA: Taiwan	 (Score: 62.49785232543945)
+-> QA: China–United States relations	 (Score: 61.16944122314453)
+-> QA: Taiwanization	 (Score: 60.409934997558594)
+-> QA: Lockheed U-2	 (Score: 59.50257110595703)
+-> QA: History of Cyprus	 (Score: 59.226993560791016)
+-> QA: History of Indonesia	 (Score: 58.718326568603516)
+-> QA: Political status of Taiwan	 (Score: 57.767372131347656)
+-> QA: Madagascar	 (Score: 57.167789459228516)
+-> QA: United Nations General Assembly Resolution 505	 (Score: 57.082733154296875)
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 3: categories:newspap text:daniel text:hertzberg text:jame text:b text:stewart text:paper text:share text:1988 text:pulitz text:stori text:about text:insid text:trade
+Answer: The Wall Street Journal
+-> QA: The Wall Street Journal	 (Score: 74.77094268798828)
+-> QA: The Baltimore Sun	 (Score: 50.413909912109375)
+-> QA: Oscar Wilde	 (Score: 45.770782470703125)
+-> QA: The Washington Post	 (Score: 45.597442626953125)
+-> QA: Los Angeles Times	 (Score: 44.447872161865234)
+-> QA: The Atlanta Journal-Constitution	 (Score: 44.30231475830078)
+-> QA: Rupert Murdoch	 (Score: 42.79414367675781)
+-> QA: New York Post	 (Score: 42.668357849121094)
+-> QA: The Hutchinson News	 (Score: 42.629150390625)
+-> QA: Newseum	 (Score: 42.61392593383789)
+--- Search Correct --- 
+
+Executing query 4: categories:broadwai text:lyric text:song text:sai text:you text:make text:me text:smile text:my text:heart text:your text:look text:laughabl text:unphotograph
+Answer: My Funny Valentine
+-> QA: Starlight Express	 (Score: 64.18624877929688)
+-> QA: Gypsy (musical)	 (Score: 59.46390151977539)
+-> QA: Keyshia Cole	 (Score: 59.377098083496094)
+-> QA: Baul	 (Score: 58.419437408447266)
+-> QA: Hair (musical)	 (Score: 56.214752197265625)
+-> QA: Hall & Oates	 (Score: 53.718833923339844)
+-> QA: John Mellencamp	 (Score: 53.64250564575195)
+-> QA: Sinéad O'Connor	 (Score: 53.396602630615234)
+-> QA: Pet Sounds	 (Score: 53.07532501220703)
+-> QA: Je ne parle pas français	 (Score: 52.10990524291992)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 5: categories:potpourri text:2011 text:bell text:ringer text:chariti text:start text:accept text:digit text:donat text:it text:red text:kettl
+Answer: The Salvation Army|Salvation Army
+-> QA: The Salvation Army	 (Score: 58.035404205322266)
+-> QA: Pró-Vida	 (Score: 38.404178619384766)
+-> QA: Nortel	 (Score: 37.66056823730469)
+-> QA: Aloysius Society	 (Score: 37.05253219604492)
+-> QA: Pride London	 (Score: 36.240150451660156)
+-> QA: Abandonware	 (Score: 36.066837310791016)
+-> QA: Perry Farrell	 (Score: 35.51722717285156)
+-> QA: Public library	 (Score: 34.028778076171875)
+-> QA: Iowa State University	 (Score: 33.929115295410156)
+-> QA: Shipping Forecast	 (Score: 33.26959228515625)
+--- Search Correct --- 
+
+Executing query 6: categories:state text:art text:museum text:napl text:museum text:art
+Answer: Florida
+-> QA: Duncan Pavilion	 (Score: 37.738800048828125)
+-> QA: Lentos	 (Score: 37.738800048828125)
+-> QA: Musee Dex Beau Arts	 (Score: 37.738800048828125)
+-> QA: Appleton Museum	 (Score: 37.738800048828125)
+-> QA: Seoul Museum of Arts	 (Score: 37.738800048828125)
+-> QA: Metropolitan Museum	 (Score: 37.738800048828125)
+-> QA: Konrad Grob	 (Score: 37.20521545410156)
+-> QA: Kelvingrove Art Gallery	 (Score: 36.8463134765625)
+-> QA: AMUM	 (Score: 36.8463134765625)
+-> QA: Shrewsbury Music Hall	 (Score: 36.8463134765625)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 7: categories:tin text:men text:italian text:painter text:depict text:ador text:golden text:calf
+Answer: Tintoretto
+-> QA: Tintoretto	 (Score: 41.17942810058594)
+-> QA: Grace Cathedral, San Francisco	 (Score: 35.276634216308594)
+-> QA: Diego Velázquez	 (Score: 33.58439636230469)
+-> QA: Nicolas Poussin	 (Score: 33.36106872558594)
+-> QA: Nicola Cianfanelli	 (Score: 31.257568359375)
+-> QA: Leonardo da Vinci	 (Score: 30.740772247314453)
+-> QA: Osborne House	 (Score: 30.036090850830078)
+-> QA: Antonio da Correggio	 (Score: 28.628318786621094)
+-> QA: Carlo Dolci	 (Score: 27.710676193237305)
+-> QA: Caravaggio	 (Score: 27.69041633605957)
+--- Search Correct --- 
+
+Executing query 8: categories:ucla text:celebr text:alumni text:woman text:who text:won text:consecut text:heptathlon text:olymp text:went text:ucla text:basketbal text:scholarship
+Answer: Jackie Joyner-Kersee
+-> QA: Jackie Joyner-Kersee	 (Score: 60.097110748291016)
+-> QA: Maria Mutola	 (Score: 56.06578063964844)
+-> QA: Kareem Abdul-Jabbar	 (Score: 54.28713607788086)
+-> QA: Jackie Robinson	 (Score: 50.21764373779297)
+-> QA: Wilma Rudolph	 (Score: 49.847007751464844)
+-> QA: University of California, Los Angeles	 (Score: 48.62800979614258)
+-> QA: NC State Wolfpack men's basketball	 (Score: 47.767215728759766)
+-> QA: University of Virginia	 (Score: 47.64971160888672)
+-> QA: Dawn Harper	 (Score: 47.06714630126953)
+-> QA: Bob Knight	 (Score: 44.83472442626953)
+--- Search Correct --- 
+
+Executing query 9: categories:servic text:organ text:origin text:club text:emblem text:wagon text:wheel text:now text:gearwheel text:24 text:cog text:6 text:spoke
+Answer: Rotary International
+-> QA: De Poelen, Dronrijp	 (Score: 42.428993225097656)
+-> QA: Chevrolet Celebrity	 (Score: 39.706050872802734)
+-> QA: Hammer and sickle	 (Score: 39.40135955810547)
+-> QA: Land Rover	 (Score: 39.395694732666016)
+-> QA: Penny-farthing	 (Score: 38.69676971435547)
+-> QA: Chevrolet Impala	 (Score: 38.50920486450195)
+-> QA: Pontiac	 (Score: 38.46022033691406)
+-> QA: De Mearmin, Dokkum	 (Score: 38.23849105834961)
+-> QA: Jo-Han	 (Score: 37.93476867675781)
+-> QA: AMC Matador	 (Score: 37.581756591796875)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 10: categories:african text:citi text:sever text:bridg text:includ text:el text:tahrir text:cross text:nile text:capit
+Answer: Cairo
+-> QA: Cairo	 (Score: 46.03992462158203)
+-> QA: Khartoum	 (Score: 41.96974563598633)
+-> QA: Nile	 (Score: 38.369476318359375)
+-> QA: Kosti, Sudan	 (Score: 37.35508346557617)
+-> QA: Pan-American Highway (North America)	 (Score: 36.24327850341797)
+-> QA: Lleida	 (Score: 34.80467224121094)
+-> QA: Maracaibo	 (Score: 34.66537857055664)
+-> QA: Omdurman	 (Score: 34.542884826660156)
+-> QA: Crossing the Red Sea	 (Score: 34.17999267578125)
+-> QA: Monrovia	 (Score: 34.13805389404297)
+--- Search Correct --- 
+
+Executing query 11: categories:histor text:quot text:after text:fall text:franc text:1940 text:gener text:told text:hi text:countri text:franc text:ha text:lost text:battl text:franc text:ha text:lost text:war
+Answer: Charles de Gaulle|de Gaulle
+-> QA: Leopold III of Belgium	 (Score: 68.91483306884766)
+-> QA: Hubert Lyautey	 (Score: 68.87361145019531)
+-> QA: Raymond Poulidor	 (Score: 68.01744079589844)
+-> QA: Munich Agreement	 (Score: 67.7742919921875)
+-> QA: Charles de Gaulle	 (Score: 67.46630096435547)
+-> QA: William Lyon Mackenzie King	 (Score: 67.28462982177734)
+-> QA: Philippe Pétain	 (Score: 67.02625274658203)
+-> QA: Charles V of France	 (Score: 66.57520294189453)
+-> QA: Vo Nguyen Giap	 (Score: 66.56623840332031)
+-> QA: Wilhelm II, German Emperor	 (Score: 66.28649139404297)
+--- Search Incorrect --- 
+--- Search Correct in QA 5 --- 
+--- Original Search Correct --- 
+
+Executing query 12: categories:state text:art text:museum text:taft text:museum text:art
+Answer: Ohio
+-> QA: Duncan Pavilion	 (Score: 37.738800048828125)
+-> QA: Lentos	 (Score: 37.738800048828125)
+-> QA: Musee Dex Beau Arts	 (Score: 37.738800048828125)
+-> QA: Appleton Museum	 (Score: 37.738800048828125)
+-> QA: Seoul Museum of Arts	 (Score: 37.738800048828125)
+-> QA: Metropolitan Museum	 (Score: 37.738800048828125)
+-> QA: Museum of Science and Industry (Chicago)	 (Score: 37.16725158691406)
+-> QA: Kelvingrove Art Gallery	 (Score: 36.8463134765625)
+-> QA: AMUM	 (Score: 36.8463134765625)
+-> QA: Shrewsbury Music Hall	 (Score: 36.8463134765625)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 13: categories:cemeteri text:mast text:from text:uss text:main text:part text:memori text:ship text:crew text:nation text:cemeteri
+Answer: Arlington National Cemetery|Arlington Cemetery
+-> QA: USS Arizona Memorial	 (Score: 62.588748931884766)
+-> QA: Thomas W. Lawson (ship)	 (Score: 45.93742752075195)
+-> QA: Margate Surfboat	 (Score: 45.72540283203125)
+-> QA: Frank Newcomb	 (Score: 43.02475357055664)
+-> QA: Richard Henry Dana, Jr.	 (Score: 42.56999969482422)
+-> QA: USCGC Mohawk (WPG-78)	 (Score: 42.500946044921875)
+-> QA: Robert Ballard	 (Score: 42.325645446777344)
+-> QA: Tomb of the Unknowns	 (Score: 42.07902526855469)
+-> QA: Panayis Athanase Vagliano	 (Score: 42.061256408691406)
+-> QA: USS Bonhomme Richard (LHD-6)	 (Score: 42.05519485473633)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 14: categories:golden text:globe text:winner text:2009 text:joker text:film
+Answer: Heath Ledger
+-> QA: Heath Ledger	 (Score: 32.36212921142578)
+-> QA: Geoffrey Rush	 (Score: 29.62237548828125)
+-> QA: Russell Crowe	 (Score: 29.422279357910156)
+-> QA: Meryl Streep	 (Score: 28.691062927246094)
+-> QA: Mira Sorvino	 (Score: 28.575275421142578)
+-> QA: Ang Lee	 (Score: 28.463600158691406)
+-> QA: Jennifer Jones	 (Score: 27.942100524902344)
+-> QA: Jack Nicholson	 (Score: 27.882064819335938)
+-> QA: Cecil B. DeMille	 (Score: 27.828659057617188)
+-> QA: The Age of Innocence (1993 film)	 (Score: 27.805946350097656)
+--- Search Correct --- 
+
+Executing query 15: categories:histor text:hodgepodg text:peninsula text:fought text:over text:peninsular text:war text:1808 text:1814
+Answer: Iberia|Iberian Peninsula
+-> QA: Vicente Genaro de Quesada	 (Score: 46.56098556518555)
+-> QA: Ferdinand VII of Spain	 (Score: 44.55611038208008)
+-> QA: Napoleonic Wars	 (Score: 43.96635818481445)
+-> QA: History of Spain	 (Score: 42.55609130859375)
+-> QA: Battle of Lundy's Lane	 (Score: 41.06058120727539)
+-> QA: Godfrey Macdonald, 3rd Baron Macdonald of Slate	 (Score: 39.60202407836914)
+-> QA: History of Catalonia	 (Score: 39.02455520629883)
+-> QA: War of the Sixth Coalition	 (Score: 38.368736267089844)
+-> QA: FitzRoy Somerset, 1st Baron Raglan	 (Score: 38.263614654541016)
+-> QA: 1800s (decade)	 (Score: 37.42926025390625)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 16: categories:conserv text:1980 text:china text:found text:center text:cute text:creatur text:it text:bamboo text:rich text:wolong text:natur text:preserv
+Answer: Panda|Giant panda
+-> QA: Chengdu	 (Score: 51.574893951416016)
+-> QA: Geography of China	 (Score: 41.80237579345703)
+-> QA: Wild rice	 (Score: 40.300689697265625)
+-> QA: Biodiversity	 (Score: 39.1635856628418)
+-> QA: Paleontology	 (Score: 39.11042022705078)
+-> QA: Chinese art	 (Score: 38.136226654052734)
+-> QA: Mask	 (Score: 38.024253845214844)
+-> QA: Oil reserves in Southeast Asia	 (Score: 37.255401611328125)
+-> QA: Extinction	 (Score: 37.1795539855957)
+-> QA: Yangtze	 (Score: 36.697792053222656)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 17: categories:80 text:1 text:hitmak text:1988 text:father text:figur
+Answer: George Michael
+-> QA: Philip the Apostle	 (Score: 23.739749908447266)
+-> QA: Little Richard	 (Score: 22.32541847229004)
+-> QA: Schweizer SGS 1-24	 (Score: 21.893646240234375)
+-> QA: Luke the Evangelist	 (Score: 21.522668838500977)
+-> QA: Mike Stock (musician)	 (Score: 21.425125122070312)
+-> QA: Hugh Childers	 (Score: 20.778295516967773)
+-> QA: Van Morrison	 (Score: 20.052995681762695)
+-> QA: Thomas Dundas, 1st Baron Dundas	 (Score: 19.968032836914062)
+-> QA: Akio Takamori	 (Score: 19.965408325195312)
+-> QA: Zork	 (Score: 19.846927642822266)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 18: (categories:african categories:american) text:women text:essai text:defend text:2011 text:film text:myrli text:ever text:william text:said text:my text:mother text:film text:so text:her text:mother
+Answer: The Help
+-> QA: Gloria Steinem	 (Score: 67.87360382080078)
+-> QA: Meagan Good	 (Score: 64.73162841796875)
+-> QA: Natalie Portman	 (Score: 64.23448181152344)
+-> QA: Shirley MacLaine	 (Score: 63.92693328857422)
+-> QA: Zora Neale Hurston	 (Score: 63.40127182006836)
+-> QA: Jane Fonda	 (Score: 63.13360595703125)
+-> QA: Bette Davis	 (Score: 62.771095275878906)
+-> QA: Rosa Parks	 (Score: 62.299110412597656)
+-> QA: Halle Berry	 (Score: 61.079078674316406)
+-> QA: Ryan Leslie	 (Score: 60.31195068359375)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 19: categories:servic text:organ text:father text:michael text:mcgivnei text:found text:fratern text:societi text:cathol text:laymen text:1882
+Answer: Knights of Columbus
+-> QA: Knights of Columbus	 (Score: 70.39665222167969)
+-> QA: Knights of Labor	 (Score: 41.912559509277344)
+-> QA: Studentenverbindung	 (Score: 41.459651947021484)
+-> QA: Dorothy Day	 (Score: 37.56328201293945)
+-> QA: Order of Chosen Friends	 (Score: 36.2898063659668)
+-> QA: Sons of Hermann	 (Score: 35.63710403442383)
+-> QA: Felix Frankfurter	 (Score: 34.840354919433594)
+-> QA: Irish Republican Brotherhood	 (Score: 34.819252014160156)
+-> QA: Heidelberg University	 (Score: 33.9570198059082)
+-> QA: History of France	 (Score: 33.82539367675781)
+--- Search Correct --- 
+
+Executing query 20: categories:conserv text:earli text:project text:wwf text:organ text:includ text:work text:bald text:eagl text:red text:wolf
+Answer: World Wide Fund|World Wide Fund for Nature
+-> QA: Yellowstone National Park	 (Score: 43.00580978393555)
+-> QA: Itasca State Park	 (Score: 42.45773696899414)
+-> QA: Extinction	 (Score: 39.55229949951172)
+-> QA: United States Fish and Wildlife Service	 (Score: 39.335968017578125)
+-> QA: Falconry	 (Score: 36.207611083984375)
+-> QA: Maasai Mara	 (Score: 36.183631896972656)
+-> QA: Golden Eagle	 (Score: 35.858829498291016)
+-> QA: Red Falcons	 (Score: 35.5145378112793)
+-> QA: Columbia River	 (Score: 35.50421905517578)
+-> QA: Gray wolf	 (Score: 35.04685974121094)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 21: categories:conserv text:indonesia text:largest text:lizard text:protect text:from text:poacher text:though text:we text:wish text:could text:breath text:fire text:do text:job text:itself
+Answer: Komodo dragon
+-> QA: Komodo dragon	 (Score: 49.17145538330078)
+-> QA: Yellowstone National Park	 (Score: 49.13648223876953)
+-> QA: List of Madagascar (franchise) characters	 (Score: 48.55778503417969)
+-> QA: Blue whale	 (Score: 48.2204475402832)
+-> QA: Places in The Hitchhiker's Guide to the Galaxy	 (Score: 46.9747428894043)
+-> QA: List of minor The Hitchhiker's Guide to the Galaxy characters	 (Score: 45.94200134277344)
+-> QA: Globalization	 (Score: 45.168426513671875)
+-> QA: Rainforest	 (Score: 44.516292572021484)
+-> QA: Dragon (Middle-earth)	 (Score: 44.47507858276367)
+-> QA: Enoch Powell	 (Score: 44.20188522338867)
+--- Search Correct --- 
+
+Executing query 22: categories:1920 text:new text:flash text:nov text:28 text:1929 text:man text:hi text:chief text:pilot text:bernt text:balchen text:fly text:south text:pole text:yowza text:you'll text:admir text:admir text:sir
+Answer: Richard Byrd|Richard E. Byrd
+-> QA: 1929	 (Score: 62.29826354980469)
+-> QA: Keith Park	 (Score: 51.826507568359375)
+-> QA: Jimmy Doolittle	 (Score: 51.510982513427734)
+-> QA: Winston Churchill	 (Score: 51.1712532043457)
+-> QA: Home Fleet	 (Score: 48.92800521850586)
+-> QA: Alan Shepard	 (Score: 48.74674987792969)
+-> QA: Flag of New Zealand	 (Score: 48.440975189208984)
+-> QA: North Pole	 (Score: 47.501834869384766)
+-> QA: Alexander Kolchak	 (Score: 47.21308135986328)
+-> QA: Robert Falcon Scott	 (Score: 47.10771179199219)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 23: categories:cemeteri text:mai text:5 text:1878 text:alic text:chamber text:last text:person text:buri text:dodg text:citi text:kansa text:cemeteri
+Answer: Boot Hill
+-> QA: Doc Holliday	 (Score: 52.504669189453125)
+-> QA: Boot Hill	 (Score: 51.65110397338867)
+-> QA: Gertrude Stein	 (Score: 45.67167282104492)
+-> QA: Panteón de Dolores	 (Score: 44.66661834716797)
+-> QA: James E. Davis (councilman)	 (Score: 44.019004821777344)
+-> QA: Robert Maitland O'Reilly	 (Score: 43.90736770629883)
+-> QA: Lucy Parsons	 (Score: 43.56806182861328)
+-> QA: Lawrence Welk	 (Score: 42.912635803222656)
+-> QA: George Law Curry	 (Score: 42.57854080200195)
+-> QA: Ignacy Jan Paderewski	 (Score: 42.53889083862305)
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 24: categories:cambodian text:histori text:cultur text:royal text:palac text:ground text:featur text:statu text:king text:norodom text:who text:late text:1800 text:compel text:first text:put text:hi text:countri text:under text:control text:european text:power text:cours text:sculpt text:countri
+Answer: France
+-> QA: Leopold II of Belgium	 (Score: 81.3152084350586)
+-> QA: Travancore	 (Score: 81.28654479980469)
+-> QA: History of France	 (Score: 80.46959686279297)
+-> QA: History of Madagascar	 (Score: 79.25653839111328)
+-> QA: Louis XIV of France	 (Score: 78.96331024169922)
+-> QA: History of China	 (Score: 76.61003875732422)
+-> QA: History of England	 (Score: 76.58560180664062)
+-> QA: Crown jewels	 (Score: 75.95249938964844)
+-> QA: History of Asia	 (Score: 75.9107666015625)
+-> QA: History of Spain	 (Score: 75.54761505126953)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 25: categories:histor text:hodgepodg text:400 text:b.c text:chines text:philosoph text:went text:exil text:12 text:year
+Answer: Confucius
+-> QA: Dating creation	 (Score: 34.320980072021484)
+-> QA: Numerology	 (Score: 31.080951690673828)
+-> QA: Bernhard Karlgren	 (Score: 29.875097274780273)
+-> QA: Lycia	 (Score: 29.13037872314453)
+-> QA: Alans	 (Score: 29.024812698364258)
+-> QA: Historical revisionism (negationism)	 (Score: 28.861400604248047)
+-> QA: Political philosophy	 (Score: 27.984222412109375)
+-> QA: Hypatia	 (Score: 27.680355072021484)
+-> QA: Zhang Binglin	 (Score: 27.65882110595703)
+-> QA: Yang Wan	 (Score: 27.399105072021484)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 26: (categories:african categories:american) text:women text:bessi text:coleman text:first text:black text:woman text:licens text:pilot text:land text:street text:name text:her text:honor text:chicago text:airport
+Answer: O'Hare|O'Hare International Airport
+-> QA: Bessie Coleman	 (Score: 97.38180541992188)
+-> QA: Ida Cox	 (Score: 61.45591354370117)
+-> QA: Ethel Waters	 (Score: 58.96459197998047)
+-> QA: Lani Guinier	 (Score: 58.04545211791992)
+-> QA: Lambert–St. Louis International Airport	 (Score: 57.92579650878906)
+-> QA: Louis Armstrong	 (Score: 57.90065002441406)
+-> QA: Pilot (aeronautics)	 (Score: 56.838069915771484)
+-> QA: Charles Alston	 (Score: 56.06871795654297)
+-> QA: Billie Holiday	 (Score: 55.279930114746094)
+-> QA: Myrna Loy	 (Score: 55.18193817138672)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 27: categories:histor text:hodgepodg text:ammonit text:held text:swai text:mideast text:countri text:1200 text:b.c text:capit text:name text:them
+Answer: Jordan
+-> QA: History of Yemen	 (Score: 38.807743072509766)
+-> QA: Culture of Italy	 (Score: 38.416751861572266)
+-> QA: Canaan	 (Score: 38.18021011352539)
+-> QA: Lycia	 (Score: 37.10151672363281)
+-> QA: Raichur district	 (Score: 36.18798828125)
+-> QA: Rabbah	 (Score: 33.62644577026367)
+-> QA: Semitic people	 (Score: 33.34388732910156)
+-> QA: Alans	 (Score: 33.20512771606445)
+-> QA: Wilberforce University	 (Score: 32.961280822753906)
+-> QA: Sati (practice)	 (Score: 32.743072509765625)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 28: categories:he text:plai text:gui text:name text:jack text:ryan text:sum text:all text:fear text:he text:also text:won text:screenwrit text:oscar text:good text:hunt
+Answer: Ben Affleck
+-> QA: Ben Affleck	 (Score: 63.7841796875)
+-> QA: Stanley Kubrick	 (Score: 56.617671966552734)
+-> QA: Russell Crowe	 (Score: 56.54785919189453)
+-> QA: Harrison Ford	 (Score: 55.041015625)
+-> QA: John Huston	 (Score: 54.497684478759766)
+-> QA: William Goldman	 (Score: 54.30874252319336)
+-> QA: American Beauty (film)	 (Score: 54.2918701171875)
+-> QA: George Clooney	 (Score: 54.244564056396484)
+-> QA: Humphrey Bogart	 (Score: 54.124813079833984)
+-> QA: Helen Hunt	 (Score: 53.48424530029297)
+--- Search Correct --- 
+
+Executing query 29: categories:potpourri text:on text:n.y text:time text:headlin text:landmark text:1973 text:suprem text:court text:decis text:cardin text:shock
+Answer: Roe v. Wade
+-> QA: Regents of the University of California v. Bakke	 (Score: 41.908294677734375)
+-> QA: Last Tango in Paris	 (Score: 38.81105041503906)
+-> QA: Gideon v. Wainwright	 (Score: 38.55986404418945)
+-> QA: Circumcision and law	 (Score: 38.22809600830078)
+-> QA: New York Supreme Court	 (Score: 37.882320404052734)
+-> QA: Griswold v. Connecticut	 (Score: 37.56193161010742)
+-> QA: R. v. Owen	 (Score: 37.26874923706055)
+-> QA: Ted Kennedy	 (Score: 37.12552261352539)
+-> QA: Miller v. California	 (Score: 37.071556091308594)
+-> QA: Caveat emptor	 (Score: 36.96643829345703)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 30: categories:i'm text:burnin text:you text:franc text:philip text:iv text:known text:fair text:had text:jacqu text:de text:molai text:last text:grand text:master text:order text:burn text:1314
+Answer: Knights Templar
+-> QA: Philip IV of France	 (Score: 92.3769302368164)
+-> QA: Knights Templar	 (Score: 87.28352355957031)
+-> QA: Paris	 (Score: 66.61150360107422)
+-> QA: Ferdinand IV of Castile	 (Score: 64.64250183105469)
+-> QA: History of France	 (Score: 58.848426818847656)
+-> QA: Charles IV of France	 (Score: 54.42768096923828)
+-> QA: Louis XIV of France	 (Score: 53.67932891845703)
+-> QA: Louis XIII of France	 (Score: 53.6453857421875)
+-> QA: Conciergerie	 (Score: 52.8964729309082)
+-> QA: Louis IV, Holy Roman Emperor	 (Score: 52.85361862182617)
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 31: categories:state text:art text:museum text:georgia text:o'keeff text:museum
+Answer: New Mexico
+-> QA: Dan Budnik	 (Score: 39.723915100097656)
+-> QA: Museum of Modern Art	 (Score: 37.59914779663086)
+-> QA: Yousuf Karsh	 (Score: 34.975425720214844)
+-> QA: National Museum of Commercial Aviation	 (Score: 33.27951431274414)
+-> QA: Alfred Stieglitz	 (Score: 32.66266632080078)
+-> QA: Century 21 Exposition	 (Score: 32.418975830078125)
+-> QA: Maxwell L. Anderson	 (Score: 32.4169921875)
+-> QA: Phillips Academy	 (Score: 31.92203712463379)
+-> QA: Palo Duro Canyon	 (Score: 30.94573211669922)
+-> QA: Vassar College	 (Score: 29.86667251586914)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 32: categories:african text:citi text:name text:largest text:moroccan text:citi text:combin text:2 text:spanish text:word
+Answer: Casablanca
+-> QA: Oran	 (Score: 43.194217681884766)
+-> QA: Agadir	 (Score: 41.56621551513672)
+-> QA: Casablanca	 (Score: 40.463958740234375)
+-> QA: Extremadura	 (Score: 40.270381927490234)
+-> QA: Western Sahara	 (Score: 38.39761734008789)
+-> QA: Marrakesh	 (Score: 38.267391204833984)
+-> QA: Sahrawi people	 (Score: 37.121681213378906)
+-> QA: Arecibo, Puerto Rico	 (Score: 36.57498550415039)
+-> QA: Equatorial Guinea	 (Score: 36.22541046142578)
+-> QA: Canary Islands	 (Score: 36.07075500488281)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+--- Original Search Correct --- 
+
+Executing query 33: categories:name text:parent text:compani (text:jell text:o)
+Answer: Kraft Foods
+-> QA: Jell-O	 (Score: 37.976348876953125)
+-> QA: Jello mold	 (Score: 25.63027572631836)
+-> QA: Cold Stone Creamery	 (Score: 25.50687026977539)
+-> QA: Arch West	 (Score: 25.251327514648438)
+-> QA: Given name	 (Score: 23.30927085876465)
+-> QA: Olive loaf	 (Score: 22.624980926513672)
+-> QA: Hormel	 (Score: 22.006929397583008)
+-> QA: Japanese name	 (Score: 19.899078369140625)
+-> QA: Glen's Vodka	 (Score: 19.564186096191406)
+-> QA: Baseball card	 (Score: 19.48575782775879)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 34: categories:golden text:globe text:winner text:2011 text:chicago text:mayor text:tom text:kane
+Answer: Kelsey Grammer
+-> QA: Steven Spielberg	 (Score: 37.43840026855469)
+-> QA: Celeste Holm	 (Score: 33.188743591308594)
+-> QA: Meryl Streep	 (Score: 33.06478500366211)
+-> QA: Michael J. Fox	 (Score: 32.431297302246094)
+-> QA: Jon Voight	 (Score: 31.506980895996094)
+-> QA: Tom Selleck	 (Score: 31.34607696533203)
+-> QA: Chicago Cubs	 (Score: 31.112300872802734)
+-> QA: Roger Ebert	 (Score: 31.083101272583008)
+-> QA: Bruce Willis	 (Score: 30.55023765563965)
+-> QA: Matt LeBlanc	 (Score: 30.371692657470703)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 35: text:resid text:titl text:resid text:otter text:flounder text:pinto text:bluto text:1978 text:comedi
+Answer: Animal House
+-> QA: Animal House	 (Score: 61.2127799987793)
+-> QA: Sonam Kapoor	 (Score: 30.533048629760742)
+-> QA: National Lampoon (magazine)	 (Score: 30.51020622253418)
+-> QA: Scott & Muriel	 (Score: 29.416324615478516)
+-> QA: Claudia Galli	 (Score: 29.061067581176758)
+-> QA: Flounder	 (Score: 27.888154983520508)
+-> QA: Ecology of the San Francisco Estuary	 (Score: 27.831039428710938)
+-> QA: Pinellas County, Florida	 (Score: 27.632802963256836)
+-> QA: Resident-general	 (Score: 27.482463836669922)
+-> QA: North-West Rebellion	 (Score: 26.637672424316406)
+--- Search Correct --- 
+
+Executing query 36: categories:ucla text:celebr text:alumni text:neurobiologist text:ami text:farrah text:fowler text:big text:bang text:theori text:real text:life text:she text:ha text:ph.d text:neurosci text:from text:ucla
+Answer: Mayim Bialik
+-> QA: Mayim Bialik	 (Score: 115.69766235351562)
+-> QA: Howard Wolowitz	 (Score: 71.2025375366211)
+-> QA: Amy Fowler	 (Score: 68.39764404296875)
+-> QA: Blossom (TV series)	 (Score: 63.85681915283203)
+-> QA: Raj Koothrappali	 (Score: 52.47198486328125)
+-> QA: Shirley M. Tilghman	 (Score: 48.27732467651367)
+-> QA: California Institute of Technology	 (Score: 47.55390167236328)
+-> QA: Jack McManus (singer)	 (Score: 46.30886459350586)
+-> QA: Rob Reiner	 (Score: 46.2954216003418)
+-> QA: Mighty Bruins	 (Score: 45.98953628540039)
+--- Search Correct --- 
+
+Executing query 37: categories:note text:from text:campaign text:trail text:deadlock text:elect text:1800 text:jame text:r text:sharp text:outlin text:fall text:duel text:vice text:presid
+Answer: Aaron Burr
+-> QA: Aaron Burr	 (Score: 58.48617935180664)
+-> QA: Vice President of the United States	 (Score: 53.750953674316406)
+-> QA: Richard Mentor Johnson	 (Score: 52.13673782348633)
+-> QA: Herbert Hoover	 (Score: 49.81295394897461)
+-> QA: Tet Offensive	 (Score: 47.55274200439453)
+-> QA: John C. Breckinridge	 (Score: 46.97544479370117)
+-> QA: Presidency of Thomas Jefferson	 (Score: 46.12748336791992)
+-> QA: Vietnam War	 (Score: 46.114925384521484)
+-> QA: William McKinley	 (Score: 45.87138748168945)
+-> QA: William O. Douglas	 (Score: 45.176700592041016)
+--- Search Correct --- 
+
+Executing query 38: categories:tin text:men text:he text:serv text:kgb text:befor text:becom text:presid text:prime text:minist text:russia
+Answer: Vladimir Putin|Putin
+-> QA: Vladimir Putin	 (Score: 45.15034103393555)
+-> QA: Yuri Andropov	 (Score: 44.34465026855469)
+-> QA: Richard Crossman	 (Score: 44.11989212036133)
+-> QA: Boris Berezovsky (businessman)	 (Score: 43.80698776245117)
+-> QA: Mikhail Gorbachev	 (Score: 43.787166595458984)
+-> QA: Politics of Russia	 (Score: 43.032562255859375)
+-> QA: Keizō Obuchi	 (Score: 42.74726867675781)
+-> QA: Russian Armed Forces	 (Score: 42.6086540222168)
+-> QA: Rajiv Gandhi	 (Score: 42.45867919921875)
+-> QA: V. V. Giri	 (Score: 41.08035659790039)
+--- Search Correct --- 
+
+Executing query 39: (categories:african categories:american) text:women text:when text:ask text:describ text:herself text:she text:sai text:first text:foremost text:she text:malia text:sasha text:mom
+Answer: Michelle Obama
+-> QA: Michelle Obama	 (Score: 76.36190795898438)
+-> QA: Billie Holiday	 (Score: 54.787452697753906)
+-> QA: Whitney Houston	 (Score: 54.6855354309082)
+-> QA: Meagan Good	 (Score: 53.84469985961914)
+-> QA: Octavia E. Butler	 (Score: 53.70093536376953)
+-> QA: Harriet Tubman	 (Score: 53.125064849853516)
+-> QA: Sara Jane Olson	 (Score: 53.07132339477539)
+-> QA: Cecilia Beaux	 (Score: 53.025848388671875)
+-> QA: Courtney Love	 (Score: 52.34557342529297)
+-> QA: Janet Jackson	 (Score: 52.30258560180664)
+--- Search Correct --- 
+
+Executing query 40: categories:poet text:poetri text:she text:wrote text:my text:candl text:burn text:both text:end text:ah text:my text:foe text:oh text:my text:friend text:give text:love text:light
+Answer: Edna St. Vincent Millay
+-> QA: Henry Wadsworth Longfellow	 (Score: 70.08960723876953)
+-> QA: Mihri Hatun	 (Score: 69.07782745361328)
+-> QA: Anna Akhmatova	 (Score: 68.90019226074219)
+-> QA: John Keats	 (Score: 68.02994537353516)
+-> QA: Vita Sackville-West	 (Score: 65.87613677978516)
+-> QA: Emily Dickinson	 (Score: 65.77236938476562)
+-> QA: Lord Byron	 (Score: 65.7480239868164)
+-> QA: Madama Butterfly	 (Score: 65.62789916992188)
+-> QA: Kenneth Patchen	 (Score: 65.53254699707031)
+-> QA: Charles Baudelaire	 (Score: 64.80101013183594)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 41: categories:capit text:citi text:church text:finnish text:citi text:lutheran text:cathedr text:also text:known text:tuomiokirkko
+Answer: Helsinki
+-> QA: Savonlinna	 (Score: 56.99445343017578)
+-> QA: Magdeburg	 (Score: 46.58603286743164)
+-> QA: Vilnius	 (Score: 44.139892578125)
+-> QA: Porvoo	 (Score: 43.77024841308594)
+-> QA: Haarlem	 (Score: 43.637123107910156)
+-> QA: Tampere	 (Score: 43.5817985534668)
+-> QA: Turku	 (Score: 43.556758880615234)
+-> QA: Trondheim	 (Score: 43.07416915893555)
+-> QA: Espoo	 (Score: 41.75733184814453)
+-> QA: Helsinki	 (Score: 41.13151168823242)
+--- Search Incorrect --- 
+--- Search Correct in QA 10 --- 
+--- Original Search Correct --- 
+
+Executing query 42: categories:name text:parent text:compani text:milton text:bradlei text:game
+Answer: Hasbro
+-> QA: Axis & Allies	 (Score: 32.28141403198242)
+-> QA: Hasbro	 (Score: 30.707595825195312)
+-> QA: Microvision	 (Score: 29.358285903930664)
+-> QA: Battleship (game)	 (Score: 29.323684692382812)
+-> QA: Vectrex	 (Score: 27.523900985717773)
+-> QA: Snakes and Ladders	 (Score: 26.8994140625)
+-> QA: The Electric Company	 (Score: 25.778575897216797)
+-> QA: Brotherhood of Sleeping Car Porters	 (Score: 24.30132484436035)
+-> QA: Magnavox Odyssey	 (Score: 24.159954071044922)
+-> QA: Flame Queen Opal	 (Score: 23.9976863861084)
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 43: categories:old text:year text:resolut text:kentucki text:virginia text:resolut text:were text:pass text:protest text:controversi text:1798 text:act text:congress
+Answer: The Alien and Sedition Acts
+-> QA: Kentucky and Virginia Resolutions	 (Score: 77.8846435546875)
+-> QA: Governor of Kentucky	 (Score: 54.32890701293945)
+-> QA: Slavery in the United States	 (Score: 52.775367736816406)
+-> QA: Patrick Henry	 (Score: 52.206878662109375)
+-> QA: Stamp Act 1765	 (Score: 52.11661148071289)
+-> QA: Second Continental Congress	 (Score: 51.31169891357422)
+-> QA: Hartford Convention	 (Score: 49.2069091796875)
+-> QA: Emancipation Proclamation	 (Score: 49.080482482910156)
+-> QA: John C. Breckinridge	 (Score: 48.98811340332031)
+-> QA: History of slavery in Indiana	 (Score: 48.429893493652344)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 44: categories:80 text:1 text:hitmak text:1983 text:beat
+Answer: Michael Jackson
+-> QA: Them Again	 (Score: 23.5418643951416)
+-> QA: Fontana Records	 (Score: 22.932960510253906)
+-> QA: Syl Johnson	 (Score: 21.011459350585938)
+-> QA: Swing music	 (Score: 20.136484146118164)
+-> QA: Mike Stock (musician)	 (Score: 20.110382080078125)
+-> QA: Paul Anka	 (Score: 19.851991653442383)
+-> QA: Estádio Vila Olímpica	 (Score: 19.714513778686523)
+-> QA: Kelowna Spartans	 (Score: 19.316329956054688)
+-> QA: 15th National Hockey League All-Star Game	 (Score: 19.309513092041016)
+-> QA: Margrit Klinger	 (Score: 19.24305534362793)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 45: categories:golden text:globe text:winner text:2009 text:sooki text:stackhous
+Answer: Anna Paquin
+-> QA: Anna Paquin	 (Score: 43.18833541870117)
+-> QA: True Blood	 (Score: 34.76628112792969)
+-> QA: The West Wing	 (Score: 28.37166404724121)
+-> QA: Matt LeBlanc	 (Score: 24.105932235717773)
+-> QA: Geoffrey Rush	 (Score: 23.96195411682129)
+-> QA: Meryl Streep	 (Score: 23.180198669433594)
+-> QA: Mira Sorvino	 (Score: 23.071645736694336)
+-> QA: Jennifer Jones	 (Score: 22.7623291015625)
+-> QA: George Clooney	 (Score: 22.563615798950195)
+-> QA: Julianna Margulies	 (Score: 22.54907989501953)
+--- Search Correct --- 
+
+Executing query 46: categories:histor text:hodgepodg text:member text:nixon text:ford text:cabinet text:born text:furth text:germani text:1923
+Answer: Henry Kissinger
+-> QA: Henry Kissinger	 (Score: 39.591896057128906)
+-> QA: William B. Saxbe	 (Score: 30.257137298583984)
+-> QA: Nils Edén	 (Score: 30.052371978759766)
+-> QA: Woodrow Wilson	 (Score: 29.984291076660156)
+-> QA: Arthur Sauvé	 (Score: 29.318838119506836)
+-> QA: Rideau Hall	 (Score: 28.860559463500977)
+-> QA: Adolphus William Ward	 (Score: 28.635351181030273)
+-> QA: Willy Brandt	 (Score: 28.598896026611328)
+-> QA: United States presidential line of succession	 (Score: 28.142732620239258)
+-> QA: Eisaku Satō	 (Score: 27.594043731689453)
+--- Search Correct --- 
+
+Executing query 47: categories:capit text:citi text:church text:high text:kirk text:st text:gile text:where text:john text:knox text:minist
+Answer: Edinburgh
+-> QA: John Knox	 (Score: 53.670501708984375)
+-> QA: Edinburgh	 (Score: 51.06482696533203)
+-> QA: Church of Scotland	 (Score: 49.041229248046875)
+-> QA: Scottish Episcopal Church	 (Score: 47.81792449951172)
+-> QA: Perth, Scotland	 (Score: 43.722900390625)
+-> QA: History of Scotland	 (Score: 42.80179977416992)
+-> QA: Queen's Hall, Edinburgh	 (Score: 42.79742431640625)
+-> QA: Glasgow Cathedral	 (Score: 42.45463562011719)
+-> QA: James Douglas, 4th Earl of Morton	 (Score: 40.98180389404297)
+-> QA: Arbroath	 (Score: 40.84783172607422)
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 48: categories:ucla text:celebr text:alumni text:brief text:time text:he text:attend text:he text:rebel text:caus text:even text:land text:lead text:role text:1950 text:stage text:product
+Answer: James Dean
+-> QA: James Dean	 (Score: 64.88568878173828)
+-> QA: Humphrey Bogart	 (Score: 56.2814826965332)
+-> QA: Art Carney	 (Score: 56.1954460144043)
+-> QA: Errol Flynn	 (Score: 56.09605026245117)
+-> QA: Henry Fonda	 (Score: 56.057865142822266)
+-> QA: Kareem Abdul-Jabbar	 (Score: 55.86439514160156)
+-> QA: Len Cariou	 (Score: 55.6135368347168)
+-> QA: Michael Crawford	 (Score: 54.560935974121094)
+-> QA: John Huston	 (Score: 54.45964431762695)
+-> QA: Carroll O'Connor	 (Score: 53.72499084472656)
+--- Search Correct --- 
+
+Executing query 49: categories:name text:parent text:compani (text:fisher text:price) text:toi
+Answer: Mattel
+-> QA: Little People	 (Score: 34.9627685546875)
+-> QA: Toy Town Museum	 (Score: 32.923919677734375)
+-> QA: Hasbro	 (Score: 30.933935165405273)
+-> QA: Buzzy Bee	 (Score: 29.06683349609375)
+-> QA: Mattel	 (Score: 27.813779830932617)
+-> QA: Arthur Treacher's	 (Score: 26.98004913330078)
+-> QA: Pixar	 (Score: 25.319860458374023)
+-> QA: Domain name registrar	 (Score: 23.852977752685547)
+-> QA: Jean-Pierre Abbat	 (Score: 23.794986724853516)
+-> QA: Mickey Mouse	 (Score: 23.401309967041016)
+--- Search Incorrect --- 
+--- Search Correct in QA 5 --- 
+--- Original Search Correct --- 
+
+Executing query 50: categories:histor text:quot text:1959 text:american text:kitchen text:exhibit text:moscow text:he text:told text:khrushchev text:america text:we text:like text:make text:life text:easier text:women
+Answer: Richard Nixon|Nixon
+-> QA: Cuban missile crisis	 (Score: 61.60908126831055)
+-> QA: American National Exhibition	 (Score: 56.23976135253906)
+-> QA: Jacqueline Kennedy Onassis	 (Score: 55.635162353515625)
+-> QA: Fidel Castro	 (Score: 55.32877731323242)
+-> QA: Supermodel	 (Score: 53.984901428222656)
+-> QA: Stanley Kubrick	 (Score: 53.81157684326172)
+-> QA: Dolores Ibárruri	 (Score: 53.60224151611328)
+-> QA: Paul Robeson	 (Score: 52.89849853515625)
+-> QA: Ken Russell	 (Score: 52.73115158081055)
+-> QA: Richard Nixon	 (Score: 52.68149185180664)
+--- Search Incorrect --- 
+--- Search Correct in QA 10 --- 
+--- Original Search Correct --- 
+
+Executing query 51: categories:poet text:poetri text:on text:hi text:tale text:waysid text:inn text:begin text:listen text:my text:children text:you text:shall text:hear text:midnight text:ride text:paul text:rever
+Answer: Henry Wadsworth Longfellow
+-> QA: Henry Wadsworth Longfellow	 (Score: 69.56230926513672)
+-> QA: Baxter Black	 (Score: 58.35249710083008)
+-> QA: Michael Jackson	 (Score: 57.04293441772461)
+-> QA: Søren Kierkegaard	 (Score: 56.183589935302734)
+-> QA: Falstaff (opera)	 (Score: 55.851234436035156)
+-> QA: Van Morrison	 (Score: 55.58476257324219)
+-> QA: Nikolai Rimsky-Korsakov	 (Score: 55.3686408996582)
+-> QA: C. S. Lewis	 (Score: 55.100189208984375)
+-> QA: Acrostic	 (Score: 55.06151580810547)
+-> QA: Fanny Imlay	 (Score: 54.81288146972656)
+--- Search Correct --- 
+
+Executing query 52: categories:note text:from text:campaign text:trail text:bestsel text:about text:problem text:mccain text:palin text:ticket text:becam text:hbo text:movi text:juliann text:moor
+Answer: Game Change
+-> QA: Game Change	 (Score: 60.14978790283203)
+-> QA: Michael Moore	 (Score: 48.579505920410156)
+-> QA: Margaret Cho	 (Score: 48.07221984863281)
+-> QA: Gloria Steinem	 (Score: 47.087852478027344)
+-> QA: Jon Voight	 (Score: 45.33880615234375)
+-> QA: Joe Lieberman	 (Score: 45.22292709350586)
+-> QA: James Dobson	 (Score: 44.55587387084961)
+-> QA: Vice President of the United States	 (Score: 43.82594299316406)
+-> QA: Mark Sanford	 (Score: 41.95589828491211)
+-> QA: Ed O'Callaghan	 (Score: 41.74638748168945)
+--- Search Correct --- 
+
+Executing query 53: (text:20 text:aught) text:show text:2 text:part text:episod text:jag text:introduc text:mark text:harmon text:drama
+Answer: NCIS
+-> QA: List of NCIS characters	 (Score: 42.515480041503906)
+-> QA: James Harmon Brown and Barbara Esensten	 (Score: 39.773536682128906)
+-> QA: Bozo the Clown	 (Score: 37.90139389038086)
+-> QA: France 3	 (Score: 37.306793212890625)
+-> QA: Law & Order	 (Score: 37.22170639038086)
+-> QA: Gunsmoke	 (Score: 37.10890197753906)
+-> QA: Stargate SG-1	 (Score: 36.693756103515625)
+-> QA: Cold Feet	 (Score: 36.675453186035156)
+-> QA: Doctors (soap opera)	 (Score: 36.62464904785156)
+-> QA: Peter Stormare	 (Score: 36.25239944458008)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 54: categories:african text:citi text:port text:southernmost text:south text:africa text:3 text:capit
+Answer: Cape Town
+-> QA: Urbanization in Africa	 (Score: 40.393646240234375)
+-> QA: Lesotho	 (Score: 35.23099899291992)
+-> QA: British Columbia Highway 14	 (Score: 34.972103118896484)
+-> QA: Economy of Namibia	 (Score: 34.716102600097656)
+-> QA: Monrovia	 (Score: 34.163848876953125)
+-> QA: Comoros	 (Score: 33.926361083984375)
+-> QA: Chad	 (Score: 33.880977630615234)
+-> QA: Zambia	 (Score: 33.21634292602539)
+-> QA: Afro-Brazilian	 (Score: 32.701255798339844)
+-> QA: Zanzibar	 (Score: 32.298770904541016)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 55: text:quotabl text:keat text:keat text:quot text:edmund text:spenser text:poem text:when text:he text:told text:shellei text:load text:everi text:rift text:your text:subject text:or
+Answer: The Faerie Queene
+-> QA: John Keats	 (Score: 85.48653411865234)
+-> QA: Wilfred Owen	 (Score: 66.5796890258789)
+-> QA: Ozymandias	 (Score: 61.76857376098633)
+-> QA: Edmund Blunden	 (Score: 60.84540939331055)
+-> QA: Ode	 (Score: 59.91264724731445)
+-> QA: John Milton	 (Score: 56.419677734375)
+-> QA: Edmund Spenser	 (Score: 54.55863571166992)
+-> QA: English poetry	 (Score: 54.15058517456055)
+-> QA: W. B. Yeats	 (Score: 51.682220458984375)
+-> QA: John Masefield	 (Score: 50.670021057128906)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 56: text:quotabl text:keat text:1819 text:letter text:keat text:wrote text:lord text:poet text:cut text:figur text:he text:figur
+Answer: Lord Byron
+-> QA: John Keats	 (Score: 66.63168334960938)
+-> QA: La Belle Dame sans Merci	 (Score: 58.72969055175781)
+-> QA: Romanticism	 (Score: 51.2874755859375)
+-> QA: Edmund Spenser	 (Score: 49.83893585205078)
+-> QA: Luis Cernuda	 (Score: 48.52130889892578)
+-> QA: Kubla Khan	 (Score: 48.339195251464844)
+-> QA: Harold Stewart	 (Score: 47.71824264526367)
+-> QA: Adonis	 (Score: 47.60154342651367)
+-> QA: Joseph Addison	 (Score: 46.881656646728516)
+-> QA: Irish literature	 (Score: 46.72063064575195)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 57: categories:greek text:food text:drink text:clear text:greek text:liqueur text:quit text:potent text:so text:usual text:mix text:water text:which text:turn text:white text:cloudi
+Answer: Ouzo
+-> QA: Ouzo	 (Score: 81.18826293945312)
+-> QA: Liqueur	 (Score: 65.10460662841797)
+-> QA: Anise	 (Score: 61.515892028808594)
+-> QA: English cuisine	 (Score: 60.42824172973633)
+-> QA: Fennel	 (Score: 60.359649658203125)
+-> QA: Cider	 (Score: 57.36996078491211)
+-> QA: List of coffee beverages	 (Score: 57.24694061279297)
+-> QA: Alum	 (Score: 57.035400390625)
+-> QA: Cashew	 (Score: 56.633567810058594)
+-> QA: Orion (mythology)	 (Score: 56.23615646362305)
+--- Search Correct --- 
+
+Executing query 58: categories:old text:year text:resolut text:feb text:1 text:nation text:freedom text:dai text:date text:1865 text:when text:resolut text:sent text:state text:amend text:end
+Answer: Slavery|Slavery in the United States
+-> QA: Emancipation Proclamation	 (Score: 64.93445587158203)
+-> QA: Independence Hall	 (Score: 60.958038330078125)
+-> QA: History of Lebanon	 (Score: 56.625022888183594)
+-> QA: Pledge of Allegiance	 (Score: 56.47663497924805)
+-> QA: Henry S. Foote	 (Score: 56.38993453979492)
+-> QA: George W. Bush's first term as President of the United States	 (Score: 56.34995651245117)
+-> QA: William O. Douglas	 (Score: 56.176334381103516)
+-> QA: Israeli Declaration of Independence	 (Score: 55.971229553222656)
+-> QA: Slavery in the United States	 (Score: 55.89776611328125)
+-> QA: Women's suffrage	 (Score: 55.755104064941406)
+--- Search Incorrect --- 
+--- Search Correct in QA 9 --- 
+--- Original Search Correct --- 
+
+Executing query 59: categories:rank text:titl text:person text:queen text:repres text:canada text:current text:offic text:held text:david text:johnston
+Answer: Governor General of Canada
+-> QA: Governor General of Canada	 (Score: 49.320701599121094)
+-> QA: Parliament of Canada	 (Score: 45.13405990600586)
+-> QA: Lincoln Alexander	 (Score: 43.98040771484375)
+-> QA: Commander-in-chief	 (Score: 43.63840866088867)
+-> QA: 100 Huntley Street	 (Score: 41.67037582397461)
+-> QA: Order of Military Merit (Canada)	 (Score: 41.6105842590332)
+-> QA: Commonwealth Heads of Government Meeting	 (Score: 40.82033920288086)
+-> QA: Alma Mater Society of Queen's University	 (Score: 39.75204086303711)
+-> QA: Manitoba	 (Score: 38.89778518676758)
+-> QA: Peter Kormos	 (Score: 38.83369064331055)
+--- Search Correct --- 
+
+Executing query 60: categories:tin text:men text:he text:earn text:fifth text:beatl text:nicknam text:produc text:all text:beatl text:album
+Answer: George Martin
+-> QA: Ringo Starr	 (Score: 47.418739318847656)
+-> QA: Stig Anderson	 (Score: 46.699073791503906)
+-> QA: Fifth Beatle	 (Score: 44.85188674926758)
+-> QA: George Martin	 (Score: 41.737300872802734)
+-> QA: Margical History Tour	 (Score: 40.680423736572266)
+-> QA: Johnny Burnette	 (Score: 40.2059211730957)
+-> QA: Little Richard	 (Score: 40.18577575683594)
+-> QA: Beaver & Krause	 (Score: 40.158363342285156)
+-> QA: Smokey Robinson	 (Score: 40.010066986083984)
+-> QA: Harry Nilsson	 (Score: 39.61316680908203)
+--- Search Incorrect --- 
+--- Search Correct in QA 4 --- 
+--- Original Search Correct --- 
+
+Executing query 61: categories:newspap text:earli text:career text:mark text:twain text:bret text:hart text:wrote text:piec text:california text:citi text:chronicl
+Answer: San Francisco
+-> QA: Bret Harte	 (Score: 56.927982330322266)
+-> QA: Joaquin Miller	 (Score: 49.17341995239258)
+-> QA: Dave Meltzer	 (Score: 45.61638641357422)
+-> QA: 1860 Wiyot Massacre	 (Score: 44.402713775634766)
+-> QA: William Randolph Hearst	 (Score: 42.25787353515625)
+-> QA: Ken Howard	 (Score: 40.886661529541016)
+-> QA: John Camden Hotten	 (Score: 39.49917984008789)
+-> QA: Kurt Vonnegut	 (Score: 39.25843811035156)
+-> QA: California Gold Rush	 (Score: 38.80707931518555)
+-> QA: Errol Flynn	 (Score: 38.755130767822266)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 62: categories:potpourri text:larg text:specimen text:marsupi text:can text:leap text:over text:barrier text:6 text:feet text:high
+Answer: Kangaroo
+-> QA: Kangaroo	 (Score: 43.369407653808594)
+-> QA: Emu	 (Score: 40.19357681274414)
+-> QA: Fauna of Australia	 (Score: 39.325950622558594)
+-> QA: Kakapo	 (Score: 38.83021926879883)
+-> QA: Velociraptor	 (Score: 37.669498443603516)
+-> QA: Tammar wallaby	 (Score: 37.03356170654297)
+-> QA: Koala	 (Score: 37.027408599853516)
+-> QA: Agathis australis	 (Score: 36.66031265258789)
+-> QA: Adobe Creek (near Los Altos, California)	 (Score: 35.61134719848633)
+-> QA: Eucalyptus	 (Score: 34.91464614868164)
+--- Search Correct --- 
+
+Executing query 63: categories:greek text:food text:drink text:becaus text:cure text:store text:brine text:crumbl text:white text:chees text:made text:from text:sheep text:milk text:often text:refer text:pickl text:chees
+Answer: Feta
+-> QA: Feta	 (Score: 107.67831420898438)
+-> QA: Sausage	 (Score: 90.5592269897461)
+-> QA: English cuisine	 (Score: 88.61528015136719)
+-> QA: Norwegian cuisine	 (Score: 87.37663269042969)
+-> QA: Australian cuisine	 (Score: 78.45352172851562)
+-> QA: Delicatessen	 (Score: 76.9674301147461)
+-> QA: Chinese cuisine	 (Score: 75.29255676269531)
+-> QA: Kashrut	 (Score: 75.23570251464844)
+-> QA: Mexican cuisine	 (Score: 74.8479232788086)
+-> QA: Beef	 (Score: 74.44024658203125)
+--- Search Correct --- 
+
+Executing query 64: categories:1920 text:new text:flash text:1927 text:gene text:tunnei text:take text:long text:count text:squar text:circl text:rise text:defeat text:manassa text:mauler text:howzabout
+Answer: Jack Dempsey
+-> QA: Jack Dempsey	 (Score: 76.8892822265625)
+-> QA: Max Schmeling	 (Score: 50.816429138183594)
+-> QA: James J. Braddock	 (Score: 37.31907653808594)
+-> QA: Vehicle registration plates of Italy	 (Score: 36.59465789794922)
+-> QA: Robert Edward Crozier Long	 (Score: 36.41200637817383)
+-> QA: Hulk Hogan	 (Score: 35.85309600830078)
+-> QA: Battle of Chancellorsville	 (Score: 35.852909088134766)
+-> QA: State University of New York at Stony Brook	 (Score: 35.65221405029297)
+-> QA: Provence	 (Score: 35.53542709350586)
+-> QA: Swainson's Hawk	 (Score: 34.83716583251953)
+--- Search Correct --- 
+
+Executing query 65: categories:rank text:titl text:italian text:leader text:especi text:appli text:benito text:mussolini
+Answer: Duce
+-> QA: Duce	 (Score: 42.34616470336914)
+-> QA: Fascism in Europe	 (Score: 40.08490753173828)
+-> QA: Neo-fascism	 (Score: 39.11187744140625)
+-> QA: Vilfredo Pareto	 (Score: 38.596946716308594)
+-> QA: Fascist and anti-Fascist violence in Italy (1919–26)	 (Score: 38.531517028808594)
+-> QA: Foreign relations of Italy	 (Score: 37.14299774169922)
+-> QA: History of Albania	 (Score: 36.535823822021484)
+-> QA: Cult of personality	 (Score: 36.17437744140625)
+-> QA: Agostino Lanzillo	 (Score: 36.14051818847656)
+-> QA: History of Corsica	 (Score: 36.1242561340332)
+--- Search Correct --- 
+
+Executing query 66: categories:state text:art text:museum text:kalamazoo text:institut text:art
+Answer: Michigan
+-> QA: Rachelle Thiewes	 (Score: 33.650299072265625)
+-> QA: Terra Museum	 (Score: 33.64380645751953)
+-> QA: Portland Institute for Contemporary Art	 (Score: 32.78832244873047)
+-> QA: Carl Oscar Borg	 (Score: 31.621366500854492)
+-> QA: Museum Partnership School	 (Score: 31.029605865478516)
+-> QA: Maxwell L. Anderson	 (Score: 30.913198471069336)
+-> QA: Walker Art Center	 (Score: 30.84278106689453)
+-> QA: Mina Cheon	 (Score: 30.551687240600586)
+-> QA: Susanna Coffey	 (Score: 30.51801872253418)
+-> QA: Museum of Contemporary Art, Chicago	 (Score: 30.392160415649414)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 67: categories:state text:art text:museum text:sun text:vallei text:center text:art
+Answer: Idaho
+-> QA: John Rais	 (Score: 36.24551773071289)
+-> QA: Museum of Contemporary Art, Chicago	 (Score: 35.048614501953125)
+-> QA: Duane Johnson	 (Score: 34.823387145996094)
+-> QA: Museum at Bethel Woods	 (Score: 34.30863952636719)
+-> QA: Collins Center for the Arts	 (Score: 34.289363861083984)
+-> QA: Roanoke, Virginia	 (Score: 33.876487731933594)
+-> QA: South Dakota State University	 (Score: 33.81063461303711)
+-> QA: California State University, San Bernardino	 (Score: 33.65154266357422)
+-> QA: Xochicalco	 (Score: 33.293331146240234)
+-> QA: Northern Arizona University	 (Score: 33.23149871826172)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 68: categories:tin text:men text:you text:can't text:mention text:shortstop text:without text:mention text:hi text:doubl text:plai text:associ text:ever text:chanc
+Answer: Joe Tinker
+-> QA: Paul Molitor	 (Score: 52.01268005371094)
+-> QA: Humphrey Bogart	 (Score: 49.428680419921875)
+-> QA: Moe Berg	 (Score: 49.06487274169922)
+-> QA: Charlie Gehringer	 (Score: 47.561920166015625)
+-> QA: Baldrick	 (Score: 47.217613220214844)
+-> QA: Chicago Cubs	 (Score: 46.87698745727539)
+-> QA: Kenesaw Mountain Landis	 (Score: 46.734798431396484)
+-> QA: Honus Wagner	 (Score: 46.6927604675293)
+-> QA: Stephen King	 (Score: 46.51286697387695)
+-> QA: Silvio Dante	 (Score: 46.1535530090332)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 69: categories:newspap text:1840 text:horac text:greelei text:began text:publish text:log text:cabin text:weekli text:campaign text:paper text:support text:whig text:candid
+Answer: William Henry Harrison
+-> QA: Horace Greeley	 (Score: 89.77717590332031)
+-> QA: William Lyon Mackenzie	 (Score: 55.653865814208984)
+-> QA: Jefferson Davis	 (Score: 52.30060958862305)
+-> QA: William Henry Harrison	 (Score: 51.74677276611328)
+-> QA: Anti-Masonic Party	 (Score: 49.630558013916016)
+-> QA: Charles Sumner	 (Score: 49.098876953125)
+-> QA: Thomas A. Hendricks	 (Score: 48.13388442993164)
+-> QA: The Day (New London)	 (Score: 47.96073913574219)
+-> QA: Schuyler Colfax	 (Score: 47.49147033691406)
+-> QA: Kansas–Nebraska Act	 (Score: 44.341209411621094)
+--- Search Incorrect --- 
+--- Search Correct in QA 4 --- 
+--- Original Search Correct --- 
+
+Executing query 70: categories:i'm text:burnin text:you text:pierr text:cauchon text:bishop text:beauvai text:presid text:over text:trial text:woman text:who text:went text:up text:smoke text:mai text:30 text:1431
+Answer: Joan of Arc|Jeanne d'Arc
+-> QA: Joan of Arc	 (Score: 68.6810073852539)
+-> QA: Medieval Inquisition	 (Score: 63.61748123168945)
+-> QA: Roman Catholic Diocese of Beauvais	 (Score: 51.439292907714844)
+-> QA: François Mitterrand	 (Score: 46.4135856628418)
+-> QA: Napoleon III	 (Score: 45.560611724853516)
+-> QA: Mount Pelée	 (Score: 45.4910888671875)
+-> QA: Catholic sex abuse cases	 (Score: 45.45711898803711)
+-> QA: Nancy Sinatra	 (Score: 45.097232818603516)
+-> QA: Tara Palmer-Tomkinson	 (Score: 44.860801696777344)
+-> QA: Paris Commune	 (Score: 44.16217041015625)
+--- Search Correct --- 
+
+Executing query 71: categories:complet (text:dom text:inat) text:wisconsin text:citi text:claim text:have text:built text:usa text:onli text:granit text:dome
+Answer: Madison
+-> QA: El Capitolio	 (Score: 38.37538146972656)
+-> QA: Saint Isaac's Cathedral	 (Score: 38.3176383972168)
+-> QA: Chrysler Building	 (Score: 37.03059768676758)
+-> QA: Blackstone Library	 (Score: 36.283817291259766)
+-> QA: Lake Superior	 (Score: 35.65027618408203)
+-> QA: Minute Maid Park	 (Score: 35.298221588134766)
+-> QA: Reliant Astrodome	 (Score: 34.6594123840332)
+-> QA: Carlton House Terrace	 (Score: 33.94725799560547)
+-> QA: Beavertail Lighthouse	 (Score: 33.94181442260742)
+-> QA: Bank of America Plaza (Atlanta)	 (Score: 33.67690658569336)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 72: categories:newspap text:georgia text:paper text:known text:ajc text:short
+Answer: The Atlanta Journal-Constitution
+-> QA: The Atlanta Journal-Constitution	 (Score: 39.680877685546875)
+-> QA: International New York Times	 (Score: 25.13908576965332)
+-> QA: Rome News-Tribune	 (Score: 24.932937622070312)
+-> QA: Francis Preston Blair	 (Score: 24.688045501708984)
+-> QA: Daily Worker	 (Score: 24.32695198059082)
+-> QA: Georgia (U.S. state)	 (Score: 24.100738525390625)
+-> QA: Stylish Century	 (Score: 23.74005126953125)
+-> QA: Celestine Sibley	 (Score: 23.414854049682617)
+-> QA: BVI Beacon	 (Score: 23.258651733398438)
+-> QA: Metropolis Daily	 (Score: 22.764755249023438)
+--- Search Correct --- 
+
+Executing query 73: categories:african text:citi text:wooden text:2 text:stori text:veranda text:liberian text:capit text:architectur text:link text:u. text:south
+Answer: Monrovia
+-> QA: Monrovia	 (Score: 46.47202682495117)
+-> QA: Jug Tavern	 (Score: 42.981658935546875)
+-> QA: Architecture of India	 (Score: 41.992733001708984)
+-> QA: Ellwood House	 (Score: 40.52177429199219)
+-> QA: Liberia	 (Score: 39.17658615112305)
+-> QA: Delavan Terrace Historic District	 (Score: 38.292667388916016)
+-> QA: North Melbourne railway station	 (Score: 36.94951248168945)
+-> QA: Americo-Liberian	 (Score: 36.912750244140625)
+-> QA: Danny Glover	 (Score: 36.75775909423828)
+-> QA: Yangon	 (Score: 36.61476516723633)
+--- Search Correct --- 
+
+Executing query 74: categories:complet (text:dom text:inat) text:new text:orlean text:venu text:reopen text:sept text:25 text:2006
+Answer: Mercedes-Benz Superdome|The Superdome
+-> QA: Mercedes-Benz Superdome	 (Score: 36.99870681762695)
+-> QA: Louis Armstrong New Orleans International Airport	 (Score: 34.38557815551758)
+-> QA: Tameside Hippodrome	 (Score: 33.985504150390625)
+-> QA: The Brewhouse Theatre & Arts Centre	 (Score: 32.8885498046875)
+-> QA: Saenger Theatre (New Orleans, Louisiana)	 (Score: 32.44163513183594)
+-> QA: Snug Harbor (jazz club)	 (Score: 31.226808547973633)
+-> QA: Jimmy Walter	 (Score: 30.88534927368164)
+-> QA: Garneau Theatre	 (Score: 30.863645553588867)
+-> QA: HMV	 (Score: 30.699146270751953)
+-> QA: Sadler's Wells Theatre	 (Score: 30.590747833251953)
+--- Search Correct --- 
+
+Executing query 75: categories:he text:plai text:gui text:name text:jack text:ryan text:hunt text:red text:octob text:he text:went text:more text:comed text:jack text:donaghi text:30 text:rock
+Answer: Alec Baldwin
+-> QA: Alec Baldwin	 (Score: 63.540283203125)
+-> QA: 30 Rock (season 6)	 (Score: 59.803340911865234)
+-> QA: Hunter S. Thompson	 (Score: 55.08395767211914)
+-> QA: Chris Rock	 (Score: 54.93403244018555)
+-> QA: Anna Faris	 (Score: 54.85014724731445)
+-> QA: Red Hot Chili Peppers	 (Score: 54.259151458740234)
+-> QA: Candy Barr	 (Score: 53.971290588378906)
+-> QA: Cleveland Panthers	 (Score: 52.569679260253906)
+-> QA: Bill Mumy	 (Score: 52.139442443847656)
+-> QA: Coronation Street	 (Score: 52.059661865234375)
+--- Search Correct --- 
+
+Executing query 76: (categories:african categories:american) text:women text:rita text:dove text:titl text:collect text:poem text:bu text:woman
+Answer: Rosa Parks
+-> QA: Rosa Parks	 (Score: 47.102012634277344)
+-> QA: Stanley Williams	 (Score: 39.78485870361328)
+-> QA: Queen Latifah	 (Score: 38.64934539794922)
+-> QA: Nellie Y. McKay	 (Score: 37.01172637939453)
+-> QA: Alicia Keys	 (Score: 36.422752380371094)
+-> QA: Claudette Colvin	 (Score: 35.095550537109375)
+-> QA: Mary Louise Smith (civil rights activist)	 (Score: 34.395442962646484)
+-> QA: Louise Erdrich	 (Score: 34.22289276123047)
+-> QA: University of Virginia	 (Score: 33.55573654174805)
+-> QA: Joshua Beckman	 (Score: 32.682132720947266)
+--- Search Correct --- 
+
+Executing query 77: categories:he text:plai text:gui text:name text:jack text:ryan text:patriot text:game text:he text:had text:other text:icon text:role text:space text:underground
+Answer: Harrison Ford
+-> QA: Harrison Ford	 (Score: 51.61975860595703)
+-> QA: Raiden (Metal Gear)	 (Score: 51.056800842285156)
+-> QA: Phil LaMarr	 (Score: 50.33640670776367)
+-> QA: Rolento	 (Score: 48.73977279663086)
+-> QA: Adam West	 (Score: 48.48343276977539)
+-> QA: Washington Redskins	 (Score: 47.823455810546875)
+-> QA: Bill Mumy	 (Score: 47.65288543701172)
+-> QA: Walter Matthau	 (Score: 46.67757034301758)
+-> QA: Phil Hartman	 (Score: 46.42757797241211)
+-> QA: Peter Kenny	 (Score: 45.51060104370117)
+--- Search Correct --- 
+
+Executing query 78: categories:complet (text:dom text:inat) text:sacr text:structur text:date text:from text:late text:600 text:s text:a.d
+Answer: Dome of the Rock
+-> QA: Izamal	 (Score: 36.27567672729492)
+-> QA: Tayasal (archaeological site)	 (Score: 34.599334716796875)
+-> QA: Millennium Tower (San Francisco)	 (Score: 33.79498291015625)
+-> QA: Altun Ha	 (Score: 32.61893844604492)
+-> QA: Vermont Yankee Nuclear Power Plant	 (Score: 31.244964599609375)
+-> QA: Svetitskhoveli Cathedral	 (Score: 30.790996551513672)
+-> QA: Numerology	 (Score: 30.544288635253906)
+-> QA: Building 20	 (Score: 30.465341567993164)
+-> QA: Sarajevo	 (Score: 30.100147247314453)
+-> QA: Cologne Cathedral	 (Score: 29.994001388549805)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 79: categories:80 text:1 text:hitmak text:1988 text:man text:mirror
+Answer: Michael Jackson
+-> QA: Zork	 (Score: 24.65611457824707)
+-> QA: Mike Stock (musician)	 (Score: 24.029598236083984)
+-> QA: Arthur Balfour	 (Score: 22.89594268798828)
+-> QA: Tom Jones (singer)	 (Score: 21.468963623046875)
+-> QA: Arthur Porges	 (Score: 21.311920166015625)
+-> QA: The Hitchhiker's Guide to the Galaxy (video game)	 (Score: 20.400074005126953)
+-> QA: Turtles all the way down	 (Score: 20.142295837402344)
+-> QA: Betty Parris	 (Score: 19.969829559326172)
+-> QA: The Man with the Golden Gun (film)	 (Score: 19.953615188598633)
+-> QA: The Other Man's Grass Is Always Greener	 (Score: 19.594648361206055)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 80: categories:capit text:citi text:church text:matthia text:church text:matya text:templom text:where text:franz text:joseph text:crown text:1867
+Answer: Budapest
+-> QA: Budapest	 (Score: 49.676822662353516)
+-> QA: Lviv	 (Score: 48.82818603515625)
+-> QA: History of Buda Castle	 (Score: 47.67390060424805)
+-> QA: Bratislava	 (Score: 46.28675079345703)
+-> QA: Matthias Corvinus	 (Score: 44.93551254272461)
+-> QA: Olomouc	 (Score: 43.93941116333008)
+-> QA: Mayerling	 (Score: 42.39478302001953)
+-> QA: Votive Church, Vienna	 (Score: 41.23066329956055)
+-> QA: Munich	 (Score: 40.22030258178711)
+-> QA: Franz Liszt	 (Score: 40.04431915283203)
+--- Search Correct --- 
+
+Executing query 81: categories:ucla text:celebr text:alumni text:attend text:ucla text:60 text:he text:meathead text:he text:just text:plai text:on text:later text:televis
+Answer: Rob Reiner
+-> QA: Rob Reiner	 (Score: 66.88874816894531)
+-> QA: Kareem Abdul-Jabbar	 (Score: 61.1024169921875)
+-> QA: Ron Pitts	 (Score: 59.22511672973633)
+-> QA: Jackie Robinson	 (Score: 55.005252838134766)
+-> QA: Carroll O'Connor	 (Score: 53.95204162597656)
+-> QA: James Dean	 (Score: 51.521053314208984)
+-> QA: Al Lewis (actor)	 (Score: 51.4193115234375)
+-> QA: Andy Rooney	 (Score: 47.609947204589844)
+-> QA: Herbie Hancock	 (Score: 47.549442291259766)
+-> QA: Wil Wheaton	 (Score: 46.80337905883789)
+--- Search Correct --- 
+
+Executing query 82: text:resid text:kinch text:carter text:lebeau text:were text:all text:resid text:stalag text:13 text:tv text:show
+Answer: Hogan's Heroes
+-> QA: Hogan's Heroes	 (Score: 62.02033233642578)
+-> QA: John Carter (ER)	 (Score: 40.51236343383789)
+-> QA: Gary Burghoff	 (Score: 35.183555603027344)
+-> QA: Ninja Tune	 (Score: 35.15098571777344)
+-> QA: Peshtigo, Wisconsin	 (Score: 34.94415283203125)
+-> QA: Ohio State University	 (Score: 34.759674072265625)
+-> QA: Episode Six	 (Score: 33.758399963378906)
+-> QA: Whose Line Is It Anyway?	 (Score: 33.42979049682617)
+-> QA: Cincinnati Bengals	 (Score: 33.40532684326172)
+-> QA: Spin City	 (Score: 33.3780517578125)
+--- Search Correct --- 
+
+Executing query 83: categories:1920 text:new text:flash text:new text:flash text:less text:than text:yappi text:pappi text:sixth text:veep text:nation text:top text:dog text:after text:chief text:take text:deep text:sleep
+Answer: Calvin Coolidge
+-> QA: Joe Biden	 (Score: 52.53677749633789)
+-> QA: Minas Tirith	 (Score: 49.628173828125)
+-> QA: Fred Allen	 (Score: 48.34819793701172)
+-> QA: Santa's Little Helper	 (Score: 48.22615432739258)
+-> QA: Ninja Tune	 (Score: 48.13165283203125)
+-> QA: 2000 AD (comics)	 (Score: 47.45191192626953)
+-> QA: Belinda Carlisle	 (Score: 47.18185043334961)
+-> QA: A-ha	 (Score: 47.1102294921875)
+-> QA: Get Carter	 (Score: 46.73545455932617)
+-> QA: Lighthouse	 (Score: 46.73377227783203)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 84: categories:golden text:globe text:winner text:2001 text:presid text:unit text:state text:televis
+Answer: Martin Sheen
+-> QA: Geoffrey Rush	 (Score: 36.61735916137695)
+-> QA: The West Wing	 (Score: 36.459510803222656)
+-> QA: Richard Dreyfuss	 (Score: 36.033546447753906)
+-> QA: Jon Voight	 (Score: 36.011173248291016)
+-> QA: Jane Wyman	 (Score: 35.84105682373047)
+-> QA: 24 (TV series)	 (Score: 35.70532989501953)
+-> QA: Celeste Holm	 (Score: 35.45256042480469)
+-> QA: Jim Broadbent	 (Score: 35.387359619140625)
+-> QA: Martin Sheen	 (Score: 34.67967987060547)
+-> QA: Larry McMurtry	 (Score: 34.04900360107422)
+--- Search Incorrect --- 
+--- Search Correct in QA 9 --- 
+--- Original Search Correct --- 
+
+Executing query 85: categories:80 text:1 text:hitmak text:1989 text:miss text:you text:much
+Answer: Janet Jackson
+-> QA: Tom Jones (singer)	 (Score: 29.333637237548828)
+-> QA: I Love the '80s Strikes Back	 (Score: 28.419536590576172)
+-> QA: Mike Stock (musician)	 (Score: 26.569673538208008)
+-> QA: Little Richard	 (Score: 26.49184799194336)
+-> QA: Bullet Records	 (Score: 24.921663284301758)
+-> QA: Van Morrison	 (Score: 24.645204544067383)
+-> QA: Brandi Chastain	 (Score: 23.8792667388916)
+-> QA: Richard Nixon	 (Score: 23.68268585205078)
+-> QA: Snake (video game)	 (Score: 23.411331176757812)
+-> QA: Them Again	 (Score: 23.33631134033203)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 86: categories:1920 text:new text:flash text:1922 text:end text:empir text:empir text:fact text:after text:600 text:year text:goodby text:hello text:turkish text:republ
+Answer: Ottoman Empire
+-> QA: British Army	 (Score: 53.120033264160156)
+-> QA: History of Armenia	 (Score: 49.395599365234375)
+-> QA: Mehmed VI	 (Score: 47.63127899169922)
+-> QA: Far Eastern Republic	 (Score: 47.588653564453125)
+-> QA: Russo-Turkish War (1877–78)	 (Score: 47.12814712524414)
+-> QA: 1920s	 (Score: 46.64937210083008)
+-> QA: Enosis	 (Score: 46.60065460205078)
+-> QA: History of modern Greece	 (Score: 45.511653900146484)
+-> QA: Cyprus dispute	 (Score: 45.29465103149414)
+-> QA: Austrian krone	 (Score: 45.21370315551758)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 87: categories:name text:parent text:compani text:crest text:toothpast
+Answer: Procter & Gamble
+-> QA: Crest (toothpaste)	 (Score: 23.238801956176758)
+-> QA: Toothpaste	 (Score: 22.805614471435547)
+-> QA: Procter & Gamble	 (Score: 22.344404220581055)
+-> QA: Air India (football club)	 (Score: 21.32232666015625)
+-> QA: 186th Infantry Regiment (United States)	 (Score: 19.355091094970703)
+-> QA: Given name	 (Score: 19.044580459594727)
+-> QA: Dina Merrill	 (Score: 18.84563446044922)
+-> QA: Domain name registrar	 (Score: 18.05548667907715)
+-> QA: 15th Infantry Regiment (United States)	 (Score: 17.860939025878906)
+-> QA: Trust in Luton	 (Score: 17.533889770507812)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+--- Original Search Correct --- 
+
+Executing query 88: categories:histor text:quot text:1888 text:chancellor text:told text:reichstag text:we text:german text:fear text:god text:noth text:els text:world
+Answer: Otto von Bismarck|Von Bismarck
+-> QA: Wilhelm II, German Emperor	 (Score: 59.8819580078125)
+-> QA: Hermann Göring	 (Score: 51.463623046875)
+-> QA: Otto von Bismarck	 (Score: 51.048484802246094)
+-> QA: Joseph Chamberlain	 (Score: 48.1260871887207)
+-> QA: Martin Bormann	 (Score: 47.31229782104492)
+-> QA: Neville Chamberlain	 (Score: 46.261558532714844)
+-> QA: Søren Kierkegaard	 (Score: 44.55143737792969)
+-> QA: Alfred Rosenberg	 (Score: 44.535972595214844)
+-> QA: Joachim von Ribbentrop	 (Score: 44.47288513183594)
+-> QA: Munich massacre	 (Score: 44.30226516723633)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+--- Original Search Correct --- 
+
+Executing query 89: categories:poet text:poetri text:1787 text:he text:sign text:hi text:first text:publish text:poem text:axiologu text:axio text:from text:greek text:worth
+Answer: William Wordsworth
+-> QA: George Crabbe	 (Score: 55.48362350463867)
+-> QA: Agis of Argos	 (Score: 55.186038970947266)
+-> QA: Lord Byron	 (Score: 54.08955764770508)
+-> QA: Bliss Carman	 (Score: 53.630615234375)
+-> QA: Samuel Johnson	 (Score: 51.24198913574219)
+-> QA: Jackson Mac Low	 (Score: 50.99214172363281)
+-> QA: Thomas MacGreevy	 (Score: 49.295074462890625)
+-> QA: William Wordsworth	 (Score: 49.07561111450195)
+-> QA: Luis Cernuda	 (Score: 48.99188995361328)
+-> QA: Friedrich Hölderlin	 (Score: 48.93463134765625)
+--- Search Incorrect --- 
+--- Search Correct in QA 8 --- 
+--- Original Search Correct --- 
+
+Executing query 90: categories:cambodian text:histori text:cultur text:confus text:karma text:krama text:popular text:accessori text:sold text:cambodia text:word text:mean text:scarf text:nation text:languag text:cambodia
+Answer: Khmer language
+-> QA: Norodom Buppha Devi	 (Score: 49.838714599609375)
+-> QA: Cambodia National and Provincial Resources Data Bank	 (Score: 48.237831115722656)
+-> QA: History of Cambodia	 (Score: 47.94820022583008)
+-> QA: Areca nut	 (Score: 47.721614837646484)
+-> QA: Paan	 (Score: 47.71422576904297)
+-> QA: Indies	 (Score: 46.53215408325195)
+-> QA: Silat Melayu	 (Score: 46.1859016418457)
+-> QA: Politics of Cambodia	 (Score: 45.9431037902832)
+-> QA: 12th century	 (Score: 45.76054382324219)
+-> QA: Prachuap Khiri Khan Province	 (Score: 45.25464630126953)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 91: categories:cambodian text:histori text:cultur text:phnom text:penh text:notori text:gridlock text:circumv text:nimbl text:tuk text:tuk text:motor text:taxi text:also text:known text:auto text:similar text:asian text:convey
+Answer: Rickshaw
+-> QA: Cycle rickshaw	 (Score: 69.56700897216797)
+-> QA: Tricycle	 (Score: 51.13517761230469)
+-> QA: Rickshaw	 (Score: 50.474639892578125)
+-> QA: Siem Reap	 (Score: 47.829620361328125)
+-> QA: Music of Barbados	 (Score: 47.15960693359375)
+-> QA: Ho Chi Minh City	 (Score: 47.01396560668945)
+-> QA: Vietnam War	 (Score: 46.44902420043945)
+-> QA: Khmer architecture	 (Score: 46.2880973815918)
+-> QA: Orlando, Florida	 (Score: 45.62689208984375)
+-> QA: Mekong	 (Score: 45.163578033447266)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+--- Original Search Correct --- 
+
+Executing query 92: categories:80 text:1 text:hitmak text:1980 text:rock text:you
+Answer: Michael Jackson
+-> QA: Swing music	 (Score: 28.679922103881836)
+-> QA: Mike Stock (musician)	 (Score: 27.179039001464844)
+-> QA: History of the United States (1964–80)	 (Score: 25.854427337646484)
+-> QA: Tom Jones (singer)	 (Score: 25.639644622802734)
+-> QA: Van Morrison	 (Score: 24.631391525268555)
+-> QA: Rocky Burnette	 (Score: 24.380098342895508)
+-> QA: UEFA Euro 1980 qualifying Group 1	 (Score: 24.05329132080078)
+-> QA: Hi Infidelity	 (Score: 23.727413177490234)
+-> QA: Them Again	 (Score: 23.33631134033203)
+-> QA: Night (band)	 (Score: 23.24182891845703)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 93: categories:note text:from text:campaign text:trail text:pulitz text:win text:make text:presid text:1960 text:cover text:man text:success text:presidenti text:campaign
+Answer: JFK|John F. Kennedy
+-> QA: Michael Dukakis	 (Score: 54.236961364746094)
+-> QA: Hunter S. Thompson	 (Score: 52.641319274902344)
+-> QA: Sid McMath	 (Score: 51.12812042236328)
+-> QA: Orval Faubus	 (Score: 49.72127914428711)
+-> QA: Barry Goldwater	 (Score: 48.471126556396484)
+-> QA: Lloyd Bentsen	 (Score: 47.81342697143555)
+-> QA: James M. Cox	 (Score: 47.71002197265625)
+-> QA: History of the United States (1945–64)	 (Score: 47.55653381347656)
+-> QA: Mario Cuomo	 (Score: 47.48951721191406)
+-> QA: How Few Remain	 (Score: 47.29315948486328)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 94: categories:servic text:organ text:1843 text:isaac text:dittenhoef text:becam text:first text:pre text:jewish text:club text:whose text:name text:mean text:children text:coven
+Answer: B'nai B'rith
+-> QA: B'nai B'rith	 (Score: 48.89227294921875)
+-> QA: Lilith	 (Score: 47.68315887451172)
+-> QA: Joseph B. Soloveitchik	 (Score: 45.047271728515625)
+-> QA: Emperor Go-Ichijō	 (Score: 44.62470245361328)
+-> QA: Kaddish	 (Score: 43.58898162841797)
+-> QA: Wicca	 (Score: 43.16106033325195)
+-> QA: Christianity and Judaism	 (Score: 43.04276657104492)
+-> QA: Roman Empire	 (Score: 42.570350646972656)
+-> QA: Jews as the chosen people	 (Score: 42.34199905395508)
+-> QA: Holy Land	 (Score: 41.993003845214844)
+--- Search Correct --- 
+
+Executing query 95: text:resid text:don text:knott text:took text:over text:from text:norman text:fell text:resid text:landlord text:sitcom
+Answer: Three's Company
+-> QA: Don Knotts	 (Score: 53.88749313354492)
+-> QA: John Ritter	 (Score: 44.010353088378906)
+-> QA: 1994 Northridge earthquake	 (Score: 43.79142761230469)
+-> QA: Three's Company	 (Score: 41.91860580444336)
+-> QA: San Pedro, Laguna	 (Score: 40.3328971862793)
+-> QA: County Mayo	 (Score: 37.04274368286133)
+-> QA: Francisco Tenamaztle	 (Score: 36.959590911865234)
+-> QA: Don Koharski	 (Score: 36.36589050292969)
+-> QA: Duluth, Minnesota	 (Score: 36.24312210083008)
+-> QA: Milt Jackson	 (Score: 36.018585205078125)
+--- Search Incorrect --- 
+--- Search Correct in QA 4 --- 
+--- Original Search Correct --- 
+
+Executing query 96: categories:old text:year text:resolut text:u.n text:re text:242 text:support text:secur text:recogn text:boundari text:israel text:neighbor text:follow text:june text:1967 text:war
+Answer: The Six Day War
+-> QA: Golan Heights	 (Score: 73.03410339355469)
+-> QA: Israeli–Palestinian conflict	 (Score: 67.24777221679688)
+-> QA: West Bank	 (Score: 65.98820495605469)
+-> QA: Israel and legitimacy	 (Score: 64.14606475830078)
+-> QA: History of Israel	 (Score: 63.73014450073242)
+-> QA: 1949 Armistice Agreements	 (Score: 63.19013214111328)
+-> QA: United Nations Partition Plan for Palestine	 (Score: 62.28240966796875)
+-> QA: Refugee	 (Score: 59.68089294433594)
+-> QA: Foreign relations of Israel	 (Score: 59.62141036987305)
+-> QA: 1948 Arab–Israeli War	 (Score: 59.32933807373047)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 97: categories:ucla text:celebr text:alumni text:blond text:beauti text:who text:repris text:her text:role text:amanda text:new text:melros text:place text:psycholog text:major
+Answer: Heather Locklear
+-> QA: Heather Locklear	 (Score: 62.216583251953125)
+-> QA: Melrose Place	 (Score: 53.5760612487793)
+-> QA: Legally Blonde (musical)	 (Score: 50.4481201171875)
+-> QA: Maxwell Caulfield	 (Score: 47.947994232177734)
+-> QA: Hairspray (musical)	 (Score: 46.856693267822266)
+-> QA: Pearl Eaton	 (Score: 45.31633758544922)
+-> QA: Lisa Rinna	 (Score: 44.92181396484375)
+-> QA: Donna Vivino	 (Score: 44.72441864013672)
+-> QA: Christie Brinkley	 (Score: 44.39476776123047)
+-> QA: Annie Get Your Gun (musical)	 (Score: 43.57524871826172)
+--- Search Correct --- 
+
+Executing query 98: categories:greek text:food text:drink text:name text:dish text:marin text:lamb text:skewer text:grill text:come text:from text:greek text:skewer text:also text:start text:s
+Answer: Souvlaki
+-> QA: Souvlaki	 (Score: 95.15360260009766)
+-> QA: Awadhi cuisine	 (Score: 69.35479736328125)
+-> QA: Korean cuisine	 (Score: 66.81768798828125)
+-> QA: Brazilian cuisine	 (Score: 60.89870834350586)
+-> QA: Dim sum	 (Score: 58.13018798828125)
+-> QA: Jangan-gu	 (Score: 56.999900817871094)
+-> QA: Feta	 (Score: 56.15280532836914)
+-> QA: Breakfast	 (Score: 55.36274719238281)
+-> QA: Tzatziki	 (Score: 55.03343963623047)
+-> QA: Serbian cuisine	 (Score: 54.966331481933594)
+--- Search Correct --- 
+
+Executing query 99: categories:name text:parent text:compani text:post text:note
+Answer: 3M
+-> QA: Jell-O	 (Score: 24.25444984436035)
+-> QA: Hormel	 (Score: 22.972082138061523)
+-> QA: Chinese name	 (Score: 22.228485107421875)
+-> QA: Name change	 (Score: 22.171627044677734)
+-> QA: Domain name registrar	 (Score: 21.91682243347168)
+-> QA: William Dean Singleton	 (Score: 21.83604621887207)
+-> QA: BibliOZ	 (Score: 21.252197265625)
+-> QA: Hal Film Maker	 (Score: 19.923656463623047)
+-> QA: List of ship names of the Royal Navy	 (Score: 19.856304168701172)
+-> QA: Rheingold (train)	 (Score: 19.85575294494629)
+--- Search Incorrect --- 
+--- Original Search Correct --- 
+
+Executing query 100: categories:golden text:globe text:winner text:2010 text:sherlock text:holm text:film
+Answer: Robert Downey, Jr.
+-> QA: Robert Downey, Jr.	 (Score: 36.84292221069336)
+-> QA: Sherlock Holmes	 (Score: 34.835140228271484)
+-> QA: Anna Paquin	 (Score: 33.35340118408203)
+-> QA: Celeste Holm	 (Score: 32.680110931396484)
+-> QA: Deborah Kerr	 (Score: 32.45240020751953)
+-> QA: Hans Zimmer	 (Score: 32.26277160644531)
+-> QA: Basil Rathbone	 (Score: 31.468332290649414)
+-> QA: Sally Kirkland	 (Score: 30.945615768432617)
+-> QA: I. A. L. Diamond	 (Score: 30.551347732543945)
+-> QA: Marvin Hamlisch	 (Score: 30.482746124267578)
+--- Search Correct --- 
+
+
+-----------------------------------------------------
+ Measuring performance...
+ - Correctly answered questions: 39
+ - Incorrectly answered: 61
+
+ - Correctly answered questions within 10 hits: 59
+ - Correctly answered questions by ChatGPT Rerank if applied: 0
+ - Incorrectly answered questions by ChatGPT Rerank: 61
+ - Total questions: 100
+
+ - Precision at 1 (P@1): 0.39
+ - Mean Reciprocal Rank (MRR): 0.45
+-----------------------------------------------------
+WrongQAs = [0, 1, 3, 5, 8, 10, 11, 12, 14, 15, 16, 17, 19, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32, 33, 39, 40, 41, 42, 43, 46, 48, 49, 52, 53, 54, 55, 57, 59, 60, 65, 66, 67, 68, 70, 77, 78, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 94, 95, 98]
+
