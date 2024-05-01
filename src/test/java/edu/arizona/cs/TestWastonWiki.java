@@ -9,12 +9,12 @@ import org.apache.lucene.search.similarities.LMDirichletSimilarity;
 import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.junit.jupiter.api.Test;
 
-public class TestWastonStem {
+public class TestWastonWiki {
 
     // query flags
 	static boolean query_lemmatization = false; // lemmatization and stemming are mutually exclusive
-	static boolean query_stemming = true;
-	static boolean query_wiki = false;
+	static boolean query_stemming = false;
+	static boolean query_wiki = true;
 	static boolean chatgpt = false;
 
     static String queryFile = "questions.txt"; // input questions as query

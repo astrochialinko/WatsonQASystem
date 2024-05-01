@@ -12,12 +12,12 @@ import org.apache.lucene.search.similarities.Similarity;
 
 public class MainWatson {
 	static boolean buildIndex = false;
-	static boolean runQuery = true;
+	static boolean runQuery = false;
 
 	// pre-index processing flags
 	static boolean index_lemmatization = false; // lemmatization and stemming are mutually exclusive
-	static boolean index_stemming = true;
-	static boolean index_wiki = false;
+	static boolean index_stemming = false;
+	static boolean index_wiki = true;
 
 	// query flags
 	static boolean query_lemmatization = false; // lemmatization and stemming are mutually exclusive

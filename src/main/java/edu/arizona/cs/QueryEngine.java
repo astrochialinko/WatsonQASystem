@@ -47,7 +47,7 @@ public class QueryEngine {
 	private boolean add_category = true;
 
 	// print the progress for 1st doc and each QAs
-	private boolean print_QA = true;
+	private boolean print_QA = false;
 	private boolean print_doc = false;
 
 	// rerank with chatGPT
