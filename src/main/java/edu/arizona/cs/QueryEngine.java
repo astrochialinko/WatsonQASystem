@@ -5,37 +5,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.io.StringReader;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.search.similarities.BM25Similarity;
-import org.apache.lucene.search.similarities.BooleanSimilarity;
-import org.apache.lucene.search.similarities.ClassicSimilarity;
-import org.apache.lucene.search.similarities.LMDirichletSimilarity;
-import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 
 import okhttp3.OkHttpClient;
@@ -46,13 +33,6 @@ import okhttp3.Response;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.Gson;
-import com.theokanning.openai.completion.chat.ChatCompletionRequest;
-import com.theokanning.openai.completion.chat.ChatMessage;
-import com.theokanning.openai.service.OpenAiService;
-
-import java.util.Collections;
-import java.util.Comparator;
 
 public class QueryEngine {
 	private IndexReader reader;
@@ -61,15 +41,9 @@ public class QueryEngine {
 	private Analyzer analyzer = null;
 	private List<String> questions = new ArrayList<>();
 	private List<String> answers = new ArrayList<>();
-	private List<Integer> wrongQA = new ArrayList<>();
-	private List<Integer> wrongGPT = new ArrayList<>();
-	private List<Integer> rightGPT = new ArrayList<>();
-
+	
+	// parameters
 	private int hitsPerPage = 10;
-
-	private boolean query_lemma = false;
-	private boolean query_stem = false;
-	private boolean query_wiki = false;
 	private boolean add_category = true;
 
 	// print the progress for 1st doc and each QAs
@@ -79,7 +53,7 @@ public class QueryEngine {
 	// rerank with chatGPT
 	private boolean chatgpt_rerank = false;
 	private boolean print_GPT = false; // for debug
-	private int chatgpt_sleep_sec = 0;
+	private int chatgpt_sleep_sec = 0; // set sleep time if reach the gpt API limit
 	private String apiKey = "apikey"; // input you chatGPT API here
 
 	// Constructor initializes the searcher and parser
@@ -89,20 +63,16 @@ public class QueryEngine {
 			analyzer = new StandardAnalyzer();
 		} else if (indexDirectoryPath.endsWith("lemma")) {
 			analyzer = new LemmaAnalyzer();
-			query_lemma = true;
 		} else if (indexDirectoryPath.endsWith("stem")) {
 			analyzer = new EnglishAnalyzer();
-			query_stem = true;
 		} else if (indexDirectoryPath.endsWith("wiki")) {
 			analyzer = new WikipediaAnalyzer();
-			query_wiki = true;
 		}
 		loadDocIndex(indexDirectoryPath);
 		this.parser = new QueryParser("text", this.analyzer);
 		this.searcher = new IndexSearcher(this.reader);
-		this.searcher.setSimilarity(sim); // P: 0.38 MMR: 0.44 hits:57
+		this.searcher.setSimilarity(sim);
 		this.chatgpt_rerank = rerank;
-
 	}
 
 	// 1. load Document Index
@@ -116,21 +86,24 @@ public class QueryEngine {
 		}
 
 	}
+	
+	// 2. Processes queries from file and displays results
+	public void processQueries(String queryFile) throws IOException {
+		List<Query> queries = buildQuery(queryFile);
+		executeQueries(queries, hitsPerPage);
+		reader.close();
+	}
 
-	// debug purpose
+	// -----------------------------------------------------------------
+	// Helper functions
+	
+	// for debug purpose
 	private void printDoc(Document doc) {
 		System.out.println("Document Example...");
 		System.out.println("Title: " + doc.get("title"));
 		System.out.println("Categories: " + doc.get("categories"));
 		System.out.println("Summary: " + doc.get("summary"));
 		System.out.println("Text: " + doc.get("text") + "\n");
-	}
-
-	// 2. and 3. Processes queries from file and displays results
-	public void processQueries(String queryFile) throws IOException {
-		List<Query> queries = buildQuery(queryFile);
-		executeQueries(queries, hitsPerPage);
-		reader.close();
 	}
 
 	// Builds Lucene queries from a file
@@ -149,7 +122,7 @@ public class QueryEngine {
 				// Builds a Lucene query string from clue and category
 				Query query;
 				if (add_category) {
-					
+
 					int queryStrategy = 1; // best model
 					String queryStr;
 
@@ -161,9 +134,12 @@ public class QueryEngine {
 					} else if (queryStrategy == 3) {
 						queryStr = String.format("categories:%s summary:%s ", QueryParser.escape(category),
 								QueryParser.escape(clue));
-					} else {
+					} else if (queryStrategy == 3) {
 						queryStr = String.format("categories:%s text:\"%s\" text:%s", QueryParser.escape(category),
 								QueryParser.escape(category), QueryParser.escape(clue));
+					} else {
+						queryStr = String.format("categories:%s OR text:%s ", QueryParser.escape(category),
+								QueryParser.escape(clue));
 					}
 					query = parser.parse(queryStr);
 				} else {
@@ -181,6 +157,10 @@ public class QueryEngine {
 	// Executes the built queries and returns results
 	private void executeQueries(List<Query> queries, int hitsPerPage) throws IOException {
 		List<List<String>> results = new ArrayList<>();
+		List<Integer> wrongQA = new ArrayList<>();
+		List<Integer> wrongGPT = new ArrayList<>();
+		List<Integer> rightGPT = new ArrayList<>();
+	
 		int correctCount = 0;
 		int correctCountInHit = 0;
 		int correctCountRerank = 0;
@@ -203,13 +183,14 @@ public class QueryEngine {
 			if (chatgpt_rerank) {
 				List<String> rerankedResults = rerankWithChatGPT(initialResults, question);
 				queryResult = rerankedResults;
-				if (print_QA)
+				if (print_QA) {
 					System.out.println("-> ChatGPT: " + rerankedResults.get(0));
+				}
 
-				// wait 20 sec, since gpt-3.5-turbo has limit of 3 RPM : (
+				// e.g., wait 20 sec, since gpt-3.5-turbo has limit of 3 RPM : (
 				if (chatgpt_sleep_sec > 0) {
 					try {
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(chatgpt_sleep_sec);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -243,8 +224,9 @@ public class QueryEngine {
 			}
 
 			if (isAnswerCorrect) {
-				if (print_QA)
+				if (print_QA) {
 					System.out.println("--- Search Correct --- ");
+				}
 				correctCount++;
 				mmr += 1.0;
 				correctCountInHit++;
@@ -252,13 +234,15 @@ public class QueryEngine {
 				if (isInitAnswerWrong) {
 					correctCountRerank++;
 					rightGPT.add(i);
-					if (print_QA)
+					if (print_QA) {
 						System.out.println("--- Search Correct by Rerank --- ");
+					}
 				}
 
 			} else {
-				if (print_QA)
+				if (print_QA) {
 					System.out.println("--- Search Incorrect --- ");
+				}
 				wrongQA.add(i);
 				int right_index = 0;
 				for (String result : queryResult) {
@@ -278,23 +262,29 @@ public class QueryEngine {
 				if (!isInitAnswerWrong) {
 					wrongCountRerank++;
 					wrongGPT.add(i);
-					if (print_QA)
+					if (print_QA) {
 						System.out.printf("--- Original Search Correct --- \n", right_index);
+					}
 				}
 			}
-			if (print_QA)
+			if (print_QA) {
 				System.out.println("");
+			}
 		}
 
 		calculateMetrics(queries.size(), correctCount, mmr, hitsPerPage, correctCountInHit, correctCountRerank,
 				wrongCountRerank);
 
-		if (print_QA)
+		if (print_QA) {
 			System.out.println("WrongQAs = " + wrongQA);
-		if (print_QA && chatgpt_rerank)
+		}
+		if (print_QA && chatgpt_rerank) {
 			System.out.println("WrongGPTQAs = " + wrongGPT);
-		if (print_QA && chatgpt_rerank)
+		}
+		if (print_QA && chatgpt_rerank) {
 			System.out.println("RightGPTQAs = " + rightGPT);
+		}
+			
 
 	}
 
@@ -307,8 +297,9 @@ public class QueryEngine {
 			String title = doc.get("title");
 			double score = scoreDoc.score;
 			queryResult.add(title);
-			if (print_QA)
+			if (print_QA) {
 				System.out.println("-> QA: " + title + "\t (Score: " + score + ")");
+			}
 		}
 		return queryResult;
 	}
@@ -348,7 +339,9 @@ public class QueryEngine {
 			jsonObject.addProperty("model", "gpt-3.5-turbo");
 			jsonObject.addProperty("temperature", 0.5);
 			String json = jsonObject.toString();
-			if (print_GPT) System.out.println("JSON : " + messages); // for debug
+			if (print_GPT) {
+				System.out.println("JSON : " + messages); // for debug
+			}		
 
 			// Send the request to OpenAI's API
 			RequestBody body = RequestBody.create(json, JSON);
@@ -392,7 +385,9 @@ public class QueryEngine {
 
 			// Parse the JSON response
 			String responseBody = response.body().string();
-			if (print_GPT) System.out.println(responseBody); // for debug
+			if (print_GPT) {
+				System.out.println(responseBody); // for debug
+			}
 			JsonObject jsonResponse = JsonParser.parseString(responseBody).getAsJsonObject();
 			JsonObject choice = jsonResponse.getAsJsonArray("choices").get(0).getAsJsonObject();
 			String content = choice.getAsJsonObject("message").get("content").getAsString();
