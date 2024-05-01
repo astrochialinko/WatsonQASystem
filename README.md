@@ -16,6 +16,22 @@ IBM’s Watson is a Question Answering (QA) system that “can compete at the hu
 
 ## How to run the code?
 
+1. clone the git repository https://github.com/astrochialinko/WatsonQASystem
+2. download all 4 index files from https://drive.google.com/drive/folders/1G-6E7y7_5KKqEu-CcnfOB4f7YBQtIDkK?usp=sharing and unzip them under the git repository directory.
+3. change directory to the git repository folder and there are 5 tests you can run:
+>`TestWastonLemma`</p>
+>`TestWastonStd`</p>
+>`TestWastonStem`</p>
+>`TestWastonStemChat`</p>
+>`TestWastonWiki`</p>
+4. to run a test above. Issue >`$ mvn -Dtest=<TestName> test`</p>. Note: if you want to run the >`TestWastonStemChat`</p> test you need to go to QueryEngine.java and update the apiKey field with your ChatGPT secret key.
+5. the output will show the performance result including Precision at 1, Mean Reciprocal Rank, etc. for each of the 5 similarity formulas below:
+>`BM25Similarity`</p>
+>`BooleanSimilarity`</p>
+>`ClassicSimilarity`</p>
+>`LMDirichletSimilarity`</p>
+>`LMJelinekMercerSimilarity`</p>
+
 ## Dataset
 - 100 questions from previous Jeopardy games, whose answers appear as Wikipedia pages. The questions are listed in a single file, with 4 lines per question, in the following format: `CATEGORY CLUE ANSWER NEWLINE`.
   For example:
