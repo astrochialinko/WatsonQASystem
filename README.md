@@ -44,8 +44,34 @@ IBM’s Watson is a Question Answering (QA) system that “can compete at the hu
 
 ## File structures
 ```
-.
-└── README.md
+WatsonQASystem
+├── README.md
+├── en-lemmatizer.dict.txt
+├── index-file-lemma/
+├── index-file-std/
+├── index-file-stem/
+├── index-file-wiki/
+├── pom.xml
+├── notebooks
+│   └── plot_analysis.ipynb
+├── src
+│   ├── main/java/edu/arizona/cs
+│   │   │               ├── BuildIndex.java
+│   │   │               ├── LemmaAnalyzer.java
+│   │   │               ├── MainWatson.java
+│   │   │               ├── QueryEngine.java
+│   │   │               ├── ResultClass.java
+│   │   │               └── WikipediaAnalyzer.java
+│   │   └── resources
+│   │       ├── questions.txt
+│   │       └── wiki-folder
+│   └── test/java/edu/arizona/cs
+│                       ├── TestWastonLemma.java
+│                       ├── TestWastonStd.java
+│                       ├── TestWastonStem.java
+│                       ├── TestWastonWiki.java
+│                       └── TestWastonStemChat.java
+└── target/
 ```
 
 ## References
