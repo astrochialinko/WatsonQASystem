@@ -75,8 +75,8 @@ WatsonQASystem
 ```
 
 ## References
-https://lucene.apache.org/
-https://platform.openai.com/docs/api-reference
+https://lucene.apache.org/ </p>
+https://platform.openai.com/docs/api-reference </p>
 
 
 ## Acknowledgements
