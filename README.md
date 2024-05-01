@@ -24,7 +24,7 @@ IBM’s Watson is a Question Answering (QA) system that “can compete at the hu
 >`TestWastonStem`</p>
 >`TestWastonStemChat`</p>
 >`TestWastonWiki`</p>
-4. to run a test above. Issue >`$ mvn -Dtest=<TestName> test`</p>. Note: if you want to run the >`TestWastonStemChat`</p> test you need to go to QueryEngine.java and update the apiKey field with your ChatGPT secret key.
+4. to run a test above. Issue `$ mvn -Dtest=<TestName> test`. Note: if you want to run the `TestWastonStemChat` test you need to go to QueryEngine.java and update the apiKey field with your ChatGPT secret key.
 5. the output will show the performance result including Precision at 1, Mean Reciprocal Rank, etc. for each of the 5 similarity formulas below:
 >`BM25Similarity`</p>
 >`BooleanSimilarity`</p>
