@@ -1,0 +1,555 @@
+Querying with stemming
+Executing query 1: categories:newspap text:domin text:paper text:our text:nation text:capit text:among text:top text:10 text:u. text:paper text:circul
+Answer: The Washington Post
+-> ChatGPT: The Washington Post
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 2: categories:old text:year text:resolut text:practic text:pre text:author text:presidenti text:us text:forc text:date text:1955 text:resolut text:re text:island text:near text:mainland text:china
+Answer: Taiwan
+-> ChatGPT: Taiwan
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 3: categories:newspap text:daniel text:hertzberg text:jame text:b text:stewart text:paper text:share text:1988 text:pulitz text:stori text:about text:insid text:trade
+Answer: The Wall Street Journal
+-> ChatGPT: The Wall Street Journal
+--- Search Correct --- 
+
+Executing query 4: categories:broadwai text:lyric text:song text:sai text:you text:make text:me text:smile text:my text:heart text:your text:look text:laughabl text:unphotograph
+Answer: My Funny Valentine
+-> ChatGPT: Billie Holiday
+--- Search Incorrect --- 
+
+Executing query 5: categories:potpourri text:2011 text:bell text:ringer text:chariti text:start text:accept text:digit text:donat text:it text:red text:kettl
+Answer: The Salvation Army|Salvation Army
+-> ChatGPT: The Salvation Army
+--- Search Correct --- 
+
+Executing query 6: categories:state text:art text:museum text:napl text:museum text:art
+Answer: Florida
+-> ChatGPT: Metropolitan Museum of Art
+--- Search Incorrect --- 
+
+Executing query 7: categories:tin text:men text:italian text:painter text:depict text:ador text:golden text:calf
+Answer: Tintoretto
+-> ChatGPT: Nicolas Poussin
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 8: categories:ucla text:celebr text:alumni text:woman text:who text:won text:consecut text:heptathlon text:olymp text:went text:ucla text:basketbal text:scholarship
+Answer: Jackie Joyner-Kersee
+-> ChatGPT: Jackie Joyner-Kersee
+--- Search Correct --- 
+
+Executing query 9: categories:servic text:organ text:origin text:club text:emblem text:wagon text:wheel text:now text:gearwheel text:24 text:cog text:6 text:spoke
+Answer: Rotary International
+-> ChatGPT: Rotary International
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 10: categories:african text:citi text:sever text:bridg text:includ text:el text:tahrir text:cross text:nile text:capit
+Answer: Cairo
+-> ChatGPT: Cairo
+--- Search Correct --- 
+
+Executing query 11: categories:histor text:quot text:after text:fall text:franc text:1940 text:gener text:told text:hi text:countri text:franc text:ha text:lost text:battl text:franc text:ha text:lost text:war
+Answer: Charles de Gaulle|de Gaulle
+-> ChatGPT: Charles de Gaulle
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 12: categories:state text:art text:museum text:taft text:museum text:art
+Answer: Ohio
+-> ChatGPT: Metropolitan Museum of Art
+--- Search Incorrect --- 
+
+Executing query 13: categories:cemeteri text:mast text:from text:uss text:main text:part text:memori text:ship text:crew text:nation text:cemeteri
+Answer: Arlington National Cemetery|Arlington Cemetery
+-> ChatGPT: Tomb of the Unknowns
+--- Search Incorrect --- 
+
+Executing query 14: categories:golden text:globe text:winner text:2009 text:joker text:film
+Answer: Heath Ledger
+-> ChatGPT: Heath Ledger
+--- Search Correct --- 
+
+Executing query 15: categories:histor text:hodgepodg text:peninsula text:fought text:over text:peninsular text:war text:1808 text:1814
+Answer: Iberia|Iberian Peninsula
+-> ChatGPT: Iberian Peninsula
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 16: categories:conserv text:1980 text:china text:found text:center text:cute text:creatur text:it text:bamboo text:rich text:wolong text:natur text:preserv
+Answer: Panda|Giant panda
+-> ChatGPT: Biodiversity
+--- Search Incorrect --- 
+
+Executing query 17: categories:80 text:1 text:hitmak text:1988 text:father text:figur
+Answer: George Michael
+-> ChatGPT: Mike Stock (musician)
+--- Search Incorrect --- 
+
+Executing query 18: (categories:african categories:american) text:women text:essai text:defend text:2011 text:film text:myrli text:ever text:william text:said text:my text:mother text:film text:so text:her text:mother
+Answer: The Help
+-> ChatGPT: The Help
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 19: categories:servic text:organ text:father text:michael text:mcgivnei text:found text:fratern text:societi text:cathol text:laymen text:1882
+Answer: Knights of Columbus
+-> ChatGPT: Knights of Columbus
+--- Search Correct --- 
+
+Executing query 20: categories:conserv text:earli text:project text:wwf text:organ text:includ text:work text:bald text:eagl text:red text:wolf
+Answer: World Wide Fund|World Wide Fund for Nature
+-> ChatGPT: United States Fish and Wildlife Service
+--- Search Incorrect --- 
+
+Executing query 21: categories:conserv text:indonesia text:largest text:lizard text:protect text:from text:poacher text:though text:we text:wish text:could text:breath text:fire text:do text:job text:itself
+Answer: Komodo dragon
+-> ChatGPT: Komodo dragon
+--- Search Correct --- 
+
+Executing query 22: categories:1920 text:new text:flash text:nov text:28 text:1929 text:man text:hi text:chief text:pilot text:bernt text:balchen text:fly text:south text:pole text:yowza text:you'll text:admir text:admir text:sir
+Answer: Richard Byrd|Richard E. Byrd
+-> ChatGPT: 1929
+--- Search Incorrect --- 
+
+Executing query 23: categories:cemeteri text:mai text:5 text:1878 text:alic text:chamber text:last text:person text:buri text:dodg text:citi text:kansa text:cemeteri
+Answer: Boot Hill
+-> ChatGPT: Boot Hill
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 24: categories:cambodian text:histori text:cultur text:royal text:palac text:ground text:featur text:statu text:king text:norodom text:who text:late text:1800 text:compel text:first text:put text:hi text:countri text:under text:control text:european text:power text:cours text:sculpt text:countri
+Answer: France
+-> ChatGPT: History of Cambodia
+--- Search Incorrect --- 
+
+Executing query 25: categories:histor text:hodgepodg text:400 text:b.c text:chines text:philosoph text:went text:exil text:12 text:year
+Answer: Confucius
+-> ChatGPT: Confucius
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 26: (categories:african categories:american) text:women text:bessi text:coleman text:first text:black text:woman text:licens text:pilot text:land text:street text:name text:her text:honor text:chicago text:airport
+Answer: O'Hare|O'Hare International Airport
+-> ChatGPT: O'Hare International Airport
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 27: categories:histor text:hodgepodg text:ammonit text:held text:swai text:mideast text:countri text:1200 text:b.c text:capit text:name text:them
+Answer: Jordan
+-> ChatGPT: Amman
+--- Search Incorrect --- 
+
+Executing query 28: categories:he text:plai text:gui text:name text:jack text:ryan text:sum text:all text:fear text:he text:also text:won text:screenwrit text:oscar text:good text:hunt
+Answer: Ben Affleck
+-> ChatGPT: Ben Affleck
+--- Search Correct --- 
+
+Executing query 29: categories:potpourri text:on text:n.y text:time text:headlin text:landmark text:1973 text:suprem text:court text:decis text:cardin text:shock
+Answer: Roe v. Wade
+-> ChatGPT: Roe v. Wade
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 30: categories:i'm text:burnin text:you text:franc text:philip text:iv text:known text:fair text:had text:jacqu text:de text:molai text:last text:grand text:master text:order text:burn text:1314
+Answer: Knights Templar
+-> ChatGPT: Knights Templar
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 31: categories:state text:art text:museum text:georgia text:o'keeff text:museum
+Answer: New Mexico
+-> ChatGPT: Alfred Stieglitz
+--- Search Incorrect --- 
+
+Executing query 32: categories:african text:citi text:name text:largest text:moroccan text:citi text:combin text:2 text:spanish text:word
+Answer: Casablanca
+-> ChatGPT: Casablanca
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 33: categories:name text:parent text:compani (text:jell text:o)
+Answer: Kraft Foods
+-> ChatGPT: Jell-O
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+
+Executing query 34: categories:golden text:globe text:winner text:2011 text:chicago text:mayor text:tom text:kane
+Answer: Kelsey Grammer
+-> ChatGPT: Chicago
+--- Search Incorrect --- 
+
+Executing query 35: text:resid text:titl text:resid text:otter text:flounder text:pinto text:bluto text:1978 text:comedi
+Answer: Animal House
+-> ChatGPT: Animal House
+--- Search Correct --- 
+
+Executing query 36: categories:ucla text:celebr text:alumni text:neurobiologist text:ami text:farrah text:fowler text:big text:bang text:theori text:real text:life text:she text:ha text:ph.d text:neurosci text:from text:ucla
+Answer: Mayim Bialik
+-> ChatGPT: Mayim Bialik
+--- Search Correct --- 
+
+Executing query 37: categories:note text:from text:campaign text:trail text:deadlock text:elect text:1800 text:jame text:r text:sharp text:outlin text:fall text:duel text:vice text:presid
+Answer: Aaron Burr
+-> ChatGPT: Aaron Burr
+--- Search Correct --- 
+
+Executing query 38: categories:tin text:men text:he text:serv text:kgb text:befor text:becom text:presid text:prime text:minist text:russia
+Answer: Vladimir Putin|Putin
+-> ChatGPT: Vladimir Putin
+--- Search Correct --- 
+
+Executing query 39: (categories:african categories:american) text:women text:when text:ask text:describ text:herself text:she text:sai text:first text:foremost text:she text:malia text:sasha text:mom
+Answer: Michelle Obama
+-> ChatGPT: Michelle Obama
+--- Search Correct --- 
+
+Executing query 40: categories:poet text:poetri text:she text:wrote text:my text:candl text:burn text:both text:end text:ah text:my text:foe text:oh text:my text:friend text:give text:love text:light
+Answer: Edna St. Vincent Millay
+-> ChatGPT: Edna St. Vincent Millay
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 41: categories:capit text:citi text:church text:finnish text:citi text:lutheran text:cathedr text:also text:known text:tuomiokirkko
+Answer: Helsinki
+-> ChatGPT: Helsinki
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 42: categories:name text:parent text:compani text:milton text:bradlei text:game
+Answer: Hasbro
+-> ChatGPT: Axis & Allies
+--- Search Incorrect --- 
+
+Executing query 43: categories:old text:year text:resolut text:kentucki text:virginia text:resolut text:were text:pass text:protest text:controversi text:1798 text:act text:congress
+Answer: The Alien and Sedition Acts
+-> ChatGPT: Kentucky and Virginia Resolutions
+--- Search Incorrect --- 
+
+Executing query 44: categories:80 text:1 text:hitmak text:1983 text:beat
+Answer: Michael Jackson
+-> ChatGPT: Paul Anka
+--- Search Incorrect --- 
+
+Executing query 45: categories:golden text:globe text:winner text:2009 text:sooki text:stackhous
+Answer: Anna Paquin
+-> ChatGPT: Anna Paquin
+--- Search Correct --- 
+
+Executing query 46: categories:histor text:hodgepodg text:member text:nixon text:ford text:cabinet text:born text:furth text:germani text:1923
+Answer: Henry Kissinger
+-> ChatGPT: Henry Kissinger
+--- Search Correct --- 
+
+Executing query 47: categories:capit text:citi text:church text:high text:kirk text:st text:gile text:where text:john text:knox text:minist
+Answer: Edinburgh
+-> ChatGPT: John Knox
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+
+Executing query 48: categories:ucla text:celebr text:alumni text:brief text:time text:he text:attend text:he text:rebel text:caus text:even text:land text:lead text:role text:1950 text:stage text:product
+Answer: James Dean
+-> ChatGPT: James Dean
+--- Search Correct --- 
+
+Executing query 49: categories:name text:parent text:compani (text:fisher text:price) text:toi
+Answer: Mattel
+-> ChatGPT: Little People  
+--- Search Incorrect --- 
+
+Executing query 50: categories:histor text:quot text:1959 text:american text:kitchen text:exhibit text:moscow text:he text:told text:khrushchev text:america text:we text:like text:make text:life text:easier text:women
+Answer: Richard Nixon|Nixon
+-> ChatGPT: Richard Nixon
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 51: categories:poet text:poetri text:on text:hi text:tale text:waysid text:inn text:begin text:listen text:my text:children text:you text:shall text:hear text:midnight text:ride text:paul text:rever
+Answer: Henry Wadsworth Longfellow
+-> ChatGPT: Henry Wadsworth Longfellow
+--- Search Correct --- 
+
+Executing query 52: categories:note text:from text:campaign text:trail text:bestsel text:about text:problem text:mccain text:palin text:ticket text:becam text:hbo text:movi text:juliann text:moor
+Answer: Game Change
+-> ChatGPT: Game Change
+--- Search Correct --- 
+
+Executing query 53: (text:20 text:aught) text:show text:2 text:part text:episod text:jag text:introduc text:mark text:harmon text:drama
+Answer: NCIS
+-> ChatGPT: List of NCIS characters
+--- Search Incorrect --- 
+
+Executing query 54: categories:african text:citi text:port text:southernmost text:south text:africa text:3 text:capit
+Answer: Cape Town
+-> ChatGPT: Cape Town
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 55: text:quotabl text:keat text:keat text:quot text:edmund text:spenser text:poem text:when text:he text:told text:shellei text:load text:everi text:rift text:your text:subject text:or
+Answer: The Faerie Queene
+-> ChatGPT: The Faerie Queene
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 56: text:quotabl text:keat text:1819 text:letter text:keat text:wrote text:lord text:poet text:cut text:figur text:he text:figur
+Answer: Lord Byron
+-> ChatGPT: Lord Byron
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 57: categories:greek text:food text:drink text:clear text:greek text:liqueur text:quit text:potent text:so text:usual text:mix text:water text:which text:turn text:white text:cloudi
+Answer: Ouzo
+-> ChatGPT: Ouzo
+--- Search Correct --- 
+
+Executing query 58: categories:old text:year text:resolut text:feb text:1 text:nation text:freedom text:dai text:date text:1865 text:when text:resolut text:sent text:state text:amend text:end
+Answer: Slavery|Slavery in the United States
+-> ChatGPT: Slavery in the United States
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 59: categories:rank text:titl text:person text:queen text:repres text:canada text:current text:offic text:held text:david text:johnston
+Answer: Governor General of Canada
+-> ChatGPT: Governor General of Canada
+--- Search Correct --- 
+
+Executing query 60: categories:tin text:men text:he text:earn text:fifth text:beatl text:nicknam text:produc text:all text:beatl text:album
+Answer: George Martin
+-> ChatGPT: George Martin
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 61: categories:newspap text:earli text:career text:mark text:twain text:bret text:hart text:wrote text:piec text:california text:citi text:chronicl
+Answer: San Francisco
+-> ChatGPT: San Francisco
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 62: categories:potpourri text:larg text:specimen text:marsupi text:can text:leap text:over text:barrier text:6 text:feet text:high
+Answer: Kangaroo
+-> ChatGPT: Kangaroo
+--- Search Correct --- 
+
+Executing query 63: categories:greek text:food text:drink text:becaus text:cure text:store text:brine text:crumbl text:white text:chees text:made text:from text:sheep text:milk text:often text:refer text:pickl text:chees
+Answer: Feta
+-> ChatGPT: Feta
+--- Search Correct --- 
+
+Executing query 64: categories:1920 text:new text:flash text:1927 text:gene text:tunnei text:take text:long text:count text:squar text:circl text:rise text:defeat text:manassa text:mauler text:howzabout
+Answer: Jack Dempsey
+-> ChatGPT: Jack Dempsey
+--- Search Correct --- 
+
+Executing query 65: categories:rank text:titl text:italian text:leader text:especi text:appli text:benito text:mussolini
+Answer: Duce
+-> ChatGPT: Duce
+--- Search Correct --- 
+
+Executing query 66: categories:state text:art text:museum text:kalamazoo text:institut text:art
+Answer: Michigan
+-> ChatGPT: Art museum
+--- Search Incorrect --- 
+
+Executing query 67: categories:state text:art text:museum text:sun text:vallei text:center text:art
+Answer: Idaho
+-> ChatGPT: Museum at Bethel Woods
+--- Search Incorrect --- 
+
+Executing query 68: categories:tin text:men text:you text:can't text:mention text:shortstop text:without text:mention text:hi text:doubl text:plai text:associ text:ever text:chanc
+Answer: Joe Tinker
+-> ChatGPT: Joe Tinker
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 69: categories:newspap text:1840 text:horac text:greelei text:began text:publish text:log text:cabin text:weekli text:campaign text:paper text:support text:whig text:candid
+Answer: William Henry Harrison
+-> ChatGPT: William Henry Harrison
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 70: categories:i'm text:burnin text:you text:pierr text:cauchon text:bishop text:beauvai text:presid text:over text:trial text:woman text:who text:went text:up text:smoke text:mai text:30 text:1431
+Answer: Joan of Arc|Jeanne d'Arc
+-> ChatGPT: Joan of Arc
+--- Search Correct --- 
+
+Executing query 71: categories:complet (text:dom text:inat) text:wisconsin text:citi text:claim text:have text:built text:usa text:onli text:granit text:dome
+Answer: Madison
+-> ChatGPT: Madison, Wisconsin
+--- Search Incorrect --- 
+
+Executing query 72: categories:newspap text:georgia text:paper text:known text:ajc text:short
+Answer: The Atlanta Journal-Constitution
+-> ChatGPT: The Atlanta Journal-Constitution
+--- Search Correct --- 
+
+Executing query 73: categories:african text:citi text:wooden text:2 text:stori text:veranda text:liberian text:capit text:architectur text:link text:u. text:south
+Answer: Monrovia
+-> ChatGPT: Monrovia
+--- Search Correct --- 
+
+Executing query 74: categories:complet (text:dom text:inat) text:new text:orlean text:venu text:reopen text:sept text:25 text:2006
+Answer: Mercedes-Benz Superdome|The Superdome
+-> ChatGPT: Mercedes-Benz Superdome
+--- Search Correct --- 
+
+Executing query 75: categories:he text:plai text:gui text:name text:jack text:ryan text:hunt text:red text:octob text:he text:went text:more text:comed text:jack text:donaghi text:30 text:rock
+Answer: Alec Baldwin
+-> ChatGPT: Alec Baldwin
+--- Search Correct --- 
+
+Executing query 76: (categories:african categories:american) text:women text:rita text:dove text:titl text:collect text:poem text:bu text:woman
+Answer: Rosa Parks
+-> ChatGPT: Rosa Parks
+--- Search Correct --- 
+
+Executing query 77: categories:he text:plai text:gui text:name text:jack text:ryan text:patriot text:game text:he text:had text:other text:icon text:role text:space text:underground
+Answer: Harrison Ford
+-> ChatGPT: Harrison Ford
+--- Search Correct --- 
+
+Executing query 78: categories:complet (text:dom text:inat) text:sacr text:structur text:date text:from text:late text:600 text:s text:a.d
+Answer: Dome of the Rock
+-> ChatGPT: Al-Aqsa Mosque
+--- Search Incorrect --- 
+
+Executing query 79: categories:80 text:1 text:hitmak text:1988 text:man text:mirror
+Answer: Michael Jackson
+-> ChatGPT: Mike Stock (musician)
+--- Search Incorrect --- 
+
+Executing query 80: categories:capit text:citi text:church text:matthia text:church text:matya text:templom text:where text:franz text:joseph text:crown text:1867
+Answer: Budapest
+-> ChatGPT: Budapest
+--- Search Correct --- 
+
+Executing query 81: categories:ucla text:celebr text:alumni text:attend text:ucla text:60 text:he text:meathead text:he text:just text:plai text:on text:later text:televis
+Answer: Rob Reiner
+-> ChatGPT: Rob Reiner
+--- Search Correct --- 
+
+Executing query 82: text:resid text:kinch text:carter text:lebeau text:were text:all text:resid text:stalag text:13 text:tv text:show
+Answer: Hogan's Heroes
+-> ChatGPT: Hogan's Heroes
+--- Search Correct --- 
+
+Executing query 83: categories:1920 text:new text:flash text:new text:flash text:less text:than text:yappi text:pappi text:sixth text:veep text:nation text:top text:dog text:after text:chief text:take text:deep text:sleep
+Answer: Calvin Coolidge
+-> ChatGPT: Joe Biden
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+
+Executing query 84: categories:golden text:globe text:winner text:2001 text:presid text:unit text:state text:televis
+Answer: Martin Sheen
+-> ChatGPT: The West Wing
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+
+Executing query 85: categories:80 text:1 text:hitmak text:1989 text:miss text:you text:much
+Answer: Janet Jackson
+-> ChatGPT: I Love the '80s (U.S. TV series)
+--- Search Incorrect --- 
+
+Executing query 86: categories:1920 text:new text:flash text:1922 text:end text:empir text:empir text:fact text:after text:600 text:year text:goodby text:hello text:turkish text:republ
+Answer: Ottoman Empire
+-> ChatGPT: Ottoman Empire
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 87: categories:name text:parent text:compani text:crest text:toothpast
+Answer: Procter & Gamble
+-> ChatGPT: Crest (toothpaste)
+--- Search Incorrect --- 
+--- Search Correct in QA 3 --- 
+
+Executing query 88: categories:histor text:quot text:1888 text:chancellor text:told text:reichstag text:we text:german text:fear text:god text:noth text:els text:world
+Answer: Otto von Bismarck|Von Bismarck
+-> ChatGPT: Otto von Bismarck
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 89: categories:poet text:poetri text:1787 text:he text:sign text:hi text:first text:publish text:poem text:axiologu text:axio text:from text:greek text:worth
+Answer: William Wordsworth
+-> ChatGPT: William Wordsworth
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 90: categories:cambodian text:histori text:cultur text:confus text:karma text:krama text:popular text:accessori text:sold text:cambodia text:word text:mean text:scarf text:nation text:languag text:cambodia
+Answer: Khmer language
+-> ChatGPT: Khmer language
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 91: categories:cambodian text:histori text:cultur text:phnom text:penh text:notori text:gridlock text:circumv text:nimbl text:tuk text:tuk text:motor text:taxi text:also text:known text:auto text:similar text:asian text:convey
+Answer: Rickshaw
+-> ChatGPT: Rickshaw
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 92: categories:80 text:1 text:hitmak text:1980 text:rock text:you
+Answer: Michael Jackson
+-> ChatGPT: Rock music
+--- Search Incorrect --- 
+
+Executing query 93: categories:note text:from text:campaign text:trail text:pulitz text:win text:make text:presid text:1960 text:cover text:man text:success text:presidenti text:campaign
+Answer: JFK|John F. Kennedy
+-> ChatGPT: Richard Nixon
+--- Search Incorrect --- 
+
+Executing query 94: categories:servic text:organ text:1843 text:isaac text:dittenhoef text:becam text:first text:pre text:jewish text:club text:whose text:name text:mean text:children text:coven
+Answer: B'nai B'rith
+-> ChatGPT: B'nai B'rith
+--- Search Correct --- 
+
+Executing query 95: text:resid text:don text:knott text:took text:over text:from text:norman text:fell text:resid text:landlord text:sitcom
+Answer: Three's Company
+-> ChatGPT: Three's Company
+--- Search Correct --- 
+--- Search Correct by Rerank --- 
+
+Executing query 96: categories:old text:year text:resolut text:u.n text:re text:242 text:support text:secur text:recogn text:boundari text:israel text:neighbor text:follow text:june text:1967 text:war
+Answer: The Six Day War
+-> ChatGPT: Golan Heights
+--- Search Incorrect --- 
+
+Executing query 97: categories:ucla text:celebr text:alumni text:blond text:beauti text:who text:repris text:her text:role text:amanda text:new text:melros text:place text:psycholog text:major
+Answer: Heather Locklear
+-> ChatGPT: Courtney Thorne-Smith
+--- Search Incorrect --- 
+--- Search Correct in QA 2 --- 
+--- Original Search Correct --- 
+
+Executing query 98: categories:greek text:food text:drink text:name text:dish text:marin text:lamb text:skewer text:grill text:come text:from text:greek text:skewer text:also text:start text:s
+Answer: Souvlaki
+-> ChatGPT: Souvlaki
+--- Search Correct --- 
+
+Executing query 99: categories:name text:parent text:compani text:post text:note
+Answer: 3M
+-> ChatGPT: Postit note
+--- Search Incorrect --- 
+
+Executing query 100: categories:golden text:globe text:winner text:2010 text:sherlock text:holm text:film
+Answer: Robert Downey, Jr.
+-> ChatGPT: Robert Downey, Jr.
+--- Search Correct --- 
+
+-----------------------------------------------------
+ Measuring performance...
+ - Correctly answered questions: 66
+ - Incorrectly answered: 34
+
+ - Correctly answered questions within 100 hits: 73
+ - Correctly answered questions by ChatGPT Rerank if applied: 29
+ - Incorrectly answered questions by ChatGPT Rerank: 2
+ - Total questions: 100
+
+ - Precision at 1 (P@1): 0.66
+ - Mean Reciprocal Rank (MRR): 0.69
+-----------------------------------------------------
+WrongQAs = [3, 5, 6, 11, 12, 15, 16, 19, 21, 23, 26, 30, 32, 33, 41, 42, 43, 46, 48, 52, 65, 66, 70, 77, 78, 82, 83, 84, 86, 91, 92, 95, 96, 98]
+WrongGPTQAs = [6, 96]
+RightGPTQAs = [0, 1, 8, 10, 14, 17, 22, 24, 25, 28, 29, 31, 39, 40, 49, 53, 54, 55, 57, 59, 60, 67, 68, 85, 87, 88, 89, 90, 94]
