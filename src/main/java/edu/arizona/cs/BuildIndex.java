@@ -9,9 +9,6 @@ import java.util.Scanner;
 
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.Tokenizer;
-//import org.apache.lucene.analysis.wikipedia.WikipediaTokenizer;
-//import org.apache.lucene.analysis.wikipedia.WikipediaAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
